@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1a56db">
+<link rel="manifest" href="manifest.json">
+<title>盐城供电 · 宣传工作周报看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: #1a56db; --primary-light: #e8f0fe; --primary-dark: #1e40af;
+  --success: #0e9f6e; --warning: #e3a008; --danger: #e02424;
+  --text: #111827; --text-secondary: #6b7280; --text-muted: #9ca3af;
+  --bg: #f3f4f6; --card: #fff; --border: #e5e7eb;
+  --rank1: #f59e0b; --rank2: #94a3b8; --rank3: #cd7c3b;
+  --gradient: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,.07), 0 2px 4px -2px rgba(0,0,0,.05);
+  --radius: 12px; --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ========== PASSWORD GATE ========== */
+.gate {
+  display: flex; align-items: center; justify-content: center; min-height: 100vh;
+  background: var(--gradient); padding: 20px;
+}
+.gate-card {
+  background: #fff; border-radius: 16px; padding: 36px 24px;
+  max-width: 380px; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.15);
+  text-align: center;
+}
+.gate-icon { font-size: 48px; margin-bottom: 12px; }
+.gate-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.gate-sub  { font-size: 13px; color: var(--text-secondary); margin-bottom: 24px; }
+.gate-input {
+  width: 100%; padding: 12px 14px; border: 2px solid var(--border); border-radius: 10px;
+  font-size: 16px; text-align: center; outline: none; transition: border-color .2s;
+  letter-spacing: 2px;
+}
+.gate-input:focus { border-color: var(--primary); }
+.gate-btn {
+  width: 100%; padding: 12px; margin-top: 12px; border: none; border-radius: 10px;
+  background: var(--gradient); color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: opacity .2s;
+}
+.gate-btn:active { opacity: .85; }
+.gate-error { color: var(--danger); font-size: 13px; margin-top: 10px; display: none; }
+.gate-hint { font-size: 11px; color: var(--text-muted); margin-top: 16px; }
+
+/* ========== APP SHELL ========== */
+.app { display: none; }
+.app.unlocked { display: block; }
+
+.header {
+  background: var(--gradient); color: #fff; padding: 14px 16px;
+  position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(26,86,219,.25);
+}
+.header-row { display: flex; align-items: center; justify-content: space-between; }
+.header-title { font-size: 17px; font-weight: 700; }
+.header-subtitle { font-size: 11px; color: rgba(255,255,255,.65); margin-top: 2px; }
+.header-action { font-size: 22px; cursor: pointer; opacity: .8; background: none; border: none; color: #fff; }
+
+/* ========== NAVIGATION HUB ========== */
+.hub { padding: 12px 14px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.hub-card {
+  background: var(--card); border-radius: var(--radius); padding: 14px 16px;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: transform .15s, box-shadow .15s;
+  display: flex; align-items: center; gap: 12px; border-left: 4px solid transparent;
+  text-decoration: none; color: inherit;
+}
+.hub-card:active { transform: scale(.97); }
+.hub-card.weekly { border-left-color: var(--primary); }
+.hub-card.monthly { border-left-color: var(--warning); }
+.hub-card.quarterly { border-left-color: var(--success); }
+.hub-card.unit { border-left-color: #8b5cf6; }
+
+.hub-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.hub-card.weekly .hub-icon { background: var(--primary-light); }
+.hub-card.monthly .hub-icon { background: #fef3c7; }
+.hub-card.quarterly .hub-icon { background: #d1fae5; }
+.hub-card.unit .hub-icon { background: #ede9fe; }
+
+.hub-info { flex: 1; min-width: 0; }
+.hub-label { font-size: 14px; font-weight: 600; color: var(--text); }
+.hub-desc { font-size: 11px; color: var(--text-secondary); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* ========== MAIN NAV TABS ========== */
+.main-nav { display: flex; gap: 6px; padding: 10px 14px; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 99; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.main-nav::-webkit-scrollbar { display: none; }
+.nav-btn { flex-shrink: 0; padding: 7px 14px; border-radius: 20px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s; background: var(--bg); color: var(--text-secondary); white-space: nowrap; }
+.nav-btn.active { background: var(--primary); color: #fff; }
+
+/* ========== UNIT PICKER ========== */
+.unit-picker { padding: 12px 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.unit-chip {
+  padding: 10px 6px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--card);
+  font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; transition: all .15s;
+  color: var(--text);
+}
+.unit-chip:active { transform: scale(.95); }
+.unit-chip.sel { border-color: var(--primary); background: var(--primary-light); color: var(--primary); }
+
+.content { padding: 12px 14px; max-width: 900px; margin: 0 auto; }
+
+/* ========== WEEK CARDS ========== */
+.weeks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.week-card {
+  background: var(--card); border-radius: var(--radius); padding: 14px 12px;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: transform .15s; text-align: center;
+  border-top: 3px solid var(--border);
+}
+.week-card:active { transform: scale(.96); }
+.week-card.hot { border-top-color: var(--danger); }
+.week-card.warm { border-top-color: var(--warning); }
+.week-card.cool { border-top-color: var(--primary); }
+.week-num { font-size: 16px; font-weight: 700; }
+.week-date { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.week-top { font-size: 11px; font-weight: 600; margin-top: 6px; }
+
+/* ========== MONTH CARDS ========== */
+.month-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.month-card {
+  background: var(--card); border-radius: var(--radius); padding: 16px 14px;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: transform .15s;
+  border-left: 5px solid var(--warning);
+}
+.month-card:active { transform: scale(.97); }
+.month-name { font-size: 17px; font-weight: 700; }
+.month-weeks { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.month-leader { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+
+/* ========== QUARTER CARDS ========== */
+.quarter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.quarter-card {
+  background: var(--card); border-radius: var(--radius); padding: 16px 14px;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: transform .15s;
+  border-left: 5px solid var(--success);
+}
+.quarter-card:active { transform: scale(.97); }
+.quarter-name { font-size: 17px; font-weight: 700; }
+.quarter-weeks { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.quarter-leader { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+
+/* ========== DETAIL VIEW ========== */
+.back-bar {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--card);
+  border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 99; cursor: pointer;
+}
+.back-arrow { font-size: 20px; }
+.back-title { font-size: 15px; font-weight: 700; }
+.back-sub { font-size: 11px; color: var(--text-muted); }
+
+.tabs { display: flex; gap: 4px; padding: 10px 14px; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; position: sticky; top: 49px; z-index: 98; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab-btn { flex-shrink: 0; padding: 7px 12px; border-radius: 16px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; background: var(--bg); color: var(--text-secondary); white-space: nowrap; transition: all .2s; }
+.tab-btn.active { background: var(--primary); color: #fff; }
+
+.tab-content { display: none; padding: 14px 0; }
+.tab-content.active { display: block; }
+
+/* ========== CARDS ========== */
+.card { background: var(--card); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; box-shadow: var(--shadow-sm); }
+.card-title { font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.card-subtitle { font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
+
+/* Ranking bars */
+.rank-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f3f4f6; }
+.rank-row:last-child { border-bottom: none; }
+.rank-badge {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; flex-shrink: 0; color: #fff;
+}
+.rank-badge.gold { background: #f59e0b; }
+.rank-badge.silver { background: #94a3b8; }
+.rank-badge.bronze { background: #cd7c3b; }
+.rank-badge.normal { background: #d1d5db; color: var(--text-secondary); }
+.rank-unit { flex: 1; font-weight: 600; font-size: 14px; }
+.rank-score { font-weight: 700; font-size: 15px; }
+.rank-delta { font-size: 11px; margin-left: 4px; }
+.rank-delta.up { color: var(--success); }
+.rank-delta.down { color: var(--danger); }
+
+/* Progress bars */
+.progress-bar { height: 6px; border-radius: 3px; background: #f3f4f6; margin-top: 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 3px; transition: width .5s; }
+.progress-fill.high { background: var(--primary); }
+.progress-fill.mid { background: var(--warning); }
+.progress-fill.low { background: #e5e7eb; }
+
+/* Stat grid */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.stat-item { text-align: center; padding: 10px 6px; background: var(--bg); border-radius: var(--radius-sm); }
+.stat-val { font-size: 20px; font-weight: 700; }
+.stat-label { font-size: 10px; color: var(--text-secondary); margin-top: 2px; }
+
+/* Tables */
+.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.data-table th { background: var(--bg); padding: 8px 6px; text-align: left; font-weight: 600; font-size: 11px; color: var(--text-secondary); border-bottom: 2px solid var(--border); }
+.data-table td { padding: 8px 6px; border-bottom: 1px solid #f3f4f6; }
+.data-table tr:last-child td { border-bottom: none; }
+
+/* Insights */
+.insight-box { background: #fffbeb; border-left: 4px solid var(--warning); padding: 12px 14px; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-bottom: 10px; font-size: 13px; }
+.insight-box.danger { background: #fef2f2; border-left-color: var(--danger); }
+.insight-box.info { background: #eff6ff; border-left-color: var(--primary); }
+.insight-box.success { background: #f0fdf4; border-left-color: var(--success); }
+
+/* Chart containers */
+.chart-wrap { position: relative; height: 260px; margin: 8px 0; }
+.chart-wrap.tall { height: 340px; }
+
+/* Tags */
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+.tag-up { background: #d1fae5; color: #065f46; }
+.tag-down { background: #fef2f2; color: #991b1b; }
+.tag-neutral { background: #f3f4f6; color: #4b5563; }
+
+/* Summary block */
+.summary-block { background: linear-gradient(135deg, #f8fafc, #f1f5f9); border-radius: var(--radius); padding: 16px; margin-bottom: 12px; }
+.summary-block h3 { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+
+/* Section divider */
+.section-divider {
+  display: flex; align-items: center; gap: 10px; margin: 20px 0 14px; padding: 0 14px;
+}
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.section-label { font-size: 13px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+
+.color-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 4px; flex-shrink: 0; }
+
+/* Footer */
+.app-footer { text-align: center; padding: 24px 14px 32px; color: var(--text-muted); font-size: 11px; }
+.app-footer a { color: var(--primary); text-decoration: none; }
+
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ====== PASSWORD GATE ====== -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="gate-icon">🔒</div>
+    <div class="gate-title">盐城供电 · 宣传周报看板</div>
+    <div class="gate-sub">请输入访问密码</div>
+    <input type="password" class="gate-input" id="pwd" placeholder="请输入密码" autocomplete="off">
+    <button class="gate-btn" onclick="unlock()">进入看板</button>
+    <div class="gate-error" id="gate-error">密码错误，请重试</div>
+    <div class="gate-hint">内部资料 · 请勿外传</div>
+  </div>
+</div>
+
+<!-- ====== APP SHELL ====== -->
+<div class="app" id="app">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-row">
+    <div>
+      <div class="header-title">📊 盐城供电 · 宣传工作周报看板</div>
+      <div class="header-subtitle">数据来源：新闻宣传专业统计表(2026) · 金山文档</div>
+    </div>
+    <button class="header-action" onclick="showHub()" title="返回首页">🏠</button>
+  </div>
+</div>
+
+<!-- MAIN VIEWPORT -->
+<div id="main-view"></div>
+
+<div class="app-footer">
+  盐城供电公司 · 党建工作部 · 宣传周报看板 v3<br>
+  数据同步自 <a href="https://www.kdocs.cn/l/cjLzY2xcVWfT" target="_blank">金山文档 · 新闻宣传专业统计表(2026)</a>
+</div>
+
+</div><!-- .app -->
+
+<script>
+// ╔══════════════════════════════════════════╗
+// ║           DATA  (SYNC FROM KDOCS)        ║
+// ╚══════════════════════════════════════════╝
+
+const UNITS = ['本部','东台','大丰','建湖','射阳','阜宁','滨海','响水'];
+const UNIT_FULL = { '本部':'市公司本部','东台':'东台公司','大丰':'大丰公司','建湖':'建湖公司','射阳':'射阳公司','阜宁':'阜宁公司','滨海':'滨海公司','响水':'响水公司' };
+
+// Q1 per-unit weekly scores (table 48)
+const Q1_WEEKS = {
+  '本部': [1.8,5.1,3.9,3,2.3,0.5,0,1,7.3,0.5,1.2,2,1],
+  '东台': [1.7,7.75,0.7,3,0.8,2.1,0,3.2,0.5,0.5,3.5,5,0.5],
+  '大丰': [0,4.95,0.3,9,0.5,1,9,4.2,3,4.3,0.8,0.3,0.45],
+  '建湖': [0,1.7,0.65,1.5,2,1.5,2,2,8,1.5,0.2,0,0.7],
+  '射阳': [5,5,5.75,2.55,0.5,0.5,1,2.5,5,0.4,1.5,0,3.8],
+  '阜宁': [0.5,2.25,0.5,0.5,0.5,0,0.5,1.1,2,0.2,0,0,0.7],
+  '滨海': [0.1,2.85,7,5,0.5,0.5,0.2,0.2,0.5,8,0.5,0,1.5],
+  '响水': [0.5,0.2,1.1,0.75,0.5,0.5,7.5,0.85,1.55,13,2.5,0.3,0.2]
+};
+
+// Q2 per-unit weekly scores (table 67)
+const Q2_WEEKS = {
+  '本部': [0.8,0,0,1.5,0,0,1,5.5,0],
+  '东台': [1.4,0,7,1.1,0.2,0,1.1,0.2,0],
+  '大丰': [1.1,0.2,0.85,0.4,-1.2,0.4,2.75,2.1,0],
+  '建湖': [0.8,1.9,6.05,5.25,2.5,5.25,1.4,0.2,0],
+  '射阳': [0.2,0,2.2,3.8,1.7,2.8,2.5,5.5,0],
+  '阜宁': [2.2,0.4,0.1,3.3,3.5,1.3,0.6,0.25,0],
+  '滨海': [0.45,0.25,1.2,5.5,1.7,1.2,3,0.3,0],
+  '响水': [0.2,7,0.3,0,0.5,0,2.55,0,0]
+};
+
+// Week 22 is last element (index 8, currently all 0 — to be updated from kdocs)
+// Week labels
+function weekLabel(w) { return '第'+w+'周'; }
+
+// Get all scores for a unit across all weeks
+function getAllWeeks(unit) {
+  var q1 = Q1_WEEKS[unit] || [];
+  var q2 = Q2_WEEKS[unit] || [];
+  return q1.concat(q2);
+}
+
+// Get score for a specific week
+function getWeekScore(unit, week) {
+  if (week <= 13) return (Q1_WEEKS[unit]||[])[week-1] || 0;
+  return (Q2_WEEKS[unit]||[])[week-14] || 0;
+}
+
+// Total weeks count (including placeholder week 22)
+var TOTAL_WEEKS = 22;
+
+// Q1 weeks 1-13, Q2 weeks 14-22
+function getQuarter(week) { return week <= 13 ? 'Q1' : 'Q2'; }
+function getMonth(week) {
+  if (week <= 4) return 1;
+  if (week <= 8) return 2;
+  if (week <= 13) return 3;
+  if (week <= 17) return 4;
+  return 5;
+}
+
+function getWeeksInMonth(m) {
+  if (m === 1) return [1,2,3,4];
+  if (m === 2) return [5,6,7,8];
+  if (m === 3) return [9,10,11,12,13];
+  if (m === 4) return [14,15,16,17];
+  return [18,19,20,21,22];
+}
+
+function getWeeksInQuarter(q) {
+  if (q === 'Q1') { var a=[]; for (var i=1;i<=13;i++) a.push(i); return a; }
+  var a=[]; for (var i=14;i<=TOTAL_WEEKS;i++) a.push(i); return a;
+}
+
+// Compute total score for a unit up to a given week
+function totalScore(unit, upToWeek) {
+  var sum = 0;
+  for (var w = 1; w <= upToWeek; w++) sum += getWeekScore(unit, w);
+  return Math.round(sum * 100) / 100;
+}
+
+// Build ranking array for a set of weeks
+function rankUnits(weeks) {
+  return UNITS.map(function(u) {
+    var sum = 0;
+    weeks.forEach(function(w) { sum += getWeekScore(u, w); });
+    return { unit: u, score: Math.round(sum*100)/100 };
+  }).sort(function(a,b) { return b.score - a.score; });
+}
+
+// Get unit's total cumulative score
+function cumulativeTotal(unit) {
+  return totalScore(unit, TOTAL_WEEKS);
+}
+
+function getTopUnit(weeks) {
+  var r = rankUnits(weeks);
+  return r[0];
+}
+
+function getRankForUnit(unit, weeks) {
+  var r = rankUnits(weeks);
+  for (var i = 0; i < r.length; i++) {
+    if (r[i].unit === unit) return i + 1;
+  }
+  return '-';
+}
+
+// Previous rank (for delta)
+function getPrevRankForUnit(unit, week) {
+  if (week <= 1) return '-';
+  return getRankForUnit(unit, [week - 1]);
+}
+
+// Week date range (approximate)
+function weekDateRange(week) {
+  if (week <= 13) {
+    var start = new Date(2026, 0, 5 + (week-1)*7);
+    var end = new Date(start); end.setDate(end.getDate() + 6);
+    return formatDate(start) + ' - ' + formatDate(end);
+  }
+  var start = new Date(2026, 3, 6 + (week-14)*7);
+  var end = new Date(start); end.setDate(end.getDate() + 6);
+  return formatDate(start) + ' - ' + formatDate(end);
+}
+
+function formatDate(d) {
+  return (d.getMonth()+1) + '/' + d.getDate();
+}
+
+// Month labels
+var MONTH_NAMES = {1:'一月',2:'二月',3:'三月',4:'四月',5:'五月'};
+var MONTH_WEEKS_LABEL = {1:'第1-4周',2:'第5-8周',3:'第9-13周',4:'第14-17周',5:'第18-22周'};
+
+// ╔══════════════════════════════════════════╗
+// ║           PASSWORD GATE                   ║
+// ╚══════════════════════════════════════════╝
+
+var CORRECT_PWD = 'Ycj5186!';
+var SESSION_KEY = 'ycxd_weekly_auth';
+
+function unlock() {
+  var input = document.getElementById('pwd').value;
+  if (input === CORRECT_PWD) {
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').classList.add('unlocked');
+    sessionStorage.setItem(SESSION_KEY, '1');
+    showHub();
+  } else {
+    document.getElementById('gate-error').style.display = 'block';
+    document.getElementById('pwd').value = '';
+    document.getElementById('pwd').focus();
+  }
+}
+
+document.getElementById('pwd').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') unlock();
+});
+
+// Auto-unlock if already authenticated this session
+if (sessionStorage.getItem(SESSION_KEY) === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').classList.add('unlocked');
+  showHub();
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           NAVIGATION HUB                  ║
+// ╚══════════════════════════════════════════╝
+
+function showHub() {
+  var v = document.getElementById('main-view');
+  var now = new Date();
+  var html = '<div class="hub">';
+
+  // Weekly entry
+  html += '<div class="hub-card weekly" onclick="showWeeklyList()">';
+  html += '<div class="hub-icon">📅</div>';
+  html += '<div class="hub-info"><div class="hub-label">每周周报</div>';
+  html += '<div class="hub-desc">第1-' + TOTAL_WEEKS + '周 · 最新第' + TOTAL_WEEKS + '周</div></div></div>';
+
+  // Monthly entry
+  html += '<div class="hub-card monthly" onclick="showMonthlyList()">';
+  html += '<div class="hub-icon">📆</div>';
+  html += '<div class="hub-info"><div class="hub-label">月度总结</div>';
+  html += '<div class="hub-desc">1月—5月 · 月度排名汇总</div></div></div>';
+
+  // Quarterly entry
+  html += '<div class="hub-card quarterly" onclick="showQuarterlyList()">';
+  html += '<div class="hub-icon">📊</div>';
+  html += '<div class="hub-info"><div class="hub-label">季度总结</div>';
+  html += '<div class="hub-desc">Q1 + Q2 · 季度对比分析</div></div></div>';
+
+  // Unit entry
+  html += '<div class="hub-card unit" onclick="showUnitPicker()">';
+  html += '<div class="hub-icon">🏢</div>';
+  html += '<div class="hub-info"><div class="hub-label">单位数据</div>';
+  html += '<div class="hub-desc">8个单位 · 独立数据看板</div></div></div>';
+
+  html += '</div>';
+
+  // Quick stats
+  html += '<div class="content"><div class="card">';
+  html += '<div class="card-title">📋 数据概览</div>';
+  html += '<div class="stat-grid">';
+  html += '<div class="stat-item"><div class="stat-val">' + TOTAL_WEEKS + '</div><div class="stat-label">已记录周次</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">8</div><div class="stat-label">统计单位</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + MONTH_NAMES[5] + '</div><div class="stat-label">当前月份</div></div>';
+  html += '</div>';
+
+  // Latest week summary
+  var latestRank = rankUnits([TOTAL_WEEKS - 1]); // Use week 21 (last with data)
+  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(TOTAL_WEEKS-1)+'周）: ';
+  for (var i = 0; i < 3; i++) {
+    if (i > 0) html += ' · ';
+    html += '🥇'.replace('🥇',['🥇','🥈','🥉'][i]) + ' ' + latestRank[i].unit + ' ' + latestRank[i].score + '分';
+  }
+  html += '</div></div>';
+
+  // Cumulative ranking summary
+  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
+  html += '<div class="card"><div class="card-title">🏆 累计总分排名</div>';
+  cumRank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    var rankIcon = ['🥇','🥈','🥉'][i] || (i+1);
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + rankIcon + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span>';
+    html += '<span class="rank-score">' + r.score + '分</span>';
+    var maxScore = cumRank[0].score || 1;
+    html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + ((r.score/maxScore)*100) + '%"></div></div>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+
+  v.innerHTML = html;
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           WEEKLY LIST                     ║
+// ╚══════════════════════════════════════════╝
+
+function showWeeklyList() {
+  var v = document.getElementById('main-view');
+  var html = '<div class="content"><div class="card"><div class="card-title">📅 全部周次</div>';
+  html += '<div class="weeks-grid">';
+
+  for (var w = TOTAL_WEEKS; w >= 1; w--) {
+    var rank = rankUnits([w]);
+    var topUnit = rank[0];
+    var maxScore = topUnit.score;
+    var heatClass = maxScore >= 5 ? 'hot' : (maxScore >= 2 ? 'warm' : 'cool');
+    var heatIcon = maxScore >= 5 ? '🔥' : (maxScore >= 2 ? '📈' : '📉');
+    var hasData = w <= 21; // Week 22 has no data yet
+
+    html += '<div class="week-card ' + heatClass + '" onclick="showWeekDetail(' + w + ')">';
+    html += '<div class="week-num">第' + w + '周</div>';
+    html += '<div class="week-date">' + weekDateRange(w) + '</div>';
+    if (hasData) {
+      html += '<div class="week-top">' + heatIcon + ' ' + topUnit.unit + ' ' + topUnit.score + '分</div>';
+    } else {
+      html += '<div class="week-top" style="color:var(--text-muted)">⏳ 数据待更新</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '</div></div></div>';
+  v.innerHTML = html;
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           MONTHLY LIST                    ║
+// ╚══════════════════════════════════════════╝
+
+function showMonthlyList() {
+  var v = document.getElementById('main-view');
+  var html = '<div class="content"><div class="card"><div class="card-title">📆 月度总结</div>';
+  html += '<div class="month-grid">';
+
+  for (var m = 1; m <= 5; m++) {
+    var weeks = getWeeksInMonth(m);
+    var rank = rankUnits(weeks);
+    var top = rank[0];
+    html += '<div class="month-card" onclick="showMonthDetail(' + m + ')">';
+    html += '<div class="month-name">' + MONTH_NAMES[m] + '</div>';
+    html += '<div class="month-weeks">' + MONTH_WEEKS_LABEL[m] + '</div>';
+    html += '<div class="month-leader">🥇 ' + top.unit + ' · ' + top.score + '分</div>';
+    html += '</div>';
+  }
+
+  html += '</div></div></div>';
+  v.innerHTML = html;
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           QUARTERLY LIST                  ║
+// ╚══════════════════════════════════════════╝
+
+function showQuarterlyList() {
+  var v = document.getElementById('main-view');
+  var html = '<div class="content"><div class="card"><div class="card-title">📊 季度总结</div>';
+  html += '<div class="quarter-grid">';
+
+  ['Q1','Q2'].forEach(function(q) {
+    var weeks = getWeeksInQuarter(q);
+    var rank = rankUnits(weeks);
+    var top = rank[0];
+    var weekRange = q === 'Q1' ? '第1-13周' : '第14-' + TOTAL_WEEKS + '周';
+    html += '<div class="quarter-card" onclick="showQuarterDetail(\'' + q + '\')">';
+    html += '<div class="quarter-name">' + q + ' · ' + (q==='Q1'?'第一季度':'第二季度') + '</div>';
+    html += '<div class="quarter-weeks">' + weekRange + '</div>';
+    html += '<div class="quarter-leader">🥇 ' + top.unit + ' · ' + top.score + '分</div>';
+    html += '</div>';
+  });
+
+  html += '</div></div></div>';
+  v.innerHTML = html;
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           UNIT PICKER                     ║
+// ╚══════════════════════════════════════════╝
+
+var selectedUnit = null;
+
+function showUnitPicker() {
+  var v = document.getElementById('main-view');
+  var html = '<div class="content"><div class="card"><div class="card-title">🏢 选择单位</div>';
+  html += '<div class="unit-picker">';
+  UNITS.forEach(function(u) {
+    var sel = selectedUnit === u ? ' sel' : '';
+    html += '<div class="unit-chip' + sel + '" onclick="showUnitDetail(\'' + u + '\')">' + u + '</div>';
+  });
+  html += '</div>';
+
+  // Show cumulative ranking for context
+  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
+  html += '<div class="card-title" style="margin-top:16px;">📊 累计排名速览</div>';
+  cumRank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span>';
+    html += '<span class="rank-score">' + r.score + '分</span>';
+    html += '</div>';
+  });
+  html += '</div></div>';
+  v.innerHTML = html;
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           WEEK DETAIL (6 TABS)            ║
+// ╚══════════════════════════════════════════╝
+
+var currentWeek = 21;
+var currentTab = 0;
+
+function showWeekDetail(week) {
+  currentWeek = week;
+  currentTab = 0;
+  selectedUnit = null;
+  renderWeekDetail();
+}
+
+function renderWeekDetail() {
+  var w = currentWeek;
+  var v = document.getElementById('main-view');
+  var hasData = w <= 21;
+  var rank = rankUnits([w]);
+  var prevRank = w > 1 ? rankUnits([w - 1]) : null;
+  var maxScore = rank[0].score;
+
+  var html = '';
+
+  // Back bar
+  html += '<div class="back-bar" onclick="showWeeklyList()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">第' + w + '周 · 宣传工作情况报告</span>';
+  html += '<div class="back-sub">' + weekDateRange(w) + '</div></div>';
+  html += '</div>';
+
+  // Tabs
+  var tabs = ['📊 总览排名','📈 得分趋势','📰 本周发稿','🌿 品牌社责','⚠️ 舆情监测','📋 本期要情'];
+  html += '<div class="tabs">';
+  tabs.forEach(function(t, i) {
+    html += '<button class="tab-btn' + (i === currentTab ? ' active' : '') + '" onclick="switchTab(' + i + ')">' + t + '</button>';
+  });
+  html += '</div><div class="content">';
+
+  // ===== TAB 0: 总览排名 =====
+  html += '<div class="tab-content' + (currentTab === 0 ? ' active' : '') + '" id="tab-0">';
+
+  if (!hasData) {
+    html += '<div class="card" style="text-align:center;padding:40px;">';
+    html += '<div style="font-size:48px;">⏳</div>';
+    html += '<div style="font-size:16px;font-weight:700;margin-top:8px;">第' + w + '周数据待更新</div>';
+    html += '<div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">请先在金山文档多维表格中填入本周数据</div>';
+    html += '</div>';
+  } else {
+    // Stat grid
+    var totalWeekScore = 0;
+    rank.forEach(function(r) { totalWeekScore += r.score; });
+    var activeUnits = rank.filter(function(r) { return r.score > 0; }).length;
+
+    html += '<div class="stat-grid">';
+    html += '<div class="stat-item"><div class="stat-val">' + Math.round(totalWeekScore*10)/10 + '</div><div class="stat-label">本周总分</div></div>';
+    html += '<div class="stat-item"><div class="stat-val">' + activeUnits + '/' + UNITS.length + '</div><div class="stat-label">有得分单位</div></div>';
+    html += '<div class="stat-item"><div class="stat-val">' + Math.round(maxScore*10)/10 + '</div><div class="stat-label">最高分</div></div>';
+    html += '</div>';
+
+    // Ranking
+    html += '<div class="card"><div class="card-title">🏆 本周排名</div>';
+    rank.forEach(function(r, i) {
+      var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+      var rankIcon = ['🥇','🥈','🥉'][i] || (i+1);
+      var prevR = prevRank ? getRankForUnit(r.unit, [w-1]) : '-';
+      var delta = '';
+      if (prevR !== '-' && prevR !== i+1) {
+        delta = prevR > i+1 ? '<span class="rank-delta up">↑' + (prevR - i - 1) + '</span>' : '<span class="rank-delta down">↓' + (i + 1 - prevR) + '</span>';
+      }
+      var pct = maxScore > 0 ? (r.score / maxScore * 100) : 0;
+      var barClass = pct >= 70 ? 'high' : (pct >= 30 ? 'mid' : 'low');
+
+      html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + rankIcon + '</span>';
+      html += '<span class="rank-unit">' + r.unit + '</span>';
+      html += '<span class="rank-score">' + r.score + '分</span>' + delta;
+      html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill ' + barClass + '" style="width:' + pct + '%"></div></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    // Cumulative ranking
+    var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
+    html += '<div class="card"><div class="card-title">📊 累计总分排名（截至第' + w + '周）</div>';
+    var cumScores = UNITS.map(function(u) { return totalScore(u, w); });
+    var cumMax = Math.max.apply(null, cumScores);
+    UNITS.map(function(u) { return { unit: u, score: totalScore(u, w) }; }).sort(function(a,b) { return b.score - a.score; }).forEach(function(r, i) {
+      var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+      html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+      html += '<span class="rank-unit">' + r.unit + '</span>';
+      html += '<span class="rank-score">' + r.score + '分</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  }
+
+  html += '</div>'; // end tab-0
+
+  // ===== TAB 1: 得分趋势 =====
+  html += '<div class="tab-content' + (currentTab === 1 ? ' active' : '') + '" id="tab-1">';
+  html += '<div class="card"><div class="card-title">📈 近10周得分趋势</div>';
+  html += '<div class="chart-wrap"><canvas id="chart-trend"></canvas></div></div>';
+
+  html += '<div class="card"><div class="card-title">📊 第' + w + '周得分构成</div>';
+  html += '<div class="chart-wrap tall"><canvas id="chart-bar"></canvas></div></div>';
+  html += '</div>'; // end tab-1
+
+  // ===== TAB 2: 本周发稿 =====
+  html += '<div class="tab-content' + (currentTab === 2 ? ' active' : '') + '" id="tab-2">';
+  if (w === 21) {
+    html += '<div class="card"><div class="card-title">📰 第21周发稿统计</div>';
+    html += '<table class="data-table"><thead><tr><th>单位</th><th>报刊</th><th>手机报/网站</th><th>品牌社责</th><th>合计</th></tr></thead><tbody>';
+    var wk21data = [
+      {u:'本部', bk:0.5, web:5, br:0, total:5.5},
+      {u:'东台', bk:0.2, web:0, br:0, total:0.2},
+      {u:'大丰', bk:0.2, web:1.2, br:0.7, total:2.1},
+      {u:'建湖', bk:0.2, web:0, br:0, total:0.2},
+      {u:'射阳', bk:5, web:0, br:0.5, total:5.5},
+      {u:'阜宁', bk:0, web:0, br:0.25, total:0.25},
+      {u:'滨海', bk:0, web:0.1, br:0.2, total:0.3},
+      {u:'响水', bk:0, web:0, br:0, total:0}
+    ];
+    wk21data.forEach(function(d) {
+      html += '<tr><td><strong>' + d.u + '</strong></td><td>' + d.bk + '</td><td>' + d.web + '</td><td>' + d.br + '</td><td><strong>' + d.total + '</strong></td></tr>';
+    });
+    html += '</tbody></table></div>';
+  } else {
+    html += '<div class="card">';
+    html += '<div class="card-title">📰 第' + w + '周得分明细</div>';
+    html += '<div class="chart-wrap tall"><canvas id="chart-breakdown"></canvas></div>';
+    html += '</div>';
+  }
+  html += '</div>'; // end tab-2
+
+  // ===== TAB 3: 品牌社责 =====
+  html += '<div class="tab-content' + (currentTab === 3 ? ' active' : '') + '" id="tab-3">';
+  html += '<div class="card"><div class="card-title">🌿 品牌与社会责任</div>';
+  if (w === 21) {
+    html += '<table class="data-table"><thead><tr><th>单位</th><th>品牌活动</th><th>得分</th></tr></thead><tbody>';
+    html += '<tr><td>大丰</td><td>候鸟生命线</td><td>0.7</td></tr>';
+    html += '<tr><td>射阳</td><td>候鸟生命线</td><td>0.5</td></tr>';
+    html += '<tr><td>阜宁</td><td>候鸟生命线</td><td>0.25</td></tr>';
+    html += '<tr><td>滨海</td><td>品牌活动</td><td>0.2</td></tr>';
+    html += '</tbody></table>';
+  } else {
+    html += '<div class="chart-wrap"><canvas id="chart-brand"></canvas></div>';
+  }
+  html += '</div>';
+  html += '</div>'; // end tab-3
+
+  // ===== TAB 4: 舆情监测 =====
+  html += '<div class="tab-content' + (currentTab === 4 ? ' active' : '') + '" id="tab-4">';
+  html += '<div class="card"><div class="card-title">⚠️ 舆情监测</div>';
+  if (w === 21) {
+    html += '<div class="insight-box danger"><strong>3条抖音舆情</strong> — 本部/射阳各1条架线纠纷+运维隐患，射阳1条收费站断电</div>';
+    html += '<table class="data-table"><thead><tr><th>来源</th><th>涉及单位</th><th>内容摘要</th></tr></thead><tbody>';
+    html += '<tr><td>抖音</td><td>本部</td><td>架线施工纠纷</td></tr>';
+    html += '<tr><td>抖音</td><td>射阳</td><td>运维安全隐患</td></tr>';
+    html += '<tr><td>抖音</td><td>射阳</td><td>收费站断电事件</td></tr>';
+    html += '</tbody></table>';
+  } else {
+    html += '<div class="insight-box info">📌 第' + w + '周暂无舆情记录</div>';
+  }
+  html += '</div>';
+  html += '</div>'; // end tab-4
+
+  // ===== TAB 5: 本期要情 + 月份/季度总结 =====
+  html += '<div class="tab-content' + (currentTab === 5 ? ' active' : '') + '" id="tab-5">';
+
+  // Summary
+  html += '<div class="card"><div class="card-title">📋 本期要情</div>';
+  if (hasData) {
+    var r1 = rank[0], r2 = rank[1], r3 = rank[2];
+    html += '<div class="summary-block">';
+    html += '<h3>📌 第' + w + '周宣传工作要点</h3>';
+    html += '<p style="font-size:13px;line-height:1.8;">';
+    html += '本周总体得分 <strong>' + Math.round(totalWeekScore*10)/10 + '分</strong>，';
+    html += '<strong>' + activeUnits + '</strong>个单位有得分记录。<br>';
+    html += '🥇 <strong>' + r1.unit + '</strong>以 <strong>' + r1.score + '分</strong>位居榜首，';
+    if (r2.score > 0) html += '🥈 <strong>' + r2.unit + '</strong>以 ' + r2.score + '分紧随其后。';
+    if (r3.score > 0) html += '🥉 <strong>' + r3.unit + '</strong>以 ' + r3.score + '分排名第三。';
+    html += '</p></div>';
+  } else {
+    html += '<div class="insight-box info">第' + w + '周数据尚未录入，请先在金山文档中更新数据。</div>';
+  }
+  html += '</div>';
+
+  // ---- MONTHLY SUMMARY ----
+  var m = getMonth(w);
+  var monthWeeks = getWeeksInMonth(m);
+  var monthRank = rankUnits(monthWeeks);
+
+  html += '<div class="section-divider"><span class="section-label">📅 ' + MONTH_NAMES[m] + '月度总结</span></div>';
+  html += '<div class="card"><div class="card-title">' + MONTH_NAMES[m] + ' · 累计排名（' + MONTH_WEEKS_LABEL[m] + '）</div>';
+  var monthMax = monthRank[0].score;
+  monthRank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span><span class="rank-score">' + r.score + '分</span>';
+    html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + (monthMax>0?(r.score/monthMax*100):0) + '%"></div></div>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div class="card"><div class="chart-wrap"><canvas id="chart-month"></canvas></div></div>';
+
+  // ---- QUARTERLY SUMMARY ----
+  var q = getQuarter(w);
+  var qWeeks = getWeeksInQuarter(q);
+  var qRank = rankUnits(qWeeks);
+  var qLabel = q === 'Q1' ? '第一季度（第1-13周）' : '第二季度（第14-' + TOTAL_WEEKS + '周）';
+
+  html += '<div class="section-divider"><span class="section-label">📊 ' + q + '季度总结</span></div>';
+  html += '<div class="card"><div class="card-title">' + qLabel + ' · 累计排名</div>';
+  var qMax = qRank[0].score;
+  qRank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span><span class="rank-score">' + r.score + '分</span>';
+    var weekCount = qWeeks.length;
+    html += '<span style="font-size:11px;color:var(--text-muted);margin-left:4px;">周均' + Math.round(r.score/weekCount*100)/100 + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Quarter comparison chart
+  html += '<div class="card"><div class="card-title">📊 Q1 vs Q2 季度对比</div>';
+  html += '<div class="chart-wrap"><canvas id="chart-quarter"></canvas></div></div>';
+
+  // Both quarters summary
+  html += '<div class="card"><div class="card-title">📊 两季度总分对比</div>';
+  html += '<div class="chart-wrap"><canvas id="chart-quarter-compare"></canvas></div></div>';
+
+  html += '</div>'; // end tab-5
+
+  html += '</div>'; // end content
+
+  v.innerHTML = html;
+
+  // Render charts after DOM is ready
+  setTimeout(renderDetailCharts, 100);
+}
+
+function switchTab(idx) {
+  currentTab = idx;
+  renderWeekDetail();
+}
+
+function renderDetailCharts() {
+  var w = currentWeek;
+  var hasData = w <= 21;
+
+  // ---- TAB 1: Trend chart ----
+  var ctxTrend = document.getElementById('chart-trend');
+  if (ctxTrend) {
+    var startWeek = Math.max(1, w - 9);
+    var labels = [];
+    for (var i = startWeek; i <= w; i++) labels.push('第'+i+'周');
+
+    var colors = ['#1a56db','#0e9f6e','#e3a008','#e02424','#8b5cf6','#ec4899','#06b6d4','#f97316'];
+    var datasets = UNITS.map(function(u, i) {
+      var data = [];
+      for (var j = startWeek; j <= w; j++) data.push(getWeekScore(u, j));
+      return {
+        label: u, data: data, borderColor: colors[i], backgroundColor: 'transparent',
+        tension: 0.3, borderWidth: 2, pointRadius: 3, pointHoverRadius: 5
+      };
+    });
+
+    new Chart(ctxTrend, {
+      type: 'line', data: { labels: labels, datasets: datasets },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 8, font: { size: 10 } } } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  }
+
+  // ---- TAB 1: Bar chart ----
+  var ctxBar = document.getElementById('chart-bar');
+  if (ctxBar && hasData) {
+    var scores = UNITS.map(function(u) { return getWeekScore(u, w); });
+    var bgColors = scores.map(function(s, i) {
+      if (s === Math.max.apply(null, scores)) return 'rgba(245,158,11,.7)';
+      return 'rgba(26,86,219,.6)';
+    });
+
+    new Chart(ctxBar, {
+      type: 'bar', data: { labels: UNITS, datasets: [{ label: '得分', data: scores, backgroundColor: bgColors, borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, title: { display: true, text: '得分' } } }
+      }
+    });
+  }
+
+  // ---- TAB 2: Breakdown chart ----
+  var ctxBreakdown = document.getElementById('chart-breakdown');
+  if (ctxBreakdown && !hasData) {
+    // show something
+  } else if (ctxBreakdown) {
+    var q1W = UNITS.map(function(u) { var s=0; for (var j=1;j<=13;j++) s+=getWeekScore(u,j); return s; });
+    var q2W = UNITS.map(function(u) { var s=0; for (var j=14;j<=w;j++) s+=getWeekScore(u,j); return s; });
+    new Chart(ctxBreakdown, {
+      type: 'bar',
+      data: { labels: UNITS, datasets: [
+        { label: 'Q1累计', data: q1W, backgroundColor: 'rgba(26,86,219,.5)', borderRadius: 4 },
+        { label: 'Q2累计(截至第'+w+'周)', data: q2W, backgroundColor: 'rgba(14,159,110,.5)', borderRadius: 4 }
+      ]},
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+        scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true } }
+      }
+    });
+  }
+
+  // ---- TAB 3: Brand chart ----
+  var ctxBrand = document.getElementById('chart-brand');
+  if (ctxBrand) {
+    var brandScores = UNITS.map(function(u) { return totalScore(u, w); });
+    new Chart(ctxBrand, {
+      type: 'bar', data: { labels: UNITS, datasets: [{ label: '品牌社责累计得分', data: brandScores, backgroundColor: 'rgba(14,159,110,.6)', borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+  }
+
+  // ---- TAB 5: Month chart ----
+  var ctxMonth = document.getElementById('chart-month');
+  if (ctxMonth) {
+    var m = getMonth(w);
+    var mWeeks = getWeeksInMonth(m);
+    var mData = UNITS.map(function(u) {
+      var s = 0; mWeeks.forEach(function(ww) { s += getWeekScore(u, ww); }); return s;
+    });
+    new Chart(ctxMonth, {
+      type: 'bar', data: { labels: UNITS, datasets: [{ label: MONTH_NAMES[m]+'总分', data: mData, backgroundColor: 'rgba(227,160,8,.6)', borderRadius: 6 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+  }
+
+  // ---- TAB 5: Quarter chart ----
+  var ctxQuarter = document.getElementById('chart-quarter');
+  if (ctxQuarter) {
+    var q1Data = UNITS.map(function(u) { var s=0; for (var j=1;j<=13;j++) s+=getWeekScore(u,j); return s; });
+    var q2Data = UNITS.map(function(u) { var s=0; for (var j=14;j<=TOTAL_WEEKS;j++) s+=getWeekScore(u,j); return s; });
+    new Chart(ctxQuarter, {
+      type: 'bar', data: { labels: UNITS, datasets: [
+        { label: 'Q1(第1-13周)', data: q1Data, backgroundColor: 'rgba(26,86,219,.5)', borderRadius: 4 },
+        { label: 'Q2(第14-'+TOTAL_WEEKS+'周)', data: q2Data, backgroundColor: 'rgba(227,160,8,.5)', borderRadius: 4 }
+      ]},
+      options: { responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+  }
+
+  // ---- TAB 5: Quarter comparison horizontal ----
+  var ctxQComp = document.getElementById('chart-quarter-compare');
+  if (ctxQComp) {
+    var q1D = UNITS.map(function(u) { var s=0; for (var j=1;j<=13;j++) s+=getWeekScore(u,j); return s; });
+    var q2D = UNITS.map(function(u) { var s=0; for (var j=14;j<=TOTAL_WEEKS;j++) s+=getWeekScore(u,j); return s; });
+    new Chart(ctxQComp, {
+      type: 'bar', data: { labels: UNITS, datasets: [
+        { label: 'Q1总分', data: q1D, backgroundColor: 'rgba(26,86,219,.7)', borderRadius: 4 },
+        { label: 'Q2总分', data: q2D, backgroundColor: 'rgba(227,160,8,.7)', borderRadius: 4 }
+      ]},
+      options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+        scales: { x: { beginAtZero: true } }
+      }
+    });
+  }
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           MONTH DETAIL                    ║
+// ╚══════════════════════════════════════════╝
+
+function showMonthDetail(m) {
+  var v = document.getElementById('main-view');
+  var weeks = getWeeksInMonth(m);
+  var rank = rankUnits(weeks);
+  var maxScore = rank[0].score;
+
+  var html = '';
+  html += '<div class="back-bar" onclick="showMonthlyList()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">' + MONTH_NAMES[m] + ' · 月度总结</span>';
+  html += '<div class="back-sub">' + MONTH_WEEKS_LABEL[m] + '</div></div>';
+  html += '</div><div class="content">';
+
+  // Ranking
+  html += '<div class="card"><div class="card-title">🏆 ' + MONTH_NAMES[m] + '排名</div>';
+  rank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span><span class="rank-score">' + r.score + '分</span>';
+    html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + (maxScore>0?(r.score/maxScore*100):0) + '%"></div></div>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Chart
+  html += '<div class="card"><div class="chart-wrap"><canvas id="chart-month-detail"></canvas></div></div>';
+
+  // Weekly breakdown
+  html += '<div class="card"><div class="card-title">📋 各周明细</div>';
+  html += '<table class="data-table"><thead><tr><th>单位</th>';
+  weeks.forEach(function(ww) { html += '<th>第' + ww + '周</th>'; });
+  html += '<th>合计</th></tr></thead><tbody>';
+  UNITS.forEach(function(u) {
+    html += '<tr><td><strong>' + u + '</strong></td>';
+    var total = 0;
+    weeks.forEach(function(ww) {
+      var s = getWeekScore(u, ww);
+      total += s;
+      html += '<td>' + s + '</td>';
+    });
+    html += '<td><strong>' + Math.round(total*100)/100 + '</strong></td></tr>';
+  });
+  html += '</tbody></table></div>';
+
+  html += '</div>';
+  v.innerHTML = html;
+
+  setTimeout(function() {
+    var ctx = document.getElementById('chart-month-detail');
+    if (ctx) {
+      var data = UNITS.map(function(u) {
+        var s = 0; weeks.forEach(function(ww) { s += getWeekScore(u, ww); }); return s;
+      });
+      new Chart(ctx, {
+        type: 'bar', data: { labels: UNITS, datasets: [{ label: MONTH_NAMES[m]+'总分', data: data, backgroundColor: 'rgba(227,160,8,.6)', borderRadius: 6 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+      });
+    }
+  }, 100);
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           QUARTER DETAIL                  ║
+// ╚══════════════════════════════════════════╝
+
+function showQuarterDetail(q) {
+  var v = document.getElementById('main-view');
+  var weeks = getWeeksInQuarter(q);
+  var rank = rankUnits(weeks);
+  var maxScore = rank[0].score;
+  var qLabel = q === 'Q1' ? '第一季度（第1-13周）' : '第二季度（第14-' + TOTAL_WEEKS + '周）';
+
+  var html = '';
+  html += '<div class="back-bar" onclick="showQuarterlyList()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">' + q + ' · 季度总结</span>';
+  html += '<div class="back-sub">' + qLabel + '</div></div>';
+  html += '</div><div class="content">';
+
+  // Stats
+  var totalQ = 0, nonZero = 0;
+  rank.forEach(function(r) { totalQ += r.score; if (r.score > 0) nonZero++; });
+  html += '<div class="stat-grid">';
+  html += '<div class="stat-item"><div class="stat-val">' + Math.round(totalQ*10)/10 + '</div><div class="stat-label">季度总分</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + Math.round(totalQ/weeks.length*10)/10 + '</div><div class="stat-label">周均分</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + Math.round(maxScore*10)/10 + '</div><div class="stat-label">最高单位</div></div>';
+  html += '</div>';
+
+  // Ranking
+  html += '<div class="card"><div class="card-title">🏆 ' + q + '排名</div>';
+  rank.forEach(function(r, i) {
+    var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+    var avg = Math.round(r.score / weeks.length * 100) / 100;
+    html += '<div class="rank-row"><span class="rank-badge ' + badgeClass + '">' + (i+1) + '</span>';
+    html += '<span class="rank-unit">' + r.unit + '</span><span class="rank-score">' + r.score + '分</span>';
+    html += '<span style="font-size:11px;color:var(--text-muted);">周均' + avg + '</span>';
+    html += '</div>';
+  });
+  html += '</div>';
+
+  // Chart
+  html += '<div class="card"><div class="chart-wrap"><canvas id="chart-quarter-detail"></canvas></div></div>';
+
+  // Compare with other quarter
+  var otherQ = q === 'Q1' ? 'Q2' : 'Q1';
+  var otherWeeks = getWeeksInQuarter(otherQ);
+  var otherRank = rankUnits(otherWeeks);
+  html += '<div class="card"><div class="card-title">📊 ' + q + ' vs ' + otherQ + ' 对比</div>';
+  html += '<div class="chart-wrap"><canvas id="chart-quarter-compare-detail"></canvas></div></div>';
+
+  html += '</div>';
+  v.innerHTML = html;
+
+  setTimeout(function() {
+    var ctxQ = document.getElementById('chart-quarter-detail');
+    if (ctxQ) {
+      var qData = UNITS.map(function(u) {
+        var s = 0; weeks.forEach(function(ww) { s += getWeekScore(u, ww); }); return s;
+      });
+      new Chart(ctxQ, {
+        type: 'bar', data: { labels: UNITS, datasets: [{ label: q+'总分', data: qData, backgroundColor: 'rgba(14,159,110,.6)', borderRadius: 6 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+      });
+    }
+
+    var ctxCmp = document.getElementById('chart-quarter-compare-detail');
+    if (ctxCmp) {
+      var q1D = UNITS.map(function(u) { var s=0; for (var j=1;j<=13;j++) s+=getWeekScore(u,j); return s; });
+      var q2D = UNITS.map(function(u) { var s=0; for (var j=14;j<=TOTAL_WEEKS;j++) s+=getWeekScore(u,j); return s; });
+      new Chart(ctxCmp, {
+        type: 'bar', data: { labels: UNITS, datasets: [
+          { label: 'Q1', data: q1D, backgroundColor: 'rgba(26,86,219,.5)', borderRadius: 4 },
+          { label: 'Q2', data: q2D, backgroundColor: 'rgba(14,159,110,.5)', borderRadius: 4 }
+        ]},
+        options: { responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+  }, 100);
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           UNIT DETAIL                     ║
+// ╚══════════════════════════════════════════╝
+
+function showUnitDetail(unit) {
+  selectedUnit = unit;
+  var v = document.getElementById('main-view');
+  var allWeeks = getAllWeeks(unit);
+  var cumTotal = cumulativeTotal(unit);
+
+  var html = '';
+  html += '<div class="back-bar" onclick="showUnitPicker()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">' + unit + ' · 单位数据看板</span>';
+  html += '<div class="back-sub">' + (UNIT_FULL[unit] || unit) + '</div></div>';
+  html += '</div><div class="content">';
+
+  // Stats
+  var q1Total = 0, q2Total = 0;
+  for (var i = 1; i <= 13; i++) q1Total += getWeekScore(unit, i);
+  for (var i = 14; i <= TOTAL_WEEKS; i++) q2Total += getWeekScore(unit, i);
+  var bestWeek = 0, bestScore = 0;
+  for (var i = 1; i <= TOTAL_WEEKS; i++) {
+    var s = getWeekScore(unit, i);
+    if (s > bestScore) { bestScore = s; bestWeek = i; }
+  }
+  var activeWeeks = allWeeks.filter(function(s) { return s > 0; }).length;
+
+  html += '<div class="stat-grid">';
+  html += '<div class="stat-item"><div class="stat-val">' + cumTotal + '</div><div class="stat-label">累计总分</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + activeWeeks + '/' + TOTAL_WEEKS + '</div><div class="stat-label">活跃周次</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + bestScore + '</div><div class="stat-label">单周最高(' + (bestWeek ? '第'+bestWeek+'周' : '-') + ')</div></div>';
+  html += '</div>';
+
+  // Cumulative rank position
+  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
+  var unitRank = cumRank.findIndex(function(r) { return r.unit === unit; }) + 1;
+
+  html += '<div class="card"><div class="card-title">🏆 累计排名：第 ' + unitRank + ' 名</div>';
+  html += '<div class="stat-grid">';
+  html += '<div class="stat-item"><div class="stat-val" style="color:var(--primary)">' + Math.round(q1Total*100)/100 + '</div><div class="stat-label">Q1得分</div></div>';
+  html += '<div class="stat-item"><div class="stat-val" style="color:var(--success)">' + Math.round(q2Total*100)/100 + '</div><div class="stat-label">Q2得分</div></div>';
+  html += '<div class="stat-item"><div class="stat-val">' + Math.round(cumTotal/(TOTAL_WEEKS)*100)/100 + '</div><div class="stat-label">周均得分</div></div>';
+  html += '</div></div>';
+
+  // Trend chart
+  html += '<div class="card"><div class="card-title">📈 全周期得分走势</div>';
+  html += '<div class="chart-wrap"><canvas id="chart-unit-trend"></canvas></div></div>';
+
+  // Week-by-week table
+  html += '<div class="card"><div class="card-title">📋 逐周明细</div>';
+  html += '<table class="data-table"><thead><tr><th>周次</th><th>日期</th><th>得分</th><th>当周排名</th><th>累计得分</th></tr></thead><tbody>';
+  var runningTotal = 0;
+  for (var i = 1; i <= TOTAL_WEEKS; i++) {
+    var s = getWeekScore(unit, i);
+    runningTotal += s;
+    var wr = getRankForUnit(unit, [i]);
+    var hasData = i <= 21;
+    html += '<tr>';
+    html += '<td><strong>第' + i + '周</strong></td>';
+    html += '<td>' + weekDateRange(i) + '</td>';
+    html += '<td>' + (hasData ? s : '<span style="color:var(--text-muted)">—</span>') + '</td>';
+    html += '<td>' + (hasData ? wr : '<span style="color:var(--text-muted)">—</span>') + '</td>';
+    html += '<td>' + Math.round(runningTotal*100)/100 + '</td>';
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+
+  // Month summary
+  html += '<div class="card"><div class="card-title">📆 月度汇总</div>';
+  html += '<table class="data-table"><thead><tr><th>月份</th><th>周次</th><th>月得分</th><th>月排名</th></tr></thead><tbody>';
+  for (var m = 1; m <= 5; m++) {
+    var mWeeks = getWeeksInMonth(m);
+    var mScore = 0;
+    mWeeks.forEach(function(ww) { mScore += getWeekScore(unit, ww); });
+    mScore = Math.round(mScore * 100) / 100;
+    var mRank = getRankForUnit(unit, mWeeks);
+    html += '<tr><td><strong>' + MONTH_NAMES[m] + '</strong></td><td>' + MONTH_WEEKS_LABEL[m] + '</td><td>' + mScore + '</td><td>' + mRank + '</td></tr>';
+  }
+  html += '</tbody></table></div>';
+
+  html += '</div>';
+  v.innerHTML = html;
+
+  setTimeout(function() {
+    var ctx = document.getElementById('chart-unit-trend');
+    if (ctx) {
+      var labels = [];
+      for (var i = 1; i <= TOTAL_WEEKS; i++) labels.push(i + '');
+      new Chart(ctx, {
+        type: 'line', data: { labels: labels, datasets: [{
+          label: unit + ' 每周得分', data: allWeeks,
+          borderColor: '#1a56db', backgroundColor: 'rgba(26,86,219,.1)',
+          fill: true, tension: 0.3, borderWidth: 2, pointRadius: 3
+        }]},
+        options: { responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true }, x: { title: { display: true, text: '周次' } } }
+        }
+      });
+    }
+  }, 100);
+}
+
+// ╔══════════════════════════════════════════╗
+// ║           INIT                             ║
+// ╚══════════════════════════════════════════╝
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(function() {});
+}
+
+// Start with hub if unlocked
+if (document.getElementById('app').classList.contains('unlocked')) {
+  showHub();
+}
+</script>
+</body>
+</html>

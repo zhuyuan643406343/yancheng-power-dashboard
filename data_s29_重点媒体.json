@@ -1,0 +1,269 @@
+{
+  "code": 0,
+  "data": {
+    "detail": {
+      "records": [
+        {
+          "fields": {
+            "专业类别": "工程建设",
+            "发稿单位": "大丰",
+            "周数": "第52周",
+            "媒体": "央视",
+            "播发形式": "独立单条",
+            "新闻标题": "首批国家级零碳园区公布",
+            "日期": "2025/12/27",
+            "时长（秒）": 126,
+            "栏目": "第一时间",
+            "稿件形式": "专题报道",
+            "赋分": 2.5,
+            "链接": [
+              {
+                "address": "https://tv.cctv.com/2025/12/27/VIDEkQ25eGgkK06YO077mJAw251227.shtml",
+                "displayText": "https://tv.cctv.com/2025/12/27/VIDEkQ25eGgkK06YO077mJAw251227.shtml"
+              }
+            ],
+            "首发/复播": "复播"
+          },
+          "id": "RS"
+        },
+        {
+          "fields": {
+            "专业类别": "工程建设",
+            "发稿单位": "大丰",
+            "周数": "第52周",
+            "媒体": "央视",
+            "播发形式": "独立单条",
+            "新闻标题": "首批国家级零碳园区公布",
+            "日期": "2025/12/26",
+            "时长（秒）": 126,
+            "栏目": "经济信息联播",
+            "稿件形式": "专题报道",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://tv.cctv.com/2025/12/26/VIDEoDTwDYHQj3gq2sCFqRV4251226.shtml",
+                "displayText": "https://tv.cctv.com/2025/12/26/VIDEoDTwDYHQj3gq2sCFqRV4251226.shtml"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "RT"
+        },
+        {
+          "fields": {
+            "专业类别": "营销服务",
+            "发稿单位": "本部",
+            "周数": "第3周",
+            "媒体": "新华社/文字稿件",
+            "播发形式": "植入类/拼盘类",
+            "新闻标题": "4万亿元投资发力！国家电网“十五五”锚定新型电力系统建设",
+            "日期": "2026/01/15",
+            "稿件形式": "植入类报道",
+            "赋分": 3,
+            "链接": [
+              {
+                "address": "https://h.xinhuaxmt.com/vh512/share/12926095?docid=12926095\u0026newstype=1001\u0026d=1352513\u0026time=1768895791832",
+                "displayText": "https://h.xinhuaxmt.com/vh512/share/12926095?docid=12926095\u0026newstype=1001\u0026d=1352513\u0026time=1768895791832"
+              }
+            ]
+          },
+          "id": "Rj"
+        },
+        {
+          "fields": {
+            "专业类别": "设备运检",
+            "发稿单位": "大丰",
+            "周数": "第4周",
+            "媒体": "央视",
+            "新闻标题": "冰雪之下 总有坚守温暖人心",
+            "日期": "2026/01/22",
+            "时长（秒）": 44,
+            "栏目": "焦点访谈",
+            "稿件形式": "专题报道",
+            "赋分": 5,
+            "链接": [
+              {
+                "address": "https://tv.cctv.com/2026/01/22/VIDEFylgWwXOd05LgU8NI0ll260122.shtml?spm=C45404.PDzt747gf9Yc.EEoQCy1O5BTV.36",
+                "displayText": "https://tv.cctv.com/2026/01/22/VIDEFylgWwXOd05LgU8NI0ll260122.shtml?spm=C45404.PDzt747gf9Yc.EEoQCy1O5BTV.36"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "SZ"
+        },
+        {
+          "fields": {
+            "专业类别": "工程建设",
+            "发稿单位": "本部",
+            "周数": "第6周",
+            "媒体": "央视",
+            "播发形式": "独立单条",
+            "新闻标题": "2x100万千瓦扩建项目送出工程投运",
+            "日期": "2026/02/05",
+            "时长（秒）": 36,
+            "栏目": "晚间新闻",
+            "稿件形式": "专题报道",
+            "赋分": 5,
+            "链接": [
+              {
+                "address": "https://app.cctv.com/special/m/livevod/index.html?guid=d11dac20c21d465d8e23f80eaddaab7e\u0026vtype=2\u0026vsetId=C10420",
+                "displayText": "https://app.cctv.com/special/m/livevod/index.html?guid=d11dac20c21d465d8e23f80eaddaab7e\u0026vtype=2\u0026vsetId=C10420"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "VF"
+        },
+        {
+          "fields": {
+            "专业类别": "营销服务",
+            "发稿单位": "东台",
+            "周数": "第6周",
+            "媒体": "央视",
+            "新闻标题": "2026年春运 全国铁路今天预计发送旅客1325万人次",
+            "日期": "2026/02/08",
+            "时长（秒）": 30,
+            "栏目": "新闻直播间",
+            "稿件形式": "植入类报道",
+            "赋分": 4,
+            "链接": [
+              {
+                "address": "https://app.cctv.com/special/m/livevod/index.html?guid=42fadb5cfc2c4d09ac9bb076f6e7a239\u0026vtype=2\u0026vsetId=C10616",
+                "displayText": "https://app.cctv.com/special/m/livevod/index.html?guid=42fadb5cfc2c4d09ac9bb076f6e7a239\u0026vtype=2\u0026vsetId=C10616"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "Vj"
+        },
+        {
+          "fields": {
+            "专业类别": "设备运检",
+            "发稿单位": "大丰",
+            "周数": "第7周",
+            "媒体": "海外传播/国网公司账号",
+            "新闻标题": "State Grid's \"Green Power Ark\"volunteers",
+            "日期": "2026/02/09",
+            "栏目": "国家电网X账号",
+            "稿件形式": "专题报道",
+            "赋分": 1.5,
+            "链接": [
+              {
+                "address": "https://x.com/sgccofficial/status/2020700041179246983?s=46",
+                "displayText": "https://x.com/sgccofficial/status/2020700041179246983?s=46"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "Vs"
+        },
+        {
+          "fields": {
+            "专业类别": "设备运检",
+            "发稿单位": "大丰",
+            "周数": "第7周",
+            "媒体": "海外传播/国网公司账号",
+            "新闻标题": "State Grid's \"Green Power Ark\"volunteers",
+            "日期": "2026/02/09",
+            "栏目": "国网单位Facebook",
+            "稿件形式": "专题报道",
+            "赋分": 0,
+            "赋分说明": "不重复计分",
+            "链接": [
+              {
+                "address": "https://www.facebook.com/share/p/1BszizXGhq/?mibextid=wwXIfr",
+                "displayText": "https://www.facebook.com/share/p/1BszizXGhq/?mibextid=wwXIfr"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "V7"
+        },
+        {
+          "fields": {
+            "专业类别": "营销服务",
+            "发稿单位": "滨海",
+            "周数": "第8周",
+            "媒体": "央视",
+            "新闻标题": "春运返程 江苏 破解充电难题 让春节出行更安心",
+            "日期": "2026/02/21",
+            "时长（秒）": 50,
+            "栏目": "东方时空",
+            "稿件形式": "专题报道",
+            "赋分": 4,
+            "链接": [
+              {
+                "address": "https://tv.cctv.com/2026/02/21/VIDEPXo1JkL9joa41m52dpN7260221.shtml?spm=C45404.PnRNQGbvOMyQ.EUjuwV25mHzr.12",
+                "displayText": "https://tv.cctv.com/2026/02/21/VIDEPXo1JkL9joa41m52dpN7260221.shtml?spm=C45404.PnRNQGbvOMyQ.EUjuwV25mHzr.12"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "XO"
+        },
+        {
+          "fields": {
+            "发稿单位": "本部",
+            "周数": "第11周",
+            "媒体": "新华社/文字稿件",
+            "新闻标题": "严汉平代表：在构建现代化产业体系上走在前、作示范",
+            "日期": "2026/03/11",
+            "赋分": 5,
+            "链接": [
+              {
+                "address": "https://h.xinhuaxmt.com/vh512/share/12999945?docid=12999945\u0026newstype=1001\u0026d=13525d6\u0026channel=weixin",
+                "displayText": "https://h.xinhuaxmt.com/vh512/share/12999945?docid=12999945\u0026newstype=1001\u0026d=13525d6\u0026channel=weixin"
+              }
+            ]
+          },
+          "id": "a5"
+        },
+        {
+          "fields": {
+            "专业类别": "营销服务",
+            "发稿单位": "建湖",
+            "周数": "第17周",
+            "媒体": "央视",
+            "新闻标题": "“水上春耕”新图景·黑龙江双鸭山 捕鱼正当时 鲜鱼丰收俏市场",
+            "日期": "2026/04/21",
+            "时长（秒）": 68,
+            "栏目": "24小时",
+            "稿件形式": "植入类报道",
+            "赋分": 4,
+            "链接": [
+              {
+                "address": "https://tv.cctv.com/2026/04/21/VIDEVyuKFpT6huBdqyVsKFvg260421.shtml",
+                "displayText": "https://tv.cctv.com/2026/04/21/VIDEVyuKFpT6huBdqyVsKFvg260421.shtml"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "i1"
+        },
+        {
+          "fields": {
+            "专业类别": "设备运检",
+            "发稿单位": "大丰",
+            "周数": "第22周",
+            "媒体": "新华社/文字稿件",
+            "新闻标题": "扩围提质，你的城市“体检”了吗",
+            "日期": "2026/05/26",
+            "栏目": "财经聚焦",
+            "稿件形式": "专题报道",
+            "赋分": 4,
+            "链接": [
+              {
+                "address": "https://h.xinhuaxmt.com/vh512/share/13121530?docid=13121530\u0026newstype=1001\u0026d=13526ae\u0026channel=weixin",
+                "displayText": "https://h.xinhuaxmt.com/vh512/share/13121530?docid=13121530\u0026newstype=1001\u0026d=13526ae\u0026channel=weixin"
+              }
+            ],
+            "首发/复播": "首发"
+          },
+          "id": "qD"
+        }
+      ]
+    },
+    "result": "ok"
+  },
+  "message": "成功"
+}

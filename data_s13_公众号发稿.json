@@ -1,0 +1,457 @@
+{
+  "code": 0,
+  "data": {
+    "detail": {
+      "records": [
+        {
+          "fields": {
+            "AI校验": "3",
+            "单位": "本部",
+            "发稿情况（单选）": "独立策划发稿",
+            "后续传播": "江苏新闻微信公众号转发",
+            "周数": "第3周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/01/12",
+            "是否头条": "是",
+            "标题": "强！全球7%的海上风电来自江苏这里",
+            "赋分": 2,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/g3FJwrYzpI4r4upxAC6WCA",
+                "displayText": "https://mp.weixin.qq.com/s/g3FJwrYzpI4r4upxAC6WCA"
+              }
+            ]
+          },
+          "id": "Rq"
+        },
+        {
+          "fields": {
+            "AI校验": "0.5",
+            "单位": "建湖",
+            "发稿情况（单选）": "图片组稿",
+            "周数": "第4周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/01/19",
+            "是否头条": "是",
+            "标题": "江苏大雪“到货”！直击电力保供第一线→",
+            "赋分": 0.2,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/-3LemXLKRw__7zBoUwKdJg?scene=1\u0026click_id=1",
+                "displayText": "https://mp.weixin.qq.com/s/-3LemXLKRw__7zBoUwKdJg?scene=1\u0026click_id=1"
+              }
+            ]
+          },
+          "id": "R6"
+        },
+        {
+          "fields": {
+            "AI校验": "3",
+            "单位": "大丰",
+            "发稿情况（单选）": "独立策划发稿",
+            "周数": "第4周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/01/23",
+            "是否头条": "否",
+            "标题": "在这里成长成才，太“幸福”了吧！",
+            "赋分": 1.5,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/hU-P1Y2rz7fVF_9QWGI_EQ",
+                "displayText": "https://mp.weixin.qq.com/s/hU-P1Y2rz7fVF_9QWGI_EQ"
+              }
+            ]
+          },
+          "id": "Sg"
+        },
+        {
+          "fields": {
+            "AI校验": "1.5",
+            "单位": "滨海",
+            "发稿情况（单选）": "配合市公司制作",
+            "后续传播": "江苏新闻微信公众号转发",
+            "周数": "第6周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/02/02",
+            "是否头条": "是",
+            "标题": "江苏首秀！无人机为220千伏带电线路装“防舞神器”\n",
+            "赋分": 1.2,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/KkXhtEQMBXlnIYHS-wvrtw",
+                "displayText": "https://mp.weixin.qq.com/s/KkXhtEQMBXlnIYHS-wvrtw"
+              }
+            ]
+          },
+          "id": "UR"
+        },
+        {
+          "fields": {
+            "AI校验": "0",
+            "单位": "滨海",
+            "发稿情况（单选）": "转发",
+            "周数": "第6周",
+            "平台（单选）": "江苏新闻",
+            "日期": "2026/02/05",
+            "是否头条": "否",
+            "标题": "江苏首秀！无人机为220千伏带电线路装“防舞神器”\n",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/m9PwK1YhQ3DV89gxduYr-A?scene=1\u0026click_id=16",
+                "displayText": "https://mp.weixin.qq.com/s/m9PwK1YhQ3DV89gxduYr-A?scene=1\u0026click_id=16"
+              }
+            ]
+          },
+          "id": "Vw"
+        },
+        {
+          "fields": {
+            "AI校验": "0",
+            "单位": "本部",
+            "发稿情况（单选）": "转发",
+            "周数": "第3周",
+            "平台（单选）": "江苏新闻",
+            "日期": "2026/01/14",
+            "是否头条": "否",
+            "标题": "强！全球7%的海上风电来自江苏这里",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/tllCOU1zUkf3Sx4xVZ5WQA",
+                "displayText": "https://mp.weixin.qq.com/s/tllCOU1zUkf3Sx4xVZ5WQA"
+              }
+            ]
+          },
+          "id": "Vx"
+        },
+        {
+          "fields": {
+            "AI校验": "0.2",
+            "单位": "本部",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第8周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/02/22",
+            "是否头条": "否",
+            "标题": "什么样的电力新春故事，值得被记录？",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/Wj-OpqykFN4QJu4SqHKYMQ",
+                "displayText": "https://mp.weixin.qq.com/s/Wj-OpqykFN4QJu4SqHKYMQ"
+              }
+            ]
+          },
+          "id": "XQ"
+        },
+        {
+          "fields": {
+            "AI校验": "0.2",
+            "单位": "滨海",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第9周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/02/24",
+            "是否头条": "否",
+            "标题": "主流媒体聚焦国网江苏电力春节保供",
+            "赋分": 0.2,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/skSCQiUpzOdA1jB4cLF02Q",
+                "displayText": "https://mp.weixin.qq.com/s/skSCQiUpzOdA1jB4cLF02Q"
+              }
+            ]
+          },
+          "id": "YD"
+        },
+        {
+          "fields": {
+            "AI校验": "0.2",
+            "单位": "滨海",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第9周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/02/28",
+            "是否头条": "否",
+            "标题": "我的新春故事丨今年回村，被震撼到了",
+            "赋分": 0.5,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/vdVoCZVKAfDPh_2JXH11Bw",
+                "displayText": "https://mp.weixin.qq.com/s/vdVoCZVKAfDPh_2JXH11Bw"
+              }
+            ]
+          },
+          "id": "YQ"
+        },
+        {
+          "fields": {
+            "AI校验": "3",
+            "单位": "建湖",
+            "发稿情况（单选）": "独立策划发稿",
+            "周数": "第10周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/03/03",
+            "是否头条": "是",
+            "标题": "绿电刚需下，高耗能企业困局如何破",
+            "赋分": 3,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/w9BrWd15gP4CbUKoKe3biw",
+                "displayText": "https://mp.weixin.qq.com/s/w9BrWd15gP4CbUKoKe3biw"
+              }
+            ]
+          },
+          "id": "Za"
+        },
+        {
+          "fields": {
+            "AI校验": "0.2",
+            "单位": "大丰",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第10周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/03/03",
+            "是否头条": "否",
+            "标题": "新春走基层｜我在苏电，看见新年里的生态画卷",
+            "赋分": 0.2,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/-QzfFkiml7UQdxJhbtcIZA",
+                "displayText": "https://mp.weixin.qq.com/s/-QzfFkiml7UQdxJhbtcIZA"
+              }
+            ]
+          },
+          "id": "Zg"
+        },
+        {
+          "fields": {
+            "AI校验": "0",
+            "单位": "建湖",
+            "发稿情况（单选）": "转发",
+            "周数": "第10周",
+            "平台（单选）": "江苏新闻",
+            "日期": "2026/03/04",
+            "是否头条": "否",
+            "标题": "绿电刚需下，高耗能企业困局如何破",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/imzJhER2FpnbXOh2ni0Pmg?scene=1\u0026click_id=114",
+                "displayText": "https://mp.weixin.qq.com/s/imzJhER2FpnbXOh2ni0Pmg?scene=1\u0026click_id=114"
+              }
+            ]
+          },
+          "id": "ap"
+        },
+        {
+          "fields": {
+            "AI校验": "0",
+            "单位": "大丰",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第11周",
+            "平台（单选）": "电网头条",
+            "日期": "2026/03/11",
+            "是否头条": "否",
+            "标题": "产业向新向绿，对电力有哪些新期待？",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/S6-ZIMyQ5JzN6fv3TR31xQ",
+                "displayText": "https://mp.weixin.qq.com/s/S6-ZIMyQ5JzN6fv3TR31xQ"
+              }
+            ]
+          },
+          "id": "ax"
+        },
+        {
+          "fields": {
+            "AI校验": "0.5",
+            "单位": "建湖",
+            "发稿情况（单选）": "文字组稿",
+            "后续传播": "组稿不单独加分",
+            "周数": "第11周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/03/13",
+            "是否头条": "是",
+            "标题": "@所有人！你关心的能源电力，这28位江苏代表委员在两会上都提到了",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/XRIcfDMy1ANIiBkidPVjLg",
+                "displayText": "https://mp.weixin.qq.com/s/XRIcfDMy1ANIiBkidPVjLg"
+              }
+            ]
+          },
+          "id": "bv"
+        },
+        {
+          "fields": {
+            "AI校验": "0.5",
+            "单位": "大丰",
+            "发稿情况（单选）": "文字组稿",
+            "后续传播": "组稿不单独加分",
+            "周数": "第11周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/03/13",
+            "是否头条": "是",
+            "标题": "@所有人！你关心的能源电力，这28位江苏代表委员在两会上都提到了",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/XRIcfDMy1ANIiBkidPVjLg",
+                "displayText": "https://mp.weixin.qq.com/s/XRIcfDMy1ANIiBkidPVjLg"
+              }
+            ]
+          },
+          "id": "cP"
+        },
+        {
+          "fields": {
+            "AI校验": "3",
+            "单位": "响水",
+            "发稿情况（单选）": "独立策划发稿",
+            "周数": "第16周",
+            "备注": "转发量超过1000计分5分，省公司专业部门主任和公司领导主动转发计2分。",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/04/15",
+            "是否头条": "是",
+            "标题": "你的小区物业，有能耗费用监管账户吗？",
+            "赋分": 7,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/WZRwKf9ftsUqsAeeLC682Q",
+                "displayText": "https://mp.weixin.qq.com/s/WZRwKf9ftsUqsAeeLC682Q"
+              }
+            ]
+          },
+          "id": "h0"
+        },
+        {
+          "fields": {
+            "AI校验": "0",
+            "单位": "响水",
+            "发稿情况（单选）": "转发",
+            "周数": "第16周",
+            "平台（单选）": "江苏新闻",
+            "日期": "2026/04/16",
+            "是否头条": "否",
+            "标题": "你的小区物业，有能耗费用监管账户吗？",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/qyhhwAsZlJhFH4SzeqX2ew",
+                "displayText": "https://mp.weixin.qq.com/s/qyhhwAsZlJhFH4SzeqX2ew"
+              }
+            ]
+          },
+          "id": "iW"
+        },
+        {
+          "fields": {
+            "AI校验": "1.5",
+            "单位": "东台",
+            "发稿情况（单选）": "配合市公司制作",
+            "周数": "第17周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/04/22",
+            "是否头条": "是",
+            "标题": "从神奇动物在江苏看保护地球",
+            "赋分": 5,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/eA38R8V8-Vs6k3cMvgNdIQ",
+                "displayText": "https://mp.weixin.qq.com/s/eA38R8V8-Vs6k3cMvgNdIQ"
+              }
+            ]
+          },
+          "id": "iu"
+        },
+        {
+          "fields": {
+            "AI校验": "0.35",
+            "单位": "射阳",
+            "发稿情况（单选）": "文字组稿",
+            "周数": "第18周",
+            "备注": "大范围组稿，鼓励加分",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/05/01",
+            "是否头条": "否",
+            "标题": "劳模是什么样的？这是300多位电力员工的回答（作者吕正晔）",
+            "赋分": 0.1,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/duHO9FnDKaIucDrl7esWbQ",
+                "displayText": "https://mp.weixin.qq.com/s/duHO9FnDKaIucDrl7esWbQ"
+              }
+            ]
+          },
+          "id": "lg"
+        },
+        {
+          "fields": {
+            "AI校验": "0.35",
+            "单位": "响水",
+            "发稿情况（单选）": "图片组稿",
+            "周数": "第19周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/05/08",
+            "是否头条": "是",
+            "标题": "N 个 微 笑 的 理 由",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/vwY3_GVGjsNpP3dIqAwG9w",
+                "displayText": "https://mp.weixin.qq.com/s/vwY3_GVGjsNpP3dIqAwG9w"
+              }
+            ]
+          },
+          "id": "nk"
+        },
+        {
+          "fields": {
+            "AI校验": "0.35",
+            "单位": "滨海",
+            "发稿情况（单选）": "图片组稿",
+            "周数": "第20周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/05/15",
+            "是否头条": "是",
+            "标题": "今天，“电暖流”品牌再启新征程！",
+            "赋分": 0,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/6qF9f-Jy2XQEq7KFFGI_TQ",
+                "displayText": "https://mp.weixin.qq.com/s/6qF9f-Jy2XQEq7KFFGI_TQ"
+              }
+            ]
+          },
+          "id": "n4"
+        },
+        {
+          "fields": {
+            "AI校验": "1.5",
+            "单位": "东台",
+            "发稿情况（单选）": "配合市公司制作",
+            "周数": "第22周",
+            "平台（单选）": "苏电牛思公众号",
+            "日期": "2026/05/27",
+            "是否头条": "否",
+            "标题": "全网围观印度给变压器浇水降温，这事真有门道",
+            "赋分": 5,
+            "链接": [
+              {
+                "address": "https://mp.weixin.qq.com/s/nin5ymWm4HzTClk_ALFwkA",
+                "displayText": "https://mp.weixin.qq.com/s/nin5ymWm4HzTClk_ALFwkA"
+              }
+            ]
+          },
+          "id": "qW"
+        }
+      ]
+    },
+    "result": "ok"
+  },
+  "message": "成功"
+}

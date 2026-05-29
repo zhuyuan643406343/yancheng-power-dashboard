@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>盐城公司宣传工作周报 · 第21周</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #1a56db;
+    --primary-light: #e8f0fe;
+    --success: #0e9f6e;
+    --warning: #e3a008;
+    --danger: #f05252;
+    --text: #111827;
+    --text-muted: #6b7280;
+    --bg: #f9fafb;
+    --card-bg: #ffffff;
+    --border: #e5e7eb;
+    --rank1: #f59e0b;
+    --rank2: #94a3b8;
+    --rank3: #cd7c3b;
+    --blue-strip: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+  
+  /* 顶部 Banner */
+  .banner {
+    background: var(--blue-strip);
+    color: white;
+    padding: 20px 16px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .banner::before {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .banner::after {
+    content: '';
+    position: absolute;
+    right: 30px; bottom: -50px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .banner-label { font-size: 11px; opacity: 0.75; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .banner-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .banner-sub { font-size: 12px; opacity: 0.8; }
+  .banner-meta { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .banner-meta-item { display: flex; align-items: center; gap: 4px; font-size: 12px; opacity: 0.85; }
+  
+  /* 导航 tab */
+  .nav-tabs {
+    display: flex;
+    background: white;
+    border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 12px 16px;
+    white-space: nowrap;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .nav-tab.active { color: var(--primary); border-bottom-color: var(--primary); font-weight: 600; }
+  
+  /* 内容区 */
+  .tab-content { display: none; padding: 12px; }
+  .tab-content.active { display: block; }
+  
+  /* 卡片 */
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-title .icon { font-size: 16px; }
+  
+  /* 排名卡片 */
+  .rank-list { display: flex; flex-direction: column; gap: 8px; }
+  .rank-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--bg);
+    gap: 10px;
+    transition: transform 0.15s;
+  }
+  .rank-item:active { transform: scale(0.98); }
+  .rank-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .rank-1 .rank-num { background: var(--rank1); color: white; }
+  .rank-2 .rank-num { background: var(--rank2); color: white; }
+  .rank-3 .rank-num { background: var(--rank3); color: white; }
+  .rank-4 .rank-num, .rank-5 .rank-num, .rank-6 .rank-num, .rank-7 .rank-num, .rank-8 .rank-num {
+    background: #e5e7eb; color: #6b7280;
+  }
+  .rank-info { flex: 1; min-width: 0; }
+  .rank-name { font-weight: 600; font-size: 15px; }
+  .rank-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .rank-score {
+    font-size: 20px; font-weight: 700; color: var(--primary);
+    flex-shrink: 0;
+  }
+  .rank-score span { font-size: 11px; color: var(--text-muted); font-weight: 400; }
+  
+  /* 进度条 */
+  .score-bar-wrap { margin-top: 6px; }
+  .score-bar-bg { height: 5px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 3px; background: var(--primary); transition: width 0.6s ease; }
+  
+  /* 标签 */
+  .tag {
+    display: inline-flex; align-items: center;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px; font-weight: 500;
+    white-space: nowrap;
+  }
+  .tag-blue { background: var(--primary-light); color: var(--primary); }
+  .tag-green { background: #d1fae5; color: var(--success); }
+  .tag-yellow { background: #fef3c7; color: var(--warning); }
+  .tag-red { background: #fee2e2; color: var(--danger); }
+  .tag-gray { background: #f3f4f6; color: #6b7280; }
+  
+  /* 图表容器 */
+  .chart-wrap { position: relative; height: 200px; margin-top: 8px; }
+  .chart-wrap-lg { height: 260px; }
+  
+  /* 数据网格 */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .data-cell {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .data-cell-val { font-size: 22px; font-weight: 700; color: var(--primary); line-height: 1.2; }
+  .data-cell-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  
+  /* 舆情项 */
+  .yuqing-item {
+    border-left: 3px solid var(--danger);
+    padding: 10px 12px;
+    background: #fff5f5;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 8px;
+  }
+  .yuqing-item.resolved { border-left-color: var(--success); background: #f0fdf4; }
+  .yuqing-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .yuqing-title { font-size: 13px; color: var(--text); line-height: 1.5; }
+  
+  /* 品牌社责 */
+  .brand-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--bg);
+    margin-bottom: 6px;
+  }
+  .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex-shrink: 0; }
+  .brand-info { flex: 1; }
+  .brand-name { font-size: 13px; font-weight: 500; }
+  .brand-sub { font-size: 11px; color: var(--text-muted); }
+  .brand-score { font-size: 14px; font-weight: 700; color: var(--success); flex-shrink: 0; }
+  
+  /* 稿件列表 */
+  .article-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-item:last-child { border-bottom: none; }
+  .article-title { font-size: 13px; font-weight: 500; line-height: 1.5; color: var(--text); margin-bottom: 4px; }
+  .article-meta { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+  
+  /* 亮点框 */
+  .highlight-box {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border: 1px solid #bfdbfe;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .highlight-box h4 { color: var(--primary); font-size: 13px; margin-bottom: 8px; }
+  .highlight-list { list-style: none; }
+  .highlight-list li { padding: 3px 0; font-size: 13px; display: flex; gap: 6px; }
+  .highlight-list li::before { content: '✦'; color: var(--primary); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+  
+  /* 总结框 */
+  .summary-box {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1px solid #86efac;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .summary-box h4 { color: var(--success); font-size: 13px; margin-bottom: 8px; }
+  
+  /* 警告框 */
+  .alert-box {
+    background: #fffbeb;
+    border: 1px solid #fcd34d;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .alert-box h4 { color: var(--warning); font-size: 13px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  
+  /* 页脚 */
+  .footer {
+    text-align: center;
+    padding: 24px 16px;
+    color: var(--text-muted);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  
+  /* 分隔线 */
+  .divider { height: 1px; background: var(--border); margin: 12px 0; }
+  
+  /* 单位对比表 */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .compare-table th {
+    background: var(--primary);
+    color: white;
+    padding: 7px 6px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .compare-table td { padding: 7px 6px; text-align: center; border-bottom: 1px solid var(--border); }
+  .compare-table tr:nth-child(even) td { background: var(--bg); }
+  .compare-table .unit-col { text-align: left; font-weight: 600; color: var(--text); }
+  .score-highlight { color: var(--primary); font-weight: 700; }
+  .score-zero { color: #d1d5db; }
+  
+  /* 趋势指示 */
+  .trend-up { color: var(--success); }
+  .trend-down { color: var(--danger); }
+  .trend-same { color: var(--text-muted); }
+
+  /* 滚动提示 */
+  .scroll-hint { 
+    text-align: center; font-size: 11px; color: var(--text-muted); 
+    padding: 4px 0 8px; opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<!-- 顶部 Banner -->
+<div class="banner">
+  <div class="banner-label">国网盐城供电公司 · 宣传工作</div>
+  <div class="banner-title">第21周宣传工作周报</div>
+  <div class="banner-sub">数据周期：2026年5月19日—5月25日</div>
+  <div class="banner-meta">
+    <div class="banner-meta-item">📰 本周发稿 <strong>13篇</strong></div>
+    <div class="banner-meta-item">🎯 最高周得分 <strong>5.5分</strong></div>
+    <div class="banner-meta-item">⚠️ 舆情监测 <strong>3条</strong></div>
+    <div class="banner-meta-item">🌿 品牌社责 <strong>4项</strong></div>
+  </div>
+</div>
+
+<!-- 导航 -->
+<div class="nav-tabs" id="navTabs">
+  <div class="nav-tab active" onclick="switchTab('overview')">📊 总览排名</div>
+  <div class="nav-tab" onclick="switchTab('trend')">📈 得分趋势</div>
+  <div class="nav-tab" onclick="switchTab('articles')">📰 本周发稿</div>
+  <div class="nav-tab" onclick="switchTab('brand')">🌿 品牌社责</div>
+  <div class="nav-tab" onclick="switchTab('yuqing')">⚠️ 舆情监测</div>
+  <div class="nav-tab" onclick="switchTab('leader')">📋 本期要情</div>
+</div>
+
+<!-- Tab 1: 总览排名 -->
+<div class="tab-content active" id="tab-overview">
+  
+  <div style="padding: 4px 0 8px; font-size: 12px; color: var(--text-muted);">数据截至 2026/05/24 · 含全年累计及本周增量</div>
+  
+  <!-- 本周得分排名 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🏆</span>本周得分排名（第21周）</div>
+    <div class="rank-list">
+      <!-- 射阳 + 本部 并列第1 -->
+      <div class="rank-item rank-1">
+        <div class="rank-num">1</div>
+        <div class="rank-info">
+          <div class="rank-name">射阳公司</div>
+          <div class="rank-sub">报刊+5.0（农民日报头版图片×1、国网报通讯×1）+ 品牌0.5</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#f59e0b;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">5.5<span>分</span></div>
+      </div>
+      <div class="rank-item rank-1">
+        <div class="rank-num">1</div>
+        <div class="rank-info">
+          <div class="rank-name">市公司本部</div>
+          <div class="rank-sub">网站手机报+5.0（要闻单条×1+文字组稿×2+图片组稿×1）+ 报刊0.5</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:100%;background:#f59e0b;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">5.5<span>分</span></div>
+      </div>
+      <div class="rank-item rank-3">
+        <div class="rank-num">3</div>
+        <div class="rank-info">
+          <div class="rank-name">大丰公司</div>
+          <div class="rank-sub">网站1.2 + 品牌社责0.7（绿电方舟）+ 报刊0.2</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:38%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">2.1<span>分</span></div>
+      </div>
+      <div class="rank-item rank-4">
+        <div class="rank-num">4</div>
+        <div class="rank-info">
+          <div class="rank-name">阜宁公司</div>
+          <div class="rank-sub">品牌社责0.25（候鸟生命线活动）</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:4.5%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">0.25<span>分</span></div>
+      </div>
+      <div class="rank-item rank-5">
+        <div class="rank-num">5</div>
+        <div class="rank-info">
+          <div class="rank-name">滨海公司</div>
+          <div class="rank-sub">网站手机报0.1 + 品牌社责0.2（候鸟生命线活动）</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:5.5%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">0.3<span>分</span></div>
+      </div>
+      <div class="rank-item rank-6">
+        <div class="rank-num">6</div>
+        <div class="rank-info">
+          <div class="rank-name">东台公司</div>
+          <div class="rank-sub">报刊0.2（中国电力报第6版消息×1）</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:3.6%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">0.2<span>分</span></div>
+      </div>
+      <div class="rank-item rank-6">
+        <div class="rank-num">6</div>
+        <div class="rank-info">
+          <div class="rank-name">建湖公司</div>
+          <div class="rank-sub">报刊0.2（江苏电力报第4版图片×1）</div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:3.6%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score">0.2<span>分</span></div>
+      </div>
+      <div class="rank-item rank-8">
+        <div class="rank-num">8</div>
+        <div class="rank-info">
+          <div class="rank-name">响水公司</div>
+          <div class="rank-sub">本周暂无有效发稿记录 <span class="tag tag-red" style="margin-left:4px;">需关注</span></div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-bg"><div class="score-bar-fill" style="width:0%;"></div></div>
+          </div>
+        </div>
+        <div class="rank-score" style="color:#d1d5db;">0<span>分</span></div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 全年累计排名 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span>全年累计总分排名（截至第21周）</div>
+    <div class="scroll-hint">← 左右滑动查看完整数据 →</div>
+    <div style="overflow-x:auto;">
+      <table class="compare-table" style="min-width:480px;">
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>单位</th>
+            <th>累计总分</th>
+            <th>报刊</th>
+            <th>网站微博</th>
+            <th>品牌社责</th>
+            <th>加分/扣分</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🥇1</td><td class="unit-col">大丰</td>
+            <td class="score-highlight">51.6</td>
+            <td>7.5</td><td>6.1</td><td>1.9</td><td>+3.1/-4.2</td>
+          </tr>
+          <tr>
+            <td>🥈2</td><td class="unit-col">本部</td>
+            <td class="score-highlight">42.1</td>
+            <td>9.6</td><td>13.5</td><td>0</td><td>+0/0</td>
+          </tr>
+          <tr>
+            <td>🥉3</td><td class="unit-col">东台</td>
+            <td class="score-highlight">40.25</td>
+            <td>11.5</td><td>4.6</td><td>0.35</td><td>+7.8/-3.2</td>
+          </tr>
+          <tr>
+            <td>4</td><td class="unit-col">建湖</td>
+            <td class="score-highlight">34.25</td>
+            <td>4.2</td><td>4.9</td><td>1.9</td><td>+12.6/-0.9</td>
+          </tr>
+          <tr>
+            <td>5</td><td class="unit-col">滨海</td>
+            <td class="score-highlight">27.9</td>
+            <td>1.1</td><td>5.1</td><td>2.05</td><td>+11.5/-0.65</td>
+          </tr>
+          <tr>
+            <td>6</td><td class="unit-col">射阳</td>
+            <td class="score-highlight">22.2</td>
+            <td>3.4</td><td>4.0</td><td>2.85</td><td>+11.7/-4.75</td>
+          </tr>
+          <tr>
+            <td>7</td><td class="unit-col">响水</td>
+            <td class="score-highlight">19.25</td>
+            <td>2.5</td><td>1.5</td><td>1.75</td><td>+4.1/-2.9</td>
+          </tr>
+          <tr>
+            <td>8</td><td class="unit-col">阜宁</td>
+            <td class="score-highlight">16.7</td>
+            <td>2.8</td><td>4.5</td><td>0.7</td><td>+8.3/-3.6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px; font-size:11px; color:var(--text-muted);">
+      * 大丰含央视专项指标修正23.9分；本部含新华社得分8分；部分单位央视报道已含指标修正
+    </div>
+  </div>
+  
+  <!-- 本周工作量汇总 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span>本周工作量总览</div>
+    <div class="data-grid">
+      <div class="data-cell">
+        <div class="data-cell-val">6</div>
+        <div class="data-cell-label">报刊稿件</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-val">4</div>
+        <div class="data-cell-label">网站/手机报</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-val">4</div>
+        <div class="data-cell-label">品牌社责</div>
+      </div>
+      <div class="data-cell">
+        <div class="data-cell-val" style="color:var(--danger);">3</div>
+        <div class="data-cell-label">舆情预警</div>
+      </div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="workloadChart"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tab 2: 得分趋势 -->
+<div class="tab-content" id="tab-trend">
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📈</span>二季度（第15-21周）各单位得分走势</div>
+    <div class="chart-wrap chart-wrap-lg">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span>第21周各单位得分构成</div>
+    <div class="chart-wrap">
+      <canvas id="compositeChart"></canvas>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-title"><span class="icon">💹</span>二季度各单位累计得分</div>
+    <div class="chart-wrap">
+      <canvas id="q2TotalChart"></canvas>
+    </div>
+    <div style="margin-top:8px; font-size:11px; color:var(--text-muted); padding: 0 4px;">
+      📌 建湖（18.1分）在二季度表现最为突出，第17-19周连续高分；射阳（15.9分）本周强势爆发，以第21周单周5.5分排名第一；响水（10.55分）因第16周定性加分7分带动总分，但第21周暂无记录需关注。
+    </div>
+  </div>
+  
+  <!-- 自我对比（各单位与自身比较） -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔄</span>本周 vs 上周 — 各单位自我对比</div>
+    <div class="rank-list">
+      <div class="rank-item" style="background:#f0fdf4;">
+        <div style="width:32px; text-align:center; font-size:18px;">📈</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">射阳 <span class="tag tag-green">+3.0分</span></div>
+          <div class="rank-sub">上周2.5分 → 本周5.5分，本周报刊发稿表现突出</div>
+        </div>
+      </div>
+      <div class="rank-item" style="background:#f0fdf4;">
+        <div style="width:32px; text-align:center; font-size:18px;">📈</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">本部 <span class="tag tag-green">+4.5分</span></div>
+          <div class="rank-sub">上周1.0分 → 本周5.5分，珍稀动物保护选题多平台传播</div>
+        </div>
+      </div>
+      <div class="rank-item" style="background:#f0fdf4;">
+        <div style="width:32px; text-align:center; font-size:18px;">📈</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">大丰 <span class="tag tag-green">↑小幅回升</span></div>
+          <div class="rank-sub">上周2.75分 → 本周2.1分，绿电方舟活动持续贡献</div>
+        </div>
+      </div>
+      <div class="rank-item" style="background:#fff7ed;">
+        <div style="width:32px; text-align:center; font-size:18px;">📉</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">建湖 <span class="tag tag-yellow">-1.2分</span></div>
+          <div class="rank-sub">上周1.4分 → 本周0.2分，前期高分后需维持均衡发稿</div>
+        </div>
+      </div>
+      <div class="rank-item" style="background:#fff7ed;">
+        <div style="width:32px; text-align:center; font-size:18px;">📉</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">滨海 <span class="tag tag-yellow">-2.7分</span></div>
+          <div class="rank-sub">上周3.0分 → 本周0.3分，需关注第22周恢复情况</div>
+        </div>
+      </div>
+      <div class="rank-item" style="background:#fff1f2;">
+        <div style="width:32px; text-align:center; font-size:18px;">⚠️</div>
+        <div class="rank-info">
+          <div class="rank-name" style="font-size:13px;">响水 <span class="tag tag-red">连续清零</span></div>
+          <div class="rank-sub">上周2.55分 → 本周0分，建议专职跟进核查</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tab 3: 本周发稿 -->
+<div class="tab-content" id="tab-articles">
+  
+  <!-- 亮点稿件 -->
+  <div class="highlight-box">
+    <h4>⭐ 本周重点稿件亮点</h4>
+    <ul class="highlight-list">
+      <li>射阳公司在<strong>农民日报头版</strong>刊发图片稿《公司在团塘村"风光储充检放"一体化充电站指导游客充电操作》，赋分4.0分，是本周最高分单篇稿件</li>
+      <li>本部策划<strong>"退让"出的共生之美——探寻电网发展与珍稀动物保护最优解</strong>专题，国网公司网站要闻单条+三个版本组稿同步推发，合计5.0分</li>
+      <li>射阳公司在<strong>国家电网报</strong>发表通讯《青年登台当主讲——打造"阳帆"青年学习社培育骨干》赋分1.0分</li>
+    </ul>
+  </div>
+  
+  <div class="card">
+    <div class="card-title"><span class="icon">🗞️</span>报刊发稿明细（第21周）</div>
+    
+    <!-- 射阳 -->
+    <div style="padding: 6px 0; font-size: 12px; font-weight: 600; color: var(--text-muted);">射阳公司（2篇）</div>
+    <div class="article-item">
+      <div class="article-title">公司在团塘村"风光储充检放"一体化充电站指导游客充电操作</div>
+      <div class="article-meta">
+        <span class="tag tag-yellow">农民日报</span>
+        <span class="tag tag-red">头版</span>
+        <span class="tag tag-gray">图片</span>
+        <span class="tag tag-green">+4.0分</span>
+      </div>
+    </div>
+    <div class="article-item">
+      <div class="article-title">青年登台当主讲——江苏射阳县供电公司打造"阳帆"青年学习社培育骨干</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">国家电网报</span>
+        <span class="tag tag-gray">第4版</span>
+        <span class="tag tag-gray">通讯</span>
+        <span class="tag tag-green">+1.0分</span>
+      </div>
+    </div>
+    
+    <!-- 本部 -->
+    <div style="padding: 10px 0 6px; font-size: 12px; font-weight: 600; color: var(--text-muted);">市公司本部（1篇）</div>
+    <div class="article-item">
+      <div class="article-title">无人车搭载无人机，设备巡检自主高效</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">国家电网报</span>
+        <span class="tag tag-gray">第6版</span>
+        <span class="tag tag-gray">消息</span>
+        <span class="tag tag-green">+0.5分</span>
+      </div>
+    </div>
+    
+    <!-- 东台 -->
+    <div style="padding: 10px 0 6px; font-size: 12px; font-weight: 600; color: var(--text-muted);">东台公司（1篇）</div>
+    <div class="article-item">
+      <div class="article-title">"政绩观监督员"上岗——国网江苏综合能源公司推动"学查改"见行见效</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">中国电力报</span>
+        <span class="tag tag-gray">第6版</span>
+        <span class="tag tag-gray">消息</span>
+        <span class="tag tag-green">+0.2分</span>
+      </div>
+    </div>
+    
+    <!-- 大丰 -->
+    <div style="padding: 10px 0 6px; font-size: 12px; font-weight: 600; color: var(--text-muted);">大丰公司（1篇）</div>
+    <div class="article-item">
+      <div class="article-title">一组图告诉你电力人在忙什么</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">江苏电力报</span>
+        <span class="tag tag-gray">第4版</span>
+        <span class="tag tag-gray">图片</span>
+        <span class="tag tag-green">+0.2分</span>
+      </div>
+    </div>
+    
+    <!-- 建湖 -->
+    <div style="padding: 10px 0 6px; font-size: 12px; font-weight: 600; color: var(--text-muted);">建湖公司（1篇）</div>
+    <div class="article-item">
+      <div class="article-title">防灾减灾宣传周 一组图片告诉你电力人在忙什么</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">江苏电力报</span>
+        <span class="tag tag-gray">第4版</span>
+        <span class="tag tag-gray">图片</span>
+        <span class="tag tag-green">+0.2分</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 网站手机报 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🌐</span>省公司网站/手机报发稿（第21周）</div>
+    <div class="article-item">
+      <div class="article-title">"退让"出的共生之美——国网盐城供电公司探寻电网发展与珍稀动物保护最优解</div>
+      <div class="article-meta">
+        <span class="tag tag-red">要闻单条</span>
+        <span class="tag tag-gray">本部策划</span>
+        <span class="tag tag-green">高分稿件</span>
+      </div>
+    </div>
+    <div class="article-item">
+      <div class="article-title">"退让"出的共生之美（要闻文字组稿）</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">要闻文字组稿</span>
+        <span class="tag tag-gray">大丰 × 2篇</span>
+      </div>
+    </div>
+    <div class="article-item">
+      <div class="article-title">"退让"出的共生之美（要闻图片组稿）</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">要闻图片组稿</span>
+        <span class="tag tag-gray">滨海</span>
+      </div>
+    </div>
+    <div class="article-item">
+      <div class="article-title">绿色发展促进生物多样性保护</div>
+      <div class="article-meta">
+        <span class="tag tag-blue">要闻文字组稿</span>
+        <span class="tag tag-gray">大丰</span>
+      </div>
+    </div>
+    <div style="margin-top:8px; padding: 8px 10px; background: var(--primary-light); border-radius: 8px; font-size: 12px; color: var(--primary);">
+      💡 本周网站发稿以"电网与珍稀动物保护"同一主题多角度呈现，本部+大丰+滨海协同联动，是本周最值得推广的整合传播案例
+    </div>
+  </div>
+
+</div>
+
+<!-- Tab 4: 品牌社责 -->
+<div class="tab-content" id="tab-brand">
+  
+  <div class="card">
+    <div class="card-title"><span class="icon">🌿</span>本周品牌与社会责任工作（第21周）</div>
+    
+    <div class="brand-item">
+      <div class="brand-dot" style="background:#10b981;"></div>
+      <div class="brand-info">
+        <div class="brand-name">大丰公司 · 绿电方舟活动</div>
+        <div class="brand-sub">清洁能源品牌主题活动，本周参与</div>
+      </div>
+      <div class="brand-score">+0.7分</div>
+    </div>
+    
+    <div class="brand-item">
+      <div class="brand-dot" style="background:#3b82f6;"></div>
+      <div class="brand-info">
+        <div class="brand-name">射阳公司 · 候鸟生命线活动</div>
+        <div class="brand-sub">守护候鸟迁徙通道公益活动</div>
+      </div>
+      <div class="brand-score">+0.5分</div>
+    </div>
+    
+    <div class="brand-item">
+      <div class="brand-dot" style="background:#f59e0b;"></div>
+      <div class="brand-info">
+        <div class="brand-name">阜宁公司 · 候鸟生命线活动</div>
+        <div class="brand-sub">守护候鸟迁徙通道公益活动</div>
+      </div>
+      <div class="brand-score">+0.25分</div>
+    </div>
+    
+    <div class="brand-item">
+      <div class="brand-dot" style="background:#8b5cf6;"></div>
+      <div class="brand-info">
+        <div class="brand-name">滨海公司 · 候鸟生命线活动</div>
+        <div class="brand-sub">守护候鸟迁徙通道公益活动</div>
+      </div>
+      <div class="brand-score">+0.2分</div>
+    </div>
+    
+    <div style="margin-top:10px; padding: 10px 12px; background:#f0fdf4; border-radius: 8px; font-size: 12px;">
+      <div style="font-weight:600; color:var(--success); margin-bottom:4px;">🌱 候鸟生命线活动</div>
+      <div style="color:#374151;">本周该品牌活动有3家县公司（射阳、阜宁、滨海）同步参与，形成集群效应。建议其他尚未参与的单位尽快跟进，并同步向省公司平台推送活动报道。</div>
+    </div>
+  </div>
+  
+  <!-- 全年品牌社责得分汇总 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span>全年品牌社责得分汇总</div>
+    <div class="chart-wrap">
+      <canvas id="brandChart"></canvas>
+    </div>
+    <div style="margin-top:8px; font-size:11px; color:var(--text-muted);">
+      * 射阳（2.85）、滨海（2.05）、建湖（1.9）品牌社责得分领先；本部、阜宁、东台仍有较大提升空间
+    </div>
+  </div>
+  
+  <!-- 策划方向建议 -->
+  <div class="summary-box">
+    <h4>📅 近期策划工作要点提示</h4>
+    <ul class="highlight-list">
+      <li>候鸟生命线活动持续进行中，各县公司需及时跟进参与并做好图文留存</li>
+      <li>绿电方舟品牌活动是清洁能源传播重点，大丰已开展，建议其他公司研究能否参与</li>
+      <li>防灾减灾主题（5月12日防灾减灾日后续）稿件可继续延伸深化</li>
+      <li>本周"风光储充检放"一体化充电站农民日报头版图片引发关注，建议各县公司梳理本地特色能源项目，提前准备暑期专题稿件</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Tab 5: 舆情监测 -->
+<div class="tab-content" id="tab-yuqing">
+  
+  <div class="alert-box">
+    <h4>⚠️ 本周舆情预警概况</h4>
+    <div style="font-size:13px; color:#92400e;">
+      本周（第21周）共监测到 <strong>3条</strong> 涉电舆情，涉及单位：<strong>本部（1条）、射阳（2条）</strong>。主要平台为<strong>抖音</strong>，性质待最终评定。舆情均处于"风险提示"阶段，请相关单位及时跟进核查处置。
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span>本周舆情详情</div>
+    
+    <div class="yuqing-item">
+      <div class="yuqing-meta">
+        <span class="tag tag-red">本部</span>
+        <span class="tag tag-gray">抖音</span>
+        <span class="tag tag-yellow">待处置</span>
+      </div>
+      <div class="yuqing-title">
+        <strong>#金麟府业主维护安全阻止供电架高压铁塔</strong><br>
+        <span style="color:var(--text-muted); font-size:12px;">涉及业主群体阻挠线路建设事件，需关注舆论走向，建议宣传部门配合工程部门做好沟通说明</span>
+      </div>
+    </div>
+    
+    <div class="yuqing-item">
+      <div class="yuqing-meta">
+        <span class="tag tag-red">射阳</span>
+        <span class="tag tag-gray">抖音</span>
+        <span class="tag tag-yellow">待处置</span>
+      </div>
+      <div class="yuqing-title">
+        <strong>射阳盘湾境内乡村骆中华线10千伏供电线，树枝压线</strong><br>
+        <span style="color:var(--text-muted); font-size:12px;">编号2026-05-24-01，涉及运维安全隐患，建议运检部门及时清障并发布安全提示</span>
+      </div>
+    </div>
+    
+    <div class="yuqing-item">
+      <div class="yuqing-meta">
+        <span class="tag tag-red">射阳</span>
+        <span class="tag tag-gray">抖音</span>
+        <span class="tag tag-yellow">待处置</span>
+      </div>
+      <div class="yuqing-title">
+        <strong>第一次遇上收费站断电 #射阳 #盐城 #收费站 #高速公路</strong><br>
+        <span style="color:var(--text-muted); font-size:12px;">编号2026-05-24-02，高速公路收费站停电事件引发讨论，已打上盐城地域标签，传播面较广，建议核查原因，必要时发布情况说明</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 全年舆情趋势 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span>全年各单位舆情扣分情况</div>
+    <div class="chart-wrap">
+      <canvas id="yuqingChart"></canvas>
+    </div>
+    <div style="margin-top:8px; font-size:11px; color:var(--text-muted);">
+      * 射阳(-0.5)、阜宁(-0.5)、响水(-0.5)已产生舆情扣分；本部本周新出现舆情记录，需持续跟踪
+    </div>
+  </div>
+  
+  <!-- 舆情处置建议 -->
+  <div class="alert-box">
+    <h4>💡 舆情应对建议</h4>
+    <ul style="font-size: 13px; color: #92400e; list-style: none;">
+      <li style="padding: 4px 0;">① <strong>金麟府事件</strong>（本部）：建议宣传+工程双线并进，在官方账号发布线路建设必要性说明，采用科普角度降低对抗情绪</li>
+      <li style="padding: 4px 0;">② <strong>射阳运维隐患</strong>：第一时间完成清障，并在属地公众号发布安全排查情况，将负面事件转化为服务展示</li>
+      <li style="padding: 4px 0;">③ <strong>收费站断电</strong>：核查是否为我方电网故障，如是则主动发通报；如非则可引导解释，避免误伤品牌</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- Tab 6: 领导摘要 -->
+<div class="tab-content" id="tab-leader">
+  
+  <!-- 一页核心摘要 -->
+  <div class="card" style="border: 2px solid var(--primary);">
+    <div style="text-align:center; padding-bottom: 12px; border-bottom: 1px solid var(--border); margin-bottom: 12px;">
+      <div style="font-size: 11px; color:var(--text-muted); letter-spacing: 1px;">国网盐城供电公司</div>
+      <div style="font-size: 18px; font-weight: 700; color: var(--primary);">第21周宣传工作情况报告</div>
+      <div style="font-size: 12px; color:var(--text-muted);">2026年5月19日—5月25日</div>
+    </div>
+    
+    <div style="font-size: 13px; line-height: 1.9;">
+      
+      <div style="margin-bottom: 12px;">
+        <div style="font-weight: 700; color: var(--primary); margin-bottom: 4px;">📊 整体情况</div>
+        <div>本周全公司系统共发稿<strong>13篇</strong>（报刊6、网站手机报4、品牌社责4项），监测舆情<strong>3条</strong>。射阳公司和市公司本部并列本周得分榜首，各得<strong>5.5分</strong>；响水公司本周暂无有效记录，需关注。</div>
+      </div>
+      
+      <div style="margin-bottom: 12px;">
+        <div style="font-weight: 700; color: var(--success); margin-bottom: 4px;">✨ 本周亮点</div>
+        <div>① <strong>射阳公司</strong>在农民日报头版发表"风光储充检放"一体化充电站图片稿，获赋分4.0分，是本周最高分单篇稿件；② 市公司本部策划"电网与珍稀动物保护"专题，联合大丰、滨海多角度发稿，网站要闻单条+组稿合计5.0分，是本周最佳整合传播案例；③ 候鸟生命线公益活动射阳、阜宁、滨海三家同步参与，形成品牌聚合。</div>
+      </div>
+      
+      <div style="margin-bottom: 12px;">
+        <div style="font-weight: 700; color: var(--danger); margin-bottom: 4px;">⚠️ 舆情提示</div>
+        <div>本周3条舆情均来自抖音平台：① 本部金麟府居民阻挠高压铁塔架设（需关注群体性事件走向）；② 射阳骆中华线树障压线（运维隐患）；③ 射阳收费站断电（服务投诉）。建议相关单位按照舆情应急流程第一时间核查处置。</div>
+      </div>
+      
+      <div style="margin-bottom: 12px;">
+        <div style="font-weight: 700; color: var(--warning); margin-bottom: 4px;">📌 需关注事项</div>
+        <div>① <strong>响水公司</strong>本周（第21周）得分为零，需宣传主管跟进了解原因并督促整改；② 东台、建湖本周发稿单篇得分较低（各0.2分），建议加强重量级稿件谋划；③ 全年累计排名中大丰（51.6）领先，但部分单位扣分较多（射阳-4.75、大丰-4.2），需控制定量扣分。</div>
+      </div>
+      
+      <div>
+        <div style="font-weight: 700; color: #7c3aed; margin-bottom: 4px;">🔭 下周策划方向</div>
+        <div>结合当前时间节点，建议各单位关注：① 六一儿童节电力安全公益宣传；② 端午节供电保障服务报道；③ 推进夏季用电高峰相关选题布局；④ 持续跟进候鸟生命线活动，争取省级媒体采稿。</div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- 各单位宣传专职看本单位情况 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">👀</span>各单位宣传专职 · 本单位表现速览</div>
+    <div style="overflow-x:auto;">
+      <table class="compare-table" style="min-width:380px;">
+        <thead>
+          <tr>
+            <th>单位</th>
+            <th>本周得分</th>
+            <th>上周得分</th>
+            <th>环比</th>
+            <th>Q2累计</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="unit-col">市本部</td>
+            <td class="score-highlight">5.5</td>
+            <td>1.0</td>
+            <td class="trend-up">↑4.5</td>
+            <td>8.8</td>
+          </tr>
+          <tr>
+            <td class="unit-col">射阳</td>
+            <td class="score-highlight">5.5</td>
+            <td>2.5</td>
+            <td class="trend-up">↑3.0</td>
+            <td>15.9</td>
+          </tr>
+          <tr>
+            <td class="unit-col">大丰</td>
+            <td class="score-highlight">2.1</td>
+            <td>2.75</td>
+            <td class="trend-down">↓0.65</td>
+            <td>6.2</td>
+          </tr>
+          <tr>
+            <td class="unit-col">阜宁</td>
+            <td class="score-highlight">0.25</td>
+            <td>0.6</td>
+            <td class="trend-down">↓0.35</td>
+            <td>10.35</td>
+          </tr>
+          <tr>
+            <td class="unit-col">滨海</td>
+            <td class="score-highlight">0.3</td>
+            <td>3.0</td>
+            <td class="trend-down">↓2.7</td>
+            <td>12.4</td>
+          </tr>
+          <tr>
+            <td class="unit-col">东台</td>
+            <td class="score-highlight">0.2</td>
+            <td>1.1</td>
+            <td class="trend-down">↓0.9</td>
+            <td>11.0</td>
+          </tr>
+          <tr>
+            <td class="unit-col">建湖</td>
+            <td class="score-highlight">0.2</td>
+            <td>1.4</td>
+            <td class="trend-down">↓1.2</td>
+            <td>18.1</td>
+          </tr>
+          <tr>
+            <td class="unit-col" style="color:var(--danger);">响水</td>
+            <td class="score-zero">0</td>
+            <td>2.55</td>
+            <td class="trend-down" style="font-weight:700;">↓2.55</td>
+            <td>10.55</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:8px; font-size:11px; color:var(--text-muted);">
+      * Q2累计=第15-21周得分总计；环比=与第20周比较
+    </div>
+  </div>
+  
+  <div class="footer">
+    <div style="font-weight:600; margin-bottom:4px;">国网盐城供电公司 宣传工作情况报告</div>
+    <div>第21周 · 数据截至2026年5月24日</div>
+    <div style="margin-top:4px;">本报告由系统自动生成，数据来源：新闻宣传专业统计表(2026)</div>
+  </div>
+
+</div>
+
+<script>
+// Tab 切换
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+  // 延迟初始化图表
+  setTimeout(() => initCharts(id), 100);
+}
+
+// 图表颜色
+const COLORS = {
+  '本部': '#1a56db',
+  '滨海': '#0e9f6e',
+  '东台': '#e3a008',
+  '建湖': '#8b5cf6',
+  '大丰': '#f05252',
+  '射阳': '#10b981',
+  '响水': '#f59e0b',
+  '阜宁': '#6b7280',
+};
+const UNITS = ['本部', '滨海', '东台', '建湖', '大丰', '射阳', '响水', '阜宁'];
+const COLORS_ARR = UNITS.map(u => COLORS[u]);
+
+// 第21周得分数据
+const w21data = {
+  '本部': {total:5.5, baogan:0.5, weibo:0, wangzhan:5.0, video:0, ppsz:0},
+  '东台': {total:0.2, baogan:0.2, weibo:0, wangzhan:0, video:0, ppsz:0},
+  '大丰': {total:2.1, baogan:0.2, weibo:0, wangzhan:1.2, video:0, ppsz:0.7},
+  '建湖': {total:0.2, baogan:0.2, weibo:0, wangzhan:0, video:0, ppsz:0},
+  '射阳': {total:5.5, baogan:5.0, weibo:0, wangzhan:0, video:0, ppsz:0.5},
+  '阜宁': {total:0.25, baogan:0, weibo:0, wangzhan:0, video:0, ppsz:0.25},
+  '滨海': {total:0.3, baogan:0, weibo:0, wangzhan:0.1, video:0, ppsz:0.2},
+  '响水': {total:0, baogan:0, weibo:0, wangzhan:0, video:0, ppsz:0},
+};
+
+// 二季度各周数据
+const q2Data = {
+  '本部':  [0.8, 0.0, 1.5, 0.0, 0.0, 1.0, 5.5],
+  '滨海':  [0.45, 0.25, 1.2, 1.7, 5.5, 3.0, 0.3],
+  '东台':  [1.4, 0.0, 7.0, 0.2, 1.1, 1.1, 0.2],
+  '建湖':  [0.8, 1.9, 6.05, 2.5, 5.25, 1.4, 0.2],
+  '大丰':  [1.1, 0.2, 0.85, -1.2, 0.4, 2.75, 2.1],
+  '射阳':  [0.2, 0.0, 2.2, 1.7, 3.8, 2.5, 5.5],
+  '响水':  [0.2, 7.0, 0.3, 0.5, 0.0, 2.55, 0.0],
+  '阜宁':  [2.2, 0.4, 0.1, 3.5, 3.3, 0.6, 0.25],
+};
+const q2Total = {
+  '本部': 8.8, '滨海': 12.4, '东台': 11.0, '建湖': 18.1,
+  '大丰': 6.2, '射阳': 15.9, '响水': 10.55, '阜宁': 10.35,
+};
+
+// 品牌社责
+const brandScores = {
+  '本部': 0, '滨海': 2.05, '东台': 0.35, '建湖': 1.9,
+  '大丰': 1.9, '射阳': 2.85, '响水': 1.75, '阜宁': 0.7,
+};
+
+// 舆情扣分
+const yuqingDeduct = {
+  '本部': 0, '滨海': 0, '东台': 0, '建湖': 0,
+  '大丰': 0, '射阳': -0.5, '响水': -0.5, '阜宁': -0.5,
+};
+
+const weekLabels = ['第15周', '第16周', '第17周', '第18周', '第19周', '第20周', '第21周'];
+const chartDefaults = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { labels: { font: { size: 11 }, boxWidth: 12, padding: 8 } } },
+};
+
+let chartsInited = {};
+
+function initCharts(tabId) {
+  if (chartsInited[tabId]) return;
+  chartsInited[tabId] = true;
+
+  if (tabId === 'overview') {
+    // 工作量雷达/条形图
+    const ctx = document.getElementById('workloadChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: UNITS,
+          datasets: [
+            { label: '报刊篇数', data: UNITS.map(u => u==='本部'?1:u==='射阳'?2:u==='东台'?1:u==='大丰'?1:u==='建湖'?1:0), backgroundColor: '#bfdbfe' },
+            { label: '网站手机报', data: UNITS.map(u => u==='本部'?1:u==='大丰'?2:u==='滨海'?1:0), backgroundColor: '#a7f3d0' },
+            { label: '品牌社责', data: UNITS.map(u => u==='大丰'?1:u==='射阳'?1:u==='阜宁'?1:u==='滨海'?1:0), backgroundColor: '#fde68a' },
+          ]
+        },
+        options: { ...chartDefaults, scales: { x: { ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11 } }, beginAtZero: true, max: 3 } } }
+      });
+    }
+  }
+
+  if (tabId === 'trend') {
+    // 趋势折线图
+    const trendCtx = document.getElementById('trendChart');
+    if (trendCtx) {
+      new Chart(trendCtx, {
+        type: 'line',
+        data: {
+          labels: weekLabels,
+          datasets: UNITS.map(u => ({
+            label: u,
+            data: q2Data[u],
+            borderColor: COLORS[u],
+            backgroundColor: COLORS[u] + '22',
+            borderWidth: 2,
+            pointRadius: 3,
+            fill: false,
+            tension: 0.3,
+          }))
+        },
+        options: {
+          ...chartDefaults,
+          plugins: { legend: { labels: { font: { size: 10 }, boxWidth: 10, padding: 6 } } },
+          scales: {
+            x: { ticks: { font: { size: 10 } } },
+            y: { ticks: { font: { size: 10 } }, beginAtZero: true }
+          }
+        }
+      });
+    }
+    
+    // 第21周构成堆叠图
+    const compCtx = document.getElementById('compositeChart');
+    if (compCtx) {
+      new Chart(compCtx, {
+        type: 'bar',
+        data: {
+          labels: UNITS,
+          datasets: [
+            { label: '报刊', data: UNITS.map(u => w21data[u]?.baogan||0), backgroundColor: '#3b82f6' },
+            { label: '网站/手机报', data: UNITS.map(u => w21data[u]?.wangzhan||0), backgroundColor: '#10b981' },
+            { label: '品牌社责', data: UNITS.map(u => w21data[u]?.ppsz||0), backgroundColor: '#f59e0b' },
+          ]
+        },
+        options: {
+          ...chartDefaults,
+          scales: {
+            x: { stacked: true, ticks: { font: { size: 11 } } },
+            y: { stacked: true, ticks: { font: { size: 11 } }, beginAtZero: true }
+          }
+        }
+      });
+    }
+    
+    // Q2累计
+    const q2Ctx = document.getElementById('q2TotalChart');
+    if (q2Ctx) {
+      const sortedUnits = [...UNITS].sort((a, b) => q2Total[b] - q2Total[a]);
+      new Chart(q2Ctx, {
+        type: 'bar',
+        data: {
+          labels: sortedUnits,
+          datasets: [{
+            label: 'Q2累计得分',
+            data: sortedUnits.map(u => q2Total[u]),
+            backgroundColor: sortedUnits.map(u => COLORS[u]),
+          }]
+        },
+        options: {
+          ...chartDefaults,
+          indexAxis: 'y',
+          scales: {
+            x: { ticks: { font: { size: 11 } }, beginAtZero: true },
+            y: { ticks: { font: { size: 12 } } }
+          }
+        }
+      });
+    }
+  }
+  
+  if (tabId === 'brand') {
+    const bCtx = document.getElementById('brandChart');
+    if (bCtx) {
+      const sortedUnits = [...UNITS].sort((a, b) => brandScores[b] - brandScores[a]);
+      new Chart(bCtx, {
+        type: 'bar',
+        data: {
+          labels: sortedUnits,
+          datasets: [{
+            label: '品牌社责累计得分',
+            data: sortedUnits.map(u => brandScores[u]),
+            backgroundColor: sortedUnits.map(u => COLORS[u]),
+            borderRadius: 4,
+          }]
+        },
+        options: {
+          ...chartDefaults,
+          scales: {
+            x: { ticks: { font: { size: 11 } } },
+            y: { ticks: { font: { size: 11 } }, beginAtZero: true }
+          }
+        }
+      });
+    }
+  }
+  
+  if (tabId === 'yuqing') {
+    const yCtx = document.getElementById('yuqingChart');
+    if (yCtx) {
+      new Chart(yCtx, {
+        type: 'bar',
+        data: {
+          labels: UNITS,
+          datasets: [{
+            label: '舆情扣分',
+            data: UNITS.map(u => Math.abs(yuqingDeduct[u])),
+            backgroundColor: UNITS.map(u => yuqingDeduct[u] < 0 ? '#fca5a5' : '#d1fae5'),
+            borderColor: UNITS.map(u => yuqingDeduct[u] < 0 ? '#ef4444' : '#34d399'),
+            borderWidth: 1,
+            borderRadius: 4,
+          }]
+        },
+        options: {
+          ...chartDefaults,
+          scales: {
+            x: { ticks: { font: { size: 11 } } },
+            y: { ticks: { font: { size: 11 } }, beginAtZero: true, max: 1 }
+          }
+        }
+      });
+    }
+  }
+}
+
+// 初始化第一个tab的图表
+setTimeout(() => initCharts('overview'), 300);
+</script>
+
+</body>
+</html>

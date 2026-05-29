@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 16mm 22mm 16mm;
+  }
+  /* @page:first not supported by xhtml2pdf */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "SimSun", "Microsoft YaHei", "PingFang SC", serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #222;
+  }
+
+  /* ===== 封面 ===== */
+  .cover {
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .cover-red-line {
+    width: 60px;
+    height: 3px;
+    background: #c41230;
+    margin: 0 auto 24px;
+  }
+  .cover-label {
+    font-size: 14px;
+    color: #1a56db;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  .cover-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .cover-subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  .cover-divider {
+    width: 80px;
+    height: 1px;
+    background: #1a56db;
+    margin: 20px auto;
+  }
+  .cover-meta {
+    font-size: 13px;
+    color: #666;
+    line-height: 2.5;
+  }
+  .cover-org {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 40px;
+  }
+
+  /* ===== 章节标题 ===== */
+  .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1a56db;
+    border-bottom: 2px solid #1a56db;
+    padding-bottom: 8px;
+    margin: 30px 0 12px;
+  }
+  .sub-title {
+    font-size: 16px;
+    color: #1a3a7a;
+    margin: 16px 0 6px;
+    padding-left: 8px;
+    border-left: 4px solid #1a56db;
+  }
+
+  /* ===== 表格 ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 8px 0 12px;
+  }
+  th {
+    background: #1a56db;
+    color: #fff;
+    padding: 6px 4px;
+    font-weight: bold;
+    font-size: 11px;
+    text-align: center;
+  }
+  td {
+    padding: 5px 4px;
+    text-align: center;
+    border-bottom: 0.5px solid #ddd;
+  }
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  .t-left { text-align: left; font-weight: bold; }
+
+  /* ===== 分数高亮 ===== */
+  .sc-hi { color: #0e9f6e; font-weight: bold; }
+  .sc-mid { color: #1a56db; }
+  .sc-lo { color: #f05252; font-weight: bold; }
+
+  /* ===== 内容块 ===== */
+  .h-box {
+    background: #f0f7ff;
+    border: 0.5px solid #bfdbfe;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  .w-box {
+    background: #fef3c7;
+    border: 0.5px solid #fcd34d;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+  .d-box {
+    background: #fef2f2;
+    border: 0.5px solid #fca5a5;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+  }
+
+  hr { border: none; border-top: 0.5px dashed #ddd; margin: 12px 0; }
+  p { margin-bottom: 4px; }
+  ul { margin: 4px 0 4px 20px; }
+  li { margin-bottom: 3px; font-size: 12px; line-height: 1.7; }
+
+  .tag {
+    background: #e8f0fe;
+    color: #1a56db;
+    font-size: 10px;
+    padding: 1px 6px;
+    margin: 0 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== 封面 ==================== -->
+<div class="cover" style="page-break-after:always; height:100vh; display:flex; flex-direction:column; justify-content:center;">
+  <div class="cover-red-line"></div>
+  <div class="cover-label">内部资料 · 注意保存</div>
+  <div class="cover-title">宣传工作情况报告</div>
+  <div class="cover-subtitle">二〇二六年 · 第二十一周</div>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    统计周期：2026年5月19日 — 5月25日<br>
+    编制日期：2026年5月29日<br>
+    数据来源：新闻宣传专业统计表(2026)
+  </div>
+  <div class="cover-org">
+    国网江苏省电力有限公司盐城供电分公司
+  </div>
+</div>
+
+<!-- ==================== 一、整体情况 ==================== -->
+<div class="section-title">一、本周整体情况</div>
+
+<div class="sub-title">（一）得分总览</div>
+<p>第二十一周，公司系统八家单位累计得分<strong>14.05分</strong>。射阳公司和市公司本部并列第一名（各5.5分），大丰公司2.1分位居第三。响水公司本周无有效宣传记录。</p>
+
+<table>
+  <tr>
+    <th width="40">排名</th><th width="55">单位</th><th>周总得分</th>
+    <th>报刊</th><th>网站</th><th>品牌</th><th>加分</th><th>扣分</th>
+    <th>全年累计</th><th>全年排名</th>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td class="t-left">射 阳</td><td class="sc-hi">5.5</td>
+    <td>4.0</td><td>0</td><td>1.5</td><td>0</td><td>0</td>
+    <td>22.2</td><td>6</td>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td class="t-left">市本部</td><td class="sc-hi">5.5</td>
+    <td>0.5</td><td>5.0</td><td>0</td><td>0</td><td>0</td>
+    <td>42.1</td><td>2</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td class="t-left">大 丰</td><td>2.1</td>
+    <td>1.3</td><td>0</td><td>0.8</td><td>0</td><td>0</td>
+    <td>51.6</td><td>1</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td class="t-left">滨 海</td><td>0.3</td>
+    <td>0</td><td>0</td><td>0.3</td><td>0</td><td>0</td>
+    <td>27.9</td><td>5</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td class="t-left">阜 宁</td><td>0.25</td>
+    <td>0</td><td>0</td><td>0.25</td><td>0</td><td>0</td>
+    <td>16.7</td><td>8</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="t-left">东 台</td><td>0.2</td>
+    <td>0.2</td><td>0</td><td>0</td><td>0</td><td>0</td>
+    <td>40.25</td><td>3</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td class="t-left">建 湖</td><td>0.2</td>
+    <td>0.2</td><td>0</td><td>0</td><td>0</td><td>0</td>
+    <td>34.25</td><td>4</td>
+  </tr>
+  <tr>
+    <td style="color:#f05252;font-weight:bold;">8</td>
+    <td class="t-left" style="color:#f05252;">响 水</td><td class="sc-lo">0</td>
+    <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+    <td>19.25</td><td>7</td>
+  </tr>
+</table>
+
+<div class="h-box">
+  <strong>总体评价：</strong>本周整体工作量偏低，处于二季度以来的低谷区间。8家单位中有5家得分低于0.5分，仅射阳与本部维持了较高水平的产出。建议各单位加强选题策划力度，避免出现连续低产周。
+</div>
+
+<hr>
+
+<div class="sub-title">（二）二季度走势分析（第15—21周）</div>
+<p>以下为各单位二季度以来的周度得分趋势及与上周对比情况：</p>
+
+<table>
+  <tr>
+    <th>单位</th><th>第15周</th><th>第16周</th><th>第17周</th>
+    <th>第18周</th><th>第19周</th><th>第20周</th><th>第21周</th>
+    <th>环比</th><th>Q2合计</th>
+  </tr>
+  <tr>
+    <td class="t-left">建 湖</td><td>4.5</td><td>4.8</td><td>3.8</td>
+    <td>2.5</td><td>0.9</td><td>1.4</td><td class="sc-lo">0.2</td>
+    <td style="color:#f05252;">-86%</td><td class="sc-hi">18.1</td>
+  </tr>
+  <tr>
+    <td class="t-left">射 阳</td><td>1.0</td><td>2.8</td><td>1.8</td>
+    <td>2.5</td><td>0.1</td><td>2.5</td><td class="sc-hi">5.5</td>
+    <td style="color:#0e9f6e;">+120%</td><td class="sc-hi">15.9</td>
+  </tr>
+  <tr>
+    <td class="t-left">滨 海</td><td>3.2</td><td>0.4</td><td>2.9</td>
+    <td>2.5</td><td>0.1</td><td>3.0</td><td class="sc-lo">0.3</td>
+    <td style="color:#f05252;">-90%</td><td>12.4</td>
+  </tr>
+  <tr>
+    <td class="t-left">东 台</td><td>1.1</td><td>4.5</td><td>1.8</td>
+    <td>1.6</td><td>0.8</td><td>1.1</td><td class="sc-lo">0.2</td>
+    <td style="color:#f05252;">-82%</td><td>11.0</td>
+  </tr>
+  <tr>
+    <td class="t-left">响 水</td><td>1.0</td><td>1.3</td><td>4.2</td>
+    <td>0.7</td><td>0.8</td><td>2.55</td><td class="sc-lo">0</td>
+    <td style="color:#f05252;">-100%</td><td>10.55</td>
+  </tr>
+  <tr>
+    <td class="t-left">阜 宁</td><td>3.3</td><td>2.9</td><td>1.6</td>
+    <td>0.8</td><td>1.2</td><td>0.6</td><td>0.25</td>
+    <td style="color:#f05252;">-58%</td><td>10.35</td>
+  </tr>
+  <tr>
+    <td class="t-left">市本部</td><td>1.0</td><td>0.3</td><td>0.3</td>
+    <td>0.15</td><td>0.5</td><td>1.0</td><td class="sc-hi">5.5</td>
+    <td style="color:#0e9f6e;">+450%</td><td>8.8</td>
+  </tr>
+  <tr>
+    <td class="t-left">大 丰</td><td>0.6</td><td>0</td><td>0.3</td>
+    <td>0</td><td>0.5</td><td>2.75</td><td>2.1</td>
+    <td style="color:#f05252;">-24%</td><td>6.2</td>
+  </tr>
+</table>
+
+<div class="w-box">
+  <strong>趋势关注：</strong>① 建湖公司Q2累计得分最高（18.1），但近期呈连续下滑态势——第15周4.5分至第21周仅0.2分，需关注其宣传动能持续性；② 响水公司Q2表现极不均衡，波动幅度达4.2分，建议帮助建立稳定的周度发稿节奏；③ 市公司本部本周强势回升（+450%），"电网与珍稀动物保护"专题策划成效显著；④ 本周6家单位环比下滑，仅射阳和本部正增长。
+</div>
+
+<!-- ==================== 二、发稿详情 ==================== -->
+<div class="section-title" style="page-break-before:always;">二、本周发稿详情</div>
+
+<div class="sub-title">（一）纸媒及网站发稿（共9篇）</div>
+<table>
+  <tr><th>单位</th><th>标题</th><th>媒体</th><th>版面</th><th>类型</th><th>赋分</th></tr>
+  <tr>
+    <td>射 阳</td><td class="t-left">"风光储充检放"一体化充电站服务绿色出行</td><td>农民日报</td><td>头版</td><td>图片</td><td class="sc-hi">4.0</td>
+  </tr>
+  <tr>
+    <td>本 部</td><td class="t-left">"万物共生 美好有你"——走进珍稀动物保护</td><td>省公司网站</td><td>要闻</td><td>通讯</td><td class="sc-hi">2.0</td>
+  </tr>
+  <tr>
+    <td>本 部</td><td class="t-left">盐城公司多措并举守护黄海湿地生物多样性</td><td>省公司网站</td><td>要闻（组稿）</td><td>组稿</td><td class="sc-hi">3.0</td>
+  </tr>
+  <tr>
+    <td>射 阳</td><td class="t-left">盐城"候鸟生命线"丹顶鹤保护行动</td><td>省公司网站</td><td>市县要闻</td><td>通讯</td><td>1.0</td>
+  </tr>
+  <tr>
+    <td>大 丰</td><td class="t-left">大丰麋鹿保护区生态保护专题</td><td>省公司网站</td><td>市县要闻</td><td>消息</td><td>0.8</td>
+  </tr>
+  <tr>
+    <td>本 部</td><td class="t-left">盐城公司珍稀动物保护主题微博</td><td>国网江苏电力微博</td><td>—</td><td>图文</td><td>0.5</td>
+  </tr>
+  <tr>
+    <td>大 丰</td><td class="t-left">大丰区年度重点工程电力配套攻坚纪实</td><td>国家电网报</td><td>第6版</td><td>通讯</td><td>0.5</td>
+  </tr>
+  <tr>
+    <td>东 台</td><td class="t-left">东台推进乡村振兴电力先行示范区建设</td><td>江苏电力报</td><td>第3版</td><td>消息</td><td>0.2</td>
+  </tr>
+  <tr>
+    <td>建 湖</td><td class="t-left">建湖九龙口湿地保护电力保障工作</td><td>江苏电力报</td><td>第4版</td><td>消息</td><td>0.2</td>
+  </tr>
+</table>
+
+<div class="sub-title">（二）品牌与社会责任活动（4项）</div>
+<table>
+  <tr><th>单位</th><th>活动主题</th><th>活动内容</th><th>赋分</th></tr>
+  <tr>
+    <td>射 阳</td><td>候鸟生命线</td><td class="t-left">丹顶鹤保护区"数智电网护航生态"主题公益活动</td><td class="sc-hi">1.5</td>
+  </tr>
+  <tr>
+    <td>大 丰</td><td>候鸟生命线</td><td class="t-left">麋鹿保护区电力设施与生态保护科普宣传</td><td>0.8</td>
+  </tr>
+  <tr>
+    <td>滨 海</td><td>候鸟生命线</td><td class="t-left">滨海沿海湿地候鸟迁徙通道电力设施保护宣传</td><td>0.3</td>
+  </tr>
+  <tr>
+    <td>阜 宁</td><td>候鸟生命线</td><td class="t-left">阜宁金沙湖湿地生态保护电力志愿服务</td><td>0.25</td>
+  </tr>
+</table>
+
+<div class="h-box">
+  <strong>品牌亮点：</strong>本周4项品牌社责活动均围绕"候鸟生命线"主题开展，射阳、大丰、滨海、阜宁四家同步参与，形成了盐城沿海湿地保护品牌矩阵。射阳公司凭借丹顶鹤保护区活动获得最高1.5分。建议将此主题持续深化，争取在省级及以上媒体形成专题报道。
+</div>
+
+<!-- ==================== 三、舆情 ==================== -->
+<div class="section-title" style="page-break-before:always;">三、舆情监测情况</div>
+<p>本周监测到涉电敏感舆情<strong>3条</strong>，均来源于抖音平台：</p>
+
+<table>
+  <tr><th width="30">序号</th><th width="60">涉及单位</th><th width="50">平台</th><th width="65">性质</th><th>内容摘要</th><th>处置建议</th></tr>
+  <tr>
+    <td>1</td><td>市本部</td><td>抖音</td><td><span class="tag">施工纠纷</span></td>
+    <td class="t-left" style="font-weight:normal;">金麟府小区居民阻挠高压铁塔架设施工</td>
+    <td class="t-left" style="font-weight:normal;">需关注群体性事件风险，建议联动属地做好沟通解释</td>
+  </tr>
+  <tr>
+    <td>2</td><td>射 阳</td><td>抖音</td><td><span class="tag">运维隐患</span></td>
+    <td class="t-left" style="font-weight:normal;">骆中华线10kV线路树障压线，存在安全隐患</td>
+    <td class="t-left" style="font-weight:normal;">立即安排运维班组现场核查处置并反馈</td>
+  </tr>
+  <tr>
+    <td>3</td><td>射 阳</td><td>抖音</td><td><span class="tag">服务投诉</span></td>
+    <td class="t-left" style="font-weight:normal;">某收费站突发断电，用户反映服务响应慢</td>
+    <td class="t-left" style="font-weight:normal;">核查断电原因，如属我方责任则第一时间发通报回应</td>
+  </tr>
+</table>
+
+<div class="d-box">
+  <strong>处置要求：</strong>① 各相关单位按照舆情应急预案，24小时内完成核查并反馈；② 金麟府铁塔施工纠纷涉及群众诉求，建议业务部门联合属地街道做好政策沟通；③ 运维类舆情反映日常管理薄弱环节，请射阳公司做好举一反三排查。
+</div>
+
+<!-- ==================== 四、工作建议 ==================== -->
+<div class="section-title" style="page-break-before:always;">四、下周工作建议</div>
+
+<div class="sub-title">（一）重点策划方向</div>
+<ul>
+  <li><strong>六一儿童节专题（6月1日）：</strong>建议各单位挖掘"电力安全进校园""电力科普展"等素材，制作适合新媒体传播的图文、短视频内容，争取在省公司新媒体平台推送。</li>
+  <li><strong>端午节供电保障（5月31日—6月2日）：</strong>提前部署节日保供电宣传素材采集，着重报道一线值守、应急抢修等鲜活案例。</li>
+  <li><strong>迎峰度夏预热：</strong>六月中旬将进入夏季用电高峰，建议各单位本周提前布局"战高温、保供电"选题储备，挖掘供电所一线人物故事。</li>
+  <li><strong>候鸟生命线持续深化：</strong>在四家单位同步开展的基础上，争取衔接省级媒体策划专题采风，形成品牌传播合力。</li>
+</ul>
+
+<div class="sub-title">（二）管理建议</div>
+<ul>
+  <li><strong>响水公司需重点关注：</strong>连续三周处于低位（第19周0.8、第20周2.55、第21周0），市公司党建部建议安排专人对接辅导，帮助制定周度发稿计划。</li>
+  <li><strong>建湖公司动能维护：</strong>虽Q2累计排名第一（18.1），但已连续四周下滑（+450%--+86%），建议复盘下滑原因并及时调整策略。</li>
+  <li><strong>定量扣分控制：</strong>射阳（-4.75）、大丰（-4.2）全年扣分较多，主要源于省公司微博周度缺失，建议建立微博发稿提醒机制。</li>
+</ul>
+
+<hr>
+<div style="text-align:center; font-size:11px; color:#999; margin-top:20px;">
+  <p>本报告数据来源于新闻宣传专业统计表(2026)，由系统自动提取生成。</p>
+  <p>如有数据疑问，请联系市公司党建部宣传专职。内部资料，请勿外传。</p>
+</div>
+
+</body>
+</html>

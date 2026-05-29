@@ -1,0 +1,1911 @@
+{
+  "code": 0,
+  "data": {
+    "detail": {
+      "records": [
+        {
+          "fields": {
+            "作者": "陆潇 周文杰 张云翔",
+            "单位": "滨海",
+            "发稿类型": "通讯",
+            "周数": "第3周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/01/13",
+            "标题": "“一站式”联办暖企惠民——国网江苏滨海供电“专班跟进”赋能绿色项目落地",
+            "版面": "第7版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/group1/M00/02/A5/gQAA5mlluLKAb1uzACYMzyJnwmI020.jpg",
+                "displayText": "https://www.cpnn.com.cn/epaper/group1/M00/02/A5/gQAA5mlluLKAb1uzACYMzyJnwmI020.jpg"
+              }
+            ]
+          },
+          "id": "RM"
+        },
+        {
+          "fields": {
+            "作者": "刘翔宇、程磊",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第2周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/08",
+            "标题": "东台供电协助“顶管攻坚”恢复双电源供电",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9173276.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9173276.html"
+              }
+            ]
+          },
+          "id": "Rl"
+        },
+        {
+          "fields": {
+            "作者": "吴海富 周华皓 徐绿叶",
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第1周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/01",
+            "标题": "“盐城市车网互动实施意见”正式出台",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9166002.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9166002.html"
+              }
+            ]
+          },
+          "id": "Rm"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第1周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/01",
+            "标题": "建湖供电守护“建湖大米”全链用电",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-01/page/1659344/aid/9165997.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-01/page/1659344/aid/9165997.html"
+              }
+            ]
+          },
+          "id": "R7"
+        },
+        {
+          "fields": {
+            "作者": "鲁璐 徐绿叶",
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第5周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/01/28",
+            "标题": "江苏盐城供电公司发布服务民生与优化营商环境举措",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202601/28/con-762910.html",
+                "displayText": "https://epaper.sgcctop.com/202601/28/con-762910.html"
+              }
+            ]
+          },
+          "id": "Sr"
+        },
+        {
+          "fields": {
+            "作者": "陆潇 张云翔",
+            "单位": "滨海",
+            "发稿类型": "消息",
+            "周数": "第5周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/01/29",
+            "标题": "江苏滨海县供电公司推行专班跟进机制服务重大项目用电",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202601/29/con-762964.html",
+                "displayText": "https://epaper.sgcctop.com/202601/29/con-762964.html"
+              }
+            ]
+          },
+          "id": "S2"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第5周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/29",
+            "标题": "盐城35千伏上冈变电站扩建工程竣工",
+            "版面": "第2版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-29/page/1667399/aid/9202579.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-29/page/1667399/aid/9202579.html"
+              }
+            ]
+          },
+          "id": "S8"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第5周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/29",
+            "标题": "幸福沃土滋养青春 蓬勃力量拔节生长",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.oss-cn-hangzhou.aliyuncs.com/jsdlb/2026-01-29/57797ff8150b41a5aeeb99f6b7a8f8ff.pdf",
+                "displayText": "https://epaper.oss-cn-hangzhou.aliyuncs.com/jsdlb/2026-01-29/57797ff8150b41a5aeeb99f6b7a8f8ff.pdf"
+              }
+            ]
+          },
+          "id": "S-"
+        },
+        {
+          "fields": {
+            "作者": "程磊、沈萌萌",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第5周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/30",
+            "标题": "东台供电“青春合伙”项目助力青年成长见效",
+            "版面": "第3版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-29/page/1667400/aid/9202590.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-01-29/page/1667400/aid/9202590.html#"
+              }
+            ]
+          },
+          "id": "S_"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第6周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/02/05",
+            "标题": "守护“鹿线共生” 赋能湿地保护",
+            "版面": "第3版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-05/page/1669963/aid/9213382.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-05/page/1669963/aid/9213382.html#"
+              }
+            ]
+          },
+          "id": "U0"
+        },
+        {
+          "fields": {
+            "作者": "朱钱",
+            "单位": "大丰",
+            "发稿类型": "图片",
+            "周数": "第6周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/02/05",
+            "标题": "铁塔为邻 守望共生",
+            "版面": "第3版",
+            "赋分": 0,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-05/page/1669963/aid/9213381.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-05/page/1669963/aid/9213381.html"
+              }
+            ]
+          },
+          "id": "U1"
+        },
+        {
+          "fields": {
+            "作者": "程磊、刘翔宇",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第6周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/02/05",
+            "标题": "江苏东台供电 电铁联动保春运",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2019219902996414464",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2019219902996414464"
+              }
+            ]
+          },
+          "id": "U2"
+        },
+        {
+          "fields": {
+            "作者": "程磊",
+            "单位": "东台",
+            "发稿类型": "通讯",
+            "周数": "第7周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/02/10",
+            "标题": "“青春合伙人”来了——国网江苏东台供电以党建带团建支撑青年成长",
+            "版面": "第6版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2021032091008892929\u0026time=20260210",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2021032091008892929\u0026time=20260210"
+              }
+            ]
+          },
+          "id": "WS"
+        },
+        {
+          "fields": {
+            "作者": "程磊、刘翔宇",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第7周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/02/12",
+            "标题": "东台供电“电铁联动”护航春运供电",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9222551.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9222551.html"
+              }
+            ]
+          },
+          "id": "Wa"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "通讯",
+            "周数": "第7周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/02/12",
+            "标题": "村网共建送“安全电” 护返乡人过“平安年”",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-12/page/1672041/aid/9222554.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-12/page/1672041/aid/9222554.html#"
+              }
+            ]
+          },
+          "id": "Wb"
+        },
+        {
+          "fields": {
+            "作者": "张弦",
+            "单位": "滨海",
+            "发稿类型": "消息",
+            "周数": "第7周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/02/12",
+            "标题": "我省首次运用无人机为220千伏线路带电安装间隔棒",
+            "版面": "第2版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-12/page/1672039/aid/9222524.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-02-12/page/1672039/aid/9222524.html#"
+              }
+            ]
+          },
+          "id": "Wl"
+        },
+        {
+          "fields": {
+            "作者": "肖兵 薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第7周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/02/13",
+            "标题": "江苏建湖县供电公司开展“电亮暖冬”专项行动",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202602/13/con-763708.html",
+                "displayText": "https://epaper.sgcctop.com/202602/13/con-763708.html"
+              }
+            ]
+          },
+          "id": "Xr"
+        },
+        {
+          "fields": {
+            "作者": "肖 兵",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第5周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/01/30",
+            "标题": "盐城35千伏上冈变电站扩建工程竣工",
+            "版面": "第2版",
+            "赋分": 0,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index?aid=9202579",
+                "displayText": "https://epaper.routeryun.com/Article/index?aid=9202579"
+              }
+            ]
+          },
+          "id": "X0"
+        },
+        {
+          "fields": {
+            "作者": "孙永兴",
+            "单位": "东台",
+            "发稿类型": "图片",
+            "周数": "第9周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/02/27",
+            "标题": "服务企业复工用电",
+            "版面": "第3版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202602/27/con-764097.html",
+                "displayText": "https://epaper.sgcctop.com/202602/27/con-764097.html"
+              }
+            ]
+          },
+          "id": "X7"
+        },
+        {
+          "fields": {
+            "作者": "倪佳俊",
+            "单位": "阜宁",
+            "发稿类型": "消息",
+            "周数": "第10周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/03/02",
+            "标题": "江苏阜宁县供电公司配电运检中心：设备主任分片包干 运检质效稳步提升",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202603/02/con-764173.html",
+                "displayText": "https://epaper.sgcctop.com/202603/02/con-764173.html"
+              }
+            ]
+          },
+          "id": "YX"
+        },
+        {
+          "fields": {
+            "作者": "史俊",
+            "单位": "本部",
+            "发稿类型": "图片",
+            "周数": "第10周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/03/03",
+            "是否头版": "否",
+            "标题": "500千伏高荣变建设现场",
+            "版面": "头版",
+            "赋分过程": "0.6",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202603/03/con-764244.html?v=2",
+                "displayText": "https://epaper.sgcctop.com/202603/03/con-764244.html?v=2"
+              }
+            ]
+          },
+          "id": "Yv"
+        },
+        {
+          "fields": {
+            "作者": "孙永兴",
+            "单位": "东台",
+            "发稿类型": "图片",
+            "周数": "第2周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/01/06",
+            "标题": "1月3日，国网江苏东台市供电公司时堰供电所“盐电铁军·金海星”共产党员服务队队员来到时堰镇泰东工业园区对加班生产的伊勉特工业（东台）有限公司进行用电服务，为企业加班生产提供可靠的电力保障。 孙永兴 缪秋霞 摄影报道",
+            "版面": "第8版",
+            "赋分": 0,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=08\u0026articleId=2016810930783911937\u0026time=20260106",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=08\u0026articleId=2016810930783911937\u0026time=20260106"
+              }
+            ]
+          },
+          "id": "Yz"
+        },
+        {
+          "fields": {
+            "作者": "唐建军",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第10周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/03/05",
+            "是否头版": "否",
+            "标题": "大丰供电擂响新春奋进战鼓",
+            "版面": "第3版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-03-05/page/1675618/aid/9239601.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-03-05/page/1675618/aid/9239601.html#"
+              }
+            ]
+          },
+          "id": "Zu"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥 文军",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第10周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/06",
+            "是否头版": "否",
+            "标题": "江苏大丰供电分类育才补短板",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2029730039464984577",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2029730039464984577"
+              }
+            ]
+          },
+          "id": "aU"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第11周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/10",
+            "是否头版": "否",
+            "标题": "建设新型电力系统蹄疾步稳",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/"
+              }
+            ]
+          },
+          "id": "av"
+        },
+        {
+          "fields": {
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第11周",
+            "报刊媒体": "经济日报",
+            "日期": "2026/03/12",
+            "标题": "实干成就伟业 创新赢得未来",
+            "版面": "第9版",
+            "赋分": 4,
+            "赋分过程": "0",
+            "链接": [
+              {
+                "address": "http://paper.ce.cn/pc/content/202603/12/content_329457.html",
+                "displayText": "http://paper.ce.cn/pc/content/202603/12/content_329457.html"
+              }
+            ]
+          },
+          "id": "a6"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第11周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/12",
+            "是否头版": "否",
+            "标题": "为零碳园区提供硬核电力支撑",
+            "版面": "第4版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2031904964728586240",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2031904964728586240"
+              }
+            ]
+          },
+          "id": "bK"
+        },
+        {
+          "fields": {
+            "作者": "程磊、王孟沙",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第12周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/16",
+            "是否头版": "否",
+            "标题": "江苏东台供电为跨国创业项目用电护航",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2033347266592374787\u0026time=20260316",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2033347266592374787\u0026time=20260316"
+              }
+            ]
+          },
+          "id": "bd"
+        },
+        {
+          "fields": {
+            "作者": "吉喆 杨晨 张珊珊",
+            "单位": "射阳",
+            "发稿类型": "通讯",
+            "周数": "第11周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/09",
+            "是否头版": "否",
+            "标题": "聚力“三举措”重启生产键",
+            "版面": "第7版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2030953333325299714",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2030953333325299714"
+              }
+            ]
+          },
+          "id": "be"
+        },
+        {
+          "fields": {
+            "作者": "张孝艳",
+            "单位": "响水",
+            "发稿类型": "消息",
+            "周数": "第12周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/16",
+            "是否头版": "否",
+            "标题": "江苏响水供电试点“一区一证明”充电桩报装",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2033347266592374787\u0026time=20260316",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2033347266592374787\u0026time=20260316"
+              }
+            ]
+          },
+          "id": "br"
+        },
+        {
+          "fields": {
+            "作者": "肖兵 薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第11周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/09",
+            "是否头版": "否",
+            "标题": "江苏建湖供电 “三快”暖企心",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2030953333329494019",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2030953333329494019"
+              }
+            ]
+          },
+          "id": "bx"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第12周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/03/19",
+            "是否头版": "否",
+            "标题": "守护湿地深处“呦呦鹿鸣”",
+            "版面": "第2版",
+            "赋分": 1,
+            "赋分过程": "1.0",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202603/19/#page=3",
+                "displayText": "https://epaper.sgcctop.com/202603/19/#page=3"
+              }
+            ]
+          },
+          "id": "cN"
+        },
+        {
+          "fields": {
+            "作者": "薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第12周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/03/19",
+            "是否头版": "否",
+            "标题": "流动喇叭“唱”安全",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9257255.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9257255.html"
+              }
+            ]
+          },
+          "id": "cg"
+        },
+        {
+          "fields": {
+            "作者": "肖兵 薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第13周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/23",
+            "是否头版": "否",
+            "标题": "建湖供电保障水产养殖用电稳定",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2035914965872803846",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2035914965872803846"
+              }
+            ]
+          },
+          "id": "cx"
+        },
+        {
+          "fields": {
+            "作者": "吴佳佳",
+            "单位": "响水",
+            "发稿类型": "消息",
+            "周数": "第13周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/24",
+            "是否头版": "否",
+            "标题": "江苏响水政企联创物业能耗监管账户",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2036254804044414979",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2036254804044414979"
+              }
+            ]
+          },
+          "id": "c1"
+        },
+        {
+          "fields": {
+            "作者": "崔明亮",
+            "单位": "东台",
+            "发稿类型": "特写",
+            "周数": "第13周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/03/26",
+            "是否头版": "否",
+            "标题": "【现场】青蒲站紧急消缺记",
+            "版面": "第2版",
+            "赋分": 5,
+            "赋分过程": "5",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9266300.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9266300.html"
+              }
+            ]
+          },
+          "id": "dI"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第13周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/03/26",
+            "是否头版": "否",
+            "标题": "踏春寻梅",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-03-26/page/1681026/aid/9266321.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-03-26/page/1681026/aid/9266321.html"
+              }
+            ]
+          },
+          "id": "dK"
+        },
+        {
+          "fields": {
+            "作者": "杨宝光",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第14周",
+            "报刊媒体": "中国青年报",
+            "日期": "2026/03/30",
+            "是否头版": "是",
+            "标题": "共青团夜校：促青年发展 显基层活力",
+            "版面": "头版",
+            "赋分": 5,
+            "赋分过程": "5",
+            "链接": [
+              {
+                "address": "http://zqb.cyol.com/pc/content/202603/30/content_424027.html",
+                "displayText": "http://zqb.cyol.com/pc/content/202603/30/content_424027.html"
+              }
+            ]
+          },
+          "id": "dg"
+        },
+        {
+          "fields": {
+            "作者": "陆凡",
+            "单位": "响水",
+            "发稿类型": "消息",
+            "周数": "第14周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/03/31",
+            "是否头版": "否",
+            "标题": "江苏响水县供电公司靠前服务保障智慧农业用电",
+            "版面": "第4版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "http://211.160.252.154/202604/01/#page=5",
+                "displayText": "http://211.160.252.154/202604/01/#page=5"
+              }
+            ]
+          },
+          "id": "eV"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "图片",
+            "周数": "第14周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/02",
+            "是否头版": "否",
+            "标题": "3月29日，建湖县高作供电所台区经理检查高标准农田的智慧农田监测设备运行情况。",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759546/aid/9777154.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759546/aid/9777154.html"
+              }
+            ]
+          },
+          "id": "eZ"
+        },
+        {
+          "fields": {
+            "作者": "董天雄",
+            "单位": "滨海",
+            "发稿类型": "消息",
+            "周数": "第14周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/02",
+            "是否头版": "否",
+            "标题": "盐城110千伏滨东变电站投运",
+            "版面": "第2版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "http://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759544/aid/9777132.html#",
+                "displayText": "http://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759544/aid/9777132.html#"
+              }
+            ]
+          },
+          "id": "ef"
+        },
+        {
+          "fields": {
+            "作者": "徐绿叶",
+            "单位": "本部",
+            "发稿类型": "通讯",
+            "周数": "第14周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/02",
+            "是否头版": "是",
+            "标题": "“绿”风劲吹 “碳”路先行——国网盐城供电公司以奋进之姿书写服务新能源高质量发展答卷",
+            "版面": "头版",
+            "赋分": 1,
+            "赋分过程": "1.0",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759543/aid/9777120.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759543/aid/9777120.html"
+              }
+            ]
+          },
+          "id": "eg"
+        },
+        {
+          "fields": {
+            "作者": "隋茹，李闯",
+            "单位": "响水",
+            "发稿类型": "图片",
+            "周数": "第14周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/02",
+            "是否头版": "否",
+            "标题": "当“安全周”遇上“首个春假”",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "3.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759543/aid/9777120.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-02/page/1759543/aid/9777120.html"
+              }
+            ]
+          },
+          "id": "ex"
+        },
+        {
+          "fields": {
+            "作者": "张聪",
+            "单位": "射阳",
+            "发稿类型": "图片",
+            "周数": "第14周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/02",
+            "标题": "春日忙，为电网强筋健骨",
+            "版面": "第2版",
+            "赋分": 0.2,
+            "赋分过程": "3.2",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9777121.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9777121.html"
+              }
+            ]
+          },
+          "id": "e0"
+        },
+        {
+          "fields": {
+            "作者": "史俊 徐绿叶",
+            "单位": "本部",
+            "发稿类型": "图片",
+            "周数": "第14周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/03",
+            "是否头版": "否",
+            "标题": "高荣500千伏输变电工程送电",
+            "版面": "第5版",
+            "赋分": 0.5,
+            "赋分过程": "3.3",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/group1/M00/02/CC/gQAA5mnPIGWAUAEOAAKMUAFPsjA398.jpg",
+                "displayText": "https://www.cpnn.com.cn/epaper/group1/M00/02/CC/gQAA5mnPIGWAUAEOAAKMUAFPsjA398.jpg"
+              }
+            ]
+          },
+          "id": "fM"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第14周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/03",
+            "标题": "江苏大丰供电“植树向导”护绿保电",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2039886982011682817",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2039886982011682817"
+              }
+            ]
+          },
+          "id": "fN"
+        },
+        {
+          "fields": {
+            "作者": "薛锦程",
+            "单位": "建湖",
+            "发稿类型": "图片",
+            "周数": "第14周",
+            "报刊媒体": "法治日报",
+            "日期": "2026/04/02",
+            "是否头版": "是",
+            "标题": "近日，国网建湖县供电公司组织共产党员服务队，走进江苏省盐城市建湖县庆丰中学，开展安全用电宣传活动。图为服务队队员向同学们发放宣传手册，讲解安全用电知识。",
+            "版面": "头版",
+            "赋分": 4,
+            "赋分过程": "4",
+            "链接": [
+              {
+                "address": "http://h5epaper.legaldaily.com.cn/content/20260402/Articel01010SR.htm",
+                "displayText": "http://h5epaper.legaldaily.com.cn/content/20260402/Articel01010SR.htm"
+              }
+            ]
+          },
+          "id": "ff"
+        },
+        {
+          "fields": {
+            "作者": "孙永兴 练智阳",
+            "单位": "东台",
+            "发稿类型": "图片",
+            "周数": "第13周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/03/24",
+            "是否头版": "否",
+            "标题": "3月18日，国网江苏东台市供电公司溱东供电所共产党员服务队队员到江苏东台市溱东镇罗二村电气化水产养殖场，排查处理安全隐患，确保4月初虾鱼蟹苗投放大塘养殖用电无忧。",
+            "版面": "第6版",
+            "赋分": 0,
+            "赋分过程": "3.3",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2036254794863083522\u0026time=20260324",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2036254794863083522\u0026time=20260324"
+              }
+            ]
+          },
+          "id": "fs"
+        },
+        {
+          "fields": {
+            "作者": "霍雨佳 董小强",
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第15周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "江苏新增一条清洁能源外送通道",
+            "版面": "第2版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202604/09/con-765864.html",
+                "displayText": "https://epaper.sgcctop.com/202604/09/con-765864.html"
+              }
+            ]
+          },
+          "id": "gS"
+        },
+        {
+          "fields": {
+            "作者": "霍雨佳 程路 徐绿叶",
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第15周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "省内新增一条清洁能源送出通道",
+            "版面": "头版",
+            "赋分": 0.3,
+            "赋分过程": "0.6",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9784970.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9784970.html"
+              }
+            ]
+          },
+          "id": "gT"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "图片",
+            "周数": "第15周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "鹳舞铁塔 豚跃长江",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "3.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-09/page/1761046/aid/9784996.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-09/page/1761046/aid/9784996.html#"
+              }
+            ]
+          },
+          "id": "gU"
+        },
+        {
+          "fields": {
+            "作者": "倪佳俊",
+            "单位": "阜宁",
+            "发稿类型": "通讯",
+            "周数": "第15周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "“怕停电”的白水塘如何养出“双季虾”",
+            "版面": "第4版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-09/page/1761046/aid/9785061.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-09/page/1761046/aid/9785061.html#"
+              }
+            ]
+          },
+          "id": "gZ"
+        },
+        {
+          "fields": {
+            "作者": "程磊 刘翔宇",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第15周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "江苏东台供电 “先接后改”解企忧",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=07\u0026articleId=2042053827800072195\u0026time=20260409",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=07\u0026articleId=2042053827800072195\u0026time=20260409"
+              }
+            ]
+          },
+          "id": "gd"
+        },
+        {
+          "fields": {
+            "作者": "倪佳俊 顾浩",
+            "单位": "阜宁",
+            "发稿类型": "通讯",
+            "周数": "第15周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/09",
+            "是否头版": "否",
+            "标题": "增能养殖 富泽渔乡\n——国网江苏阜宁供电党建引领赋能乡村振兴",
+            "版面": "第6版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html"
+              }
+            ]
+          },
+          "id": "gx"
+        },
+        {
+          "fields": {
+            "作者": "周瑾",
+            "单位": "本部",
+            "发稿类型": "通讯",
+            "周数": "第16周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/04/15",
+            "是否头版": "是",
+            "标题": "拥抱无限“风光”，绿能澎湃江海",
+            "版面": "头版",
+            "赋分": 0,
+            "赋分过程": "6.0",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202604/15/con-766008.html?v=2",
+                "displayText": "https://epaper.sgcctop.com/202604/15/con-766008.html?v=2"
+              }
+            ]
+          },
+          "id": "hs"
+        },
+        {
+          "fields": {
+            "作者": "肖兵 薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第16周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/16",
+            "是否头版": "否",
+            "标题": "“淮光暖驿”便民服务点春假期间接待游客近两千人次",
+            "版面": "第3版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-16/page/1762924/aid/9794371.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-04-16/page/1762924/aid/9794371.html#"
+              }
+            ]
+          },
+          "id": "ht"
+        },
+        {
+          "fields": {
+            "作者": "程磊",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第17周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/21",
+            "是否头版": "否",
+            "标题": "成为群众身边的一束光",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2046395788283609089\u0026time=20260421",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2046395788283609089\u0026time=20260421"
+              }
+            ]
+          },
+          "id": "iY"
+        },
+        {
+          "fields": {
+            "作者": "程磊",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第17周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/23",
+            "是否头版": "否",
+            "标题": "东台供电“分期实施”巧解两难",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9803179.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9803179.html"
+              }
+            ]
+          },
+          "id": "iv"
+        },
+        {
+          "fields": {
+            "作者": "吉喆",
+            "单位": "射阳",
+            "发稿类型": "图片",
+            "周数": "第17周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/23",
+            "是否头版": "否",
+            "标题": "书香苏电 阅动一线",
+            "版面": "第3版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9803170.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9803170.html"
+              }
+            ]
+          },
+          "id": "iw"
+        },
+        {
+          "fields": {
+            "作者": "孙修文 徐绿叶",
+            "单位": "响水",
+            "发稿类型": "消息",
+            "周数": "第17周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/23",
+            "是否头版": "否",
+            "标题": "专款专用破解小区公共能耗费用管理“死结” 盐城设立监管账户打造“江苏样本”",
+            "版面": "第4版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9803180.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9803180.html"
+              }
+            ]
+          },
+          "id": "jF"
+        },
+        {
+          "fields": {
+            "作者": "张侃",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第18周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/28",
+            "是否头版": "否",
+            "标题": "江苏东台供电开展主变小修预试“回头看”",
+            "版面": "第5版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=05\u0026articleId=2048926223509225473\u0026time=20260428",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=05\u0026articleId=2048926223509225473\u0026time=20260428"
+              }
+            ]
+          },
+          "id": "jv"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第18周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/04/28",
+            "标题": "江苏盐城大丰区供电公司专项巡检涉鸟输电线路",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202604/28/con-766957.html",
+                "displayText": "https://epaper.sgcctop.com/202604/28/con-766957.html"
+              }
+            ]
+          },
+          "id": "jw"
+        },
+        {
+          "fields": {
+            "作者": "倪佳俊",
+            "单位": "阜宁",
+            "发稿类型": "图片",
+            "周数": "第18周",
+            "报刊媒体": "中国妇女报",
+            "日期": "2026/04/28",
+            "是否头版": "是",
+            "标题": "图片新闻",
+            "版面": "头版",
+            "赋分": 4,
+            "赋分过程": "4分",
+            "链接": [
+              {
+                "address": "https://paper.cnwomen.com.cn/zgfnb/h5/html5/2026-04/28/content_1_17562.htm?curr=\u0026sn=dfef78443014ff9b\u0026ts=1777327713",
+                "displayText": "https://paper.cnwomen.com.cn/zgfnb/h5/html5/2026-04/28/content_1_17562.htm?curr=\u0026sn=dfef78443014ff9b\u0026ts=1777327713"
+              }
+            ]
+          },
+          "id": "jy"
+        },
+        {
+          "fields": {
+            "单位": "本部",
+            "发稿类型": "通讯",
+            "周数": "第17周",
+            "报刊媒体": "经济日报",
+            "日期": "2026/04/24",
+            "标题": "潮起浪涌，海上生成绿电矩阵\n——来自江苏省盐城市的调查",
+            "版面": "第10版",
+            "赋分": 0,
+            "赋分过程": "0",
+            "链接": [
+              {
+                "address": "https://proapi.jingjiribao.cn/readnews.html?id=342049",
+                "displayText": "https://proapi.jingjiribao.cn/readnews.html?id=342049"
+              }
+            ]
+          },
+          "id": "k9"
+        },
+        {
+          "fields": {
+            "作者": "徐浩  吉喆  张珊珊",
+            "单位": "射阳",
+            "发稿类型": "通讯",
+            "周数": "第18周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/04/30",
+            "是否头版": "否",
+            "标题": "江苏射阳供电呵护蓝莓“甜蜜之旅”",
+            "版面": "第7版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=08\u0026articleId=2016810930783911937\u0026time=20260106",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=08\u0026articleId=2016810930783911937\u0026time=20260106"
+              }
+            ]
+          },
+          "id": "lZ"
+        },
+        {
+          "fields": {
+            "作者": "顾东峰",
+            "单位": "射阳",
+            "发稿类型": "消息",
+            "周数": "第18周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/04/30",
+            "标题": "射阳110千伏金海变电站改造工程竣工",
+            "版面": "第2版",
+            "赋分": 0.3,
+            "赋分过程": "0.3",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9812212.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9812212.html"
+              }
+            ]
+          },
+          "id": "la"
+        },
+        {
+          "fields": {
+            "作者": "薛海燕",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第18周",
+            "报刊媒体": "经济日报",
+            "日期": "2026/04/27",
+            "标题": "清洁能源可溯源",
+            "版面": "第3版",
+            "赋分过程": "0",
+            "链接": [
+              {
+                "address": "http://paper.ce.cn/pc/layout/202604/27/node_03.html",
+                "displayText": "http://paper.ce.cn/pc/layout/202604/27/node_03.html"
+              }
+            ]
+          },
+          "id": "lq"
+        },
+        {
+          "fields": {
+            "作者": "薛海燕",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第17周",
+            "报刊媒体": "经济日报",
+            "日期": "2026/04/24",
+            "标题": "潮起浪涌，海上生成绿电矩阵",
+            "版面": "第10版",
+            "赋分过程": "0",
+            "链接": [
+              {
+                "address": "http://paper.ce.cn/pc/layout/202604/24/node_10.html",
+                "displayText": "http://paper.ce.cn/pc/layout/202604/24/node_10.html"
+              }
+            ]
+          },
+          "id": "lw"
+        },
+        {
+          "fields": {
+            "作者": "祝诗雨 喻涵",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第19周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/05/08",
+            "是否头版": "否",
+            "标题": "江苏东台市供电公司试点“班厅合一”提升服务效率",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202605/08/con-767313.html",
+                "displayText": "https://epaper.sgcctop.com/202605/08/con-767313.html"
+              }
+            ]
+          },
+          "id": "mG"
+        },
+        {
+          "fields": {
+            "作者": "倪佳俊 李丹丹",
+            "单位": "阜宁",
+            "发稿类型": "消息",
+            "周数": "第19周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/05/09",
+            "是否头版": "否",
+            "标题": "江苏阜宁供电把“经济账”算进企业心坎里",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/",
+                "displayText": "https://www.cpnn.com.cn/epaper/"
+              }
+            ]
+          },
+          "id": "nC"
+        },
+        {
+          "fields": {
+            "作者": "吉喆",
+            "单位": "射阳",
+            "发稿类型": "图片",
+            "周数": "第20周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/14",
+            "是否头版": "否",
+            "标题": "电暖流  不打烊",
+            "版面": "第3版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-14/page/1769229/aid/9825800.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-14/page/1769229/aid/9825800.html"
+              }
+            ]
+          },
+          "id": "ne"
+        },
+        {
+          "fields": {
+            "作者": "肖兵 薛锦程",
+            "单位": "建湖",
+            "发稿类型": "消息",
+            "周数": "第20周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/05/14",
+            "是否头版": "否",
+            "标题": "江苏建湖县供电公司依托数智化手段抓实夏季物资供应保障 ",
+            "版面": "第3版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202605/14/con-767621.html",
+                "displayText": "https://epaper.sgcctop.com/202605/14/con-767621.html"
+              }
+            ]
+          },
+          "id": "ng"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥",
+            "单位": "大丰",
+            "发稿类型": "图片",
+            "周数": "第20周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/14",
+            "是否头版": "否",
+            "标题": "盐城大丰公司开展“候鸟生命线”社会责任活动",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-14/page/1769230/aid/9825803.html#",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-14/page/1769230/aid/9825803.html#"
+              }
+            ]
+          },
+          "id": "ni"
+        },
+        {
+          "fields": {
+            "作者": "王禹 孙修文",
+            "单位": "响水",
+            "发稿类型": "消息",
+            "周数": "第20周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/05/14",
+            "是否头版": "否",
+            "标题": "江苏响水供电党建带团建提升班组核心技能",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://cpnn.com.cn/epaper/",
+                "displayText": "https://cpnn.com.cn/epaper/"
+              }
+            ]
+          },
+          "id": "nm"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥 严新月 文军",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第20周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/05/15",
+            "标题": "“零碳乡村”的绿色支撑",
+            "版面": "第7版",
+            "赋分": 0.8,
+            "赋分过程": "0.8",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2055095439027339265",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2055095439027339265"
+              }
+            ]
+          },
+          "id": "ns"
+        },
+        {
+          "fields": {
+            "作者": "黄蓉",
+            "单位": "本部",
+            "发稿类型": "消息",
+            "周数": "第21周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/05/18",
+            "标题": "无人车搭载无人机，设备巡检自主高效",
+            "版面": "第6版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202605/18/con-767716.html?v=2",
+                "displayText": "https://epaper.sgcctop.com/202605/18/con-767716.html?v=2"
+              }
+            ]
+          },
+          "id": "oF"
+        },
+        {
+          "fields": {
+            "作者": "朱孟笑 廖玉婷",
+            "单位": "东台",
+            "发稿类型": "消息",
+            "周数": "第21周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/05/19",
+            "是否头版": "否",
+            "标题": "“政绩观监督员”上岗——国网江苏综合能源公司推动“学查改”见行见效",
+            "版面": "第6版",
+            "赋分": 0.2,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2056545149462249475\u0026time=20260519",
+                "displayText": "https://www.cpnn.com.cn/epaper/index.html?bc=06\u0026articleId=2056545149462249475\u0026time=20260519"
+              }
+            ]
+          },
+          "id": "oH"
+        },
+        {
+          "fields": {
+            "作者": "朱钱",
+            "单位": "大丰",
+            "发稿类型": "图片",
+            "周数": "第21周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/21",
+            "标题": "一组图告诉你电力人在忙什么",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-21/page/1771182/aid/9835841.html",
+                "displayText": "https://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-21/page/1771182/aid/9835841.html"
+              }
+            ]
+          },
+          "id": "pS"
+        },
+        {
+          "fields": {
+            "作者": "陈松屹  姚瑶",
+            "单位": "射阳",
+            "发稿类型": "通讯",
+            "周数": "第21周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/05/22",
+            "标题": "青年登台当主讲\n——江苏射阳县供电公司打造“阳帆”青年学习社培育骨干",
+            "版面": "第4版",
+            "赋分": 1,
+            "赋分过程": "1.0",
+            "链接": [
+              {
+                "address": "#小程序://国家电网报/A9i6aNXVBlvcXRD",
+                "displayText": "#小程序://国家电网报/A9i6aNXVBlvcXRD"
+              }
+            ]
+          },
+          "id": "pt"
+        },
+        {
+          "fields": {
+            "作者": "肖兵",
+            "单位": "建湖",
+            "发稿类型": "图片",
+            "周数": "第21周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/21",
+            "是否头版": "否",
+            "标题": "防灾减灾宣传周 一组图片告诉你电力人在忙什么",
+            "版面": "第4版",
+            "赋分": 0.2,
+            "赋分过程": "0.2",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9835841.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9835841.html"
+              }
+            ]
+          },
+          "id": "pw"
+        },
+        {
+          "fields": {
+            "作者": "张聪",
+            "单位": "射阳",
+            "发稿类型": "图片",
+            "周数": "第21周",
+            "报刊媒体": "农民日报",
+            "日期": "2026/05/23",
+            "是否头版": "是",
+            "标题": "公司在团塘村“风光储充检放”一体化充电站指导游客充电操作",
+            "版面": "头版",
+            "赋分": 4,
+            "赋分过程": "4",
+            "链接": [
+              {
+                "address": "https://szb.farmer.com.cn/nmrb/html/2026/20260523/20260523_1/nmrb_20260523_13307_1_2057934634600206353.html",
+                "displayText": "https://szb.farmer.com.cn/nmrb/html/2026/20260523/20260523_1/nmrb_20260523_13307_1_2057934634600206353.html"
+              }
+            ]
+          },
+          "id": "p2"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥 文军",
+            "单位": "大丰",
+            "发稿类型": "消息",
+            "周数": "第22周",
+            "报刊媒体": "中国电力报",
+            "日期": "2026/05/25",
+            "标题": "江苏大丰供电 “三防”举措实现护鸟保电双达标",
+            "版面": "第7版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2058712403947814912",
+                "displayText": "https://www.cpnn.com.cn/epaperapp/html/detail.html?id=2058712403947814912"
+              }
+            ]
+          },
+          "id": "p9"
+        },
+        {
+          "fields": {
+            "作者": "孙修文",
+            "单位": "响水",
+            "发稿类型": "图片",
+            "周数": "第22周",
+            "报刊媒体": "农民日报",
+            "日期": "2026/05/27",
+            "是否头版": "是",
+            "标题": "全力保障“三夏”生产用电稳定安全",
+            "版面": "头版",
+            "赋分": 4,
+            "赋分过程": "4",
+            "链接": [
+              {
+                "address": "https://szb.farmer.com.cn/nmrb/html/2026/20260527/20260527_1/nmrb_20260527_13310_1_2059387252996411406.html",
+                "displayText": "https://szb.farmer.com.cn/nmrb/html/2026/20260527/20260527_1/nmrb_20260527_13310_1_2059387252996411406.html"
+              }
+            ]
+          },
+          "id": "qH"
+        },
+        {
+          "fields": {
+            "作者": "徐绿叶 鲁璐",
+            "单位": "本部",
+            "发稿类型": "通讯",
+            "周数": "第22周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/28",
+            "是否头版": "是",
+            "标题": "“退让”，是为了更好共生——盐城供电探索电网发展与生态保护最优解",
+            "版面": "第3版",
+            "赋分": 1,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9846940.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9846940.html"
+              }
+            ]
+          },
+          "id": "qX"
+        },
+        {
+          "fields": {
+            "作者": "徐绿叶",
+            "单位": "本部",
+            "发稿类型": "通讯",
+            "周数": "第22周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/28",
+            "是否头版": "否",
+            "标题": "国网盐城供电公司持续深耕能源绿色低碳转型——把海上风电并网之路“铺得更宽更远”",
+            "版面": "头版",
+            "赋分": 5,
+            "赋分过程": "1.0",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9846913.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9846913.html"
+              }
+            ]
+          },
+          "id": "qY"
+        },
+        {
+          "fields": {
+            "作者": "彭光娅 张聪",
+            "单位": "射阳",
+            "发稿类型": "通讯",
+            "周数": "第22周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/28",
+            "是否头版": "否",
+            "标题": "射阳出台县域虚拟电厂专项扶持政策",
+            "版面": "第2版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "https://epaper.routeryun.com/Article/index/aid/9846921.html",
+                "displayText": "https://epaper.routeryun.com/Article/index/aid/9846921.html"
+              }
+            ]
+          },
+          "id": "qd"
+        },
+        {
+          "fields": {
+            "作者": "周璿",
+            "单位": "阜宁",
+            "发稿类型": "通讯",
+            "周数": "第22周",
+            "报刊媒体": "江苏电力报",
+            "日期": "2026/05/28",
+            "是否头版": "否",
+            "标题": "时光慢递：致那些站在身后的人——观《阿嬷的情书》有感",
+            "版面": "第4版",
+            "赋分": 0.5,
+            "赋分过程": "0.5",
+            "链接": [
+              {
+                "address": "http://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-28/page/1773357/aid/9846955.html#",
+                "displayText": "http://mobile.epaper.routeryun.com/index.php/home/article/index/appkey/48/date/2026-05-28/page/1773357/aid/9846955.html#"
+              }
+            ]
+          },
+          "id": "qe"
+        },
+        {
+          "fields": {
+            "作者": "顾栩玥 鲁璐",
+            "单位": "大丰",
+            "发稿类型": "通讯",
+            "周数": "第22周",
+            "报刊媒体": "国家电网报",
+            "日期": "2026/05/29",
+            "标题": "“麋鹿哨兵”上岗黄海湿地",
+            "版面": "第8版",
+            "赋分": 1,
+            "赋分过程": "1.0",
+            "链接": [
+              {
+                "address": "https://epaper.sgcctop.com/202605/29/con-768376.html?v=2",
+                "displayText": "https://epaper.sgcctop.com/202605/29/con-768376.html?v=2"
+              }
+            ]
+          },
+          "id": "qk"
+        },
+        {
+          "fields": {},
+          "id": "ql"
+        }
+      ]
+    },
+    "result": "ok"
+  },
+  "message": "成功"
+}
