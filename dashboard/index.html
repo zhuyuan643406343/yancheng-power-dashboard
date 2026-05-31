@@ -58,8 +58,7 @@ body {
 .gate-hint { font-size: 11px; color: var(--text-muted); margin-top: 16px; }
 
 /* ========== APP SHELL ========== */
-.app { display: none; }
-.app.unlocked { display: block; }
+.app { display: block; }
 
 .header {
   background: var(--gradient); color: #fff; padding: 14px 16px;
@@ -155,10 +154,24 @@ body {
 .back-bar {
   display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: var(--card);
   border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 99; cursor: pointer;
+  transition: background .15s;
 }
+.back-bar:hover { background: var(--bg); }
+.back-bar:active { opacity: .7; }
 .back-arrow { font-size: 20px; }
 .back-title { font-size: 15px; font-weight: 700; }
 .back-sub { font-size: 11px; color: var(--text-muted); }
+
+/* 返回首页版本的 back-bar 有蓝色左边框 */
+.back-bar.home-back {
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(90deg, rgba(37,99,235,.06) 0%, var(--card) 60%);
+}
+.back-bar.home-back .back-title { color: var(--primary); }
+.back-bar.home-back .back-arrow { color: var(--primary); }
+
+/* ===== 首页本期要情卡片 ===== */
+.home-report-card { border-top: 3px solid var(--primary); }
 
 .tabs { display: flex; gap: 4px; padding: 10px 14px; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; position: sticky; top: 49px; z-index: 98; }
 .tabs::-webkit-scrollbar { display: none; }
@@ -243,22 +256,125 @@ body {
 .app-footer a { color: var(--primary); text-decoration: none; }
 
 .hidden { display: none !important; }
+
+/* ===== 情况报告模块 ===== */
+.report-card {
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.report-header {
+  background: var(--gradient);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.report-header-left { }
+.report-header-label { font-size: 10px; opacity: .75; letter-spacing: 1px; margin-bottom: 2px; }
+.report-header-title { font-size: 17px; font-weight: 700; }
+.report-header-sub { font-size: 11px; opacity: .8; margin-top: 2px; }
+.report-edit-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.report-edit-btn:hover { background: rgba(255,255,255,0.3); }
+.report-body { padding: 14px 16px; }
+.report-section { margin-bottom: 14px; }
+.report-section:last-child { margin-bottom: 0; }
+.report-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-section-title.blue  { color: var(--primary); }
+.report-section-title.green { color: var(--success); }
+.report-section-title.red   { color: var(--danger); }
+.report-section-title.amber { color: var(--warning); }
+.report-section-title.purple{ color: #7c3aed; }
+.report-text {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--text);
+}
+.report-placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.85;
+}
+/* 编辑模式 */
+.report-edit-area {
+  width: 100%;
+  min-height: 72px;
+  padding: 8px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  line-height: 1.8;
+  resize: vertical;
+  font-family: inherit;
+  color: var(--text);
+  background: #fafafa;
+  outline: none;
+  transition: border-color .2s;
+}
+.report-edit-area:focus { border-color: var(--primary); background: #fff; }
+.report-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding: 10px 16px 14px;
+  border-top: 1px solid var(--border);
+}
+.btn-save {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-save:hover { background: var(--primary-dark); }
+.btn-cancel {
+  background: var(--bg);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.report-empty-tip {
+  text-align: center;
+  padding: 28px 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  margin: 8px 0;
+}
+.report-empty-tip .tip-icon { font-size: 32px; margin-bottom: 8px; }
 </style>
 </head>
 <body>
 
-<!-- ====== PASSWORD GATE ====== -->
-<div class="gate" id="gate">
-  <div class="gate-card">
-    <div class="gate-icon">🔒</div>
-    <div class="gate-title">盐城供电 · 宣传周报看板</div>
-    <div class="gate-sub">请输入访问密码</div>
-    <input type="password" class="gate-input" id="pwd" placeholder="请输入密码" autocomplete="off">
-    <button class="gate-btn" onclick="unlock()">进入看板</button>
-    <div class="gate-error" id="gate-error">密码错误，请重试</div>
-    <div class="gate-hint">内部资料 · 请勿外传</div>
-  </div>
-</div>
 
 <!-- ====== APP SHELL ====== -->
 <div class="app" id="app">
@@ -420,36 +536,167 @@ var MONTH_NAMES = {1:'一月',2:'二月',3:'三月',4:'四月',5:'五月'};
 var MONTH_WEEKS_LABEL = {1:'第1-4周',2:'第5-8周',3:'第9-13周',4:'第14-17周',5:'第18-22周'};
 
 // ╔══════════════════════════════════════════╗
+// ║       情况报告 REPORT MODULE              ║
+// ╚══════════════════════════════════════════╝
+
+var REPORT_KEY_PREFIX = 'ycxd_report_w';
+var REPORT_FIELDS = [
+  { key: 'overview',  icon: '📊', title: '整体情况', colorClass: 'blue',   placeholder: '简述本周发稿总量、舆情监测情况及整体亮点……' },
+  { key: 'highlight', icon: '✨', title: '本周亮点', colorClass: 'green',  placeholder: '列举本周优质稿件、创新做法或典型案例……' },
+  { key: 'yuqing',    icon: '⚠️', title: '舆情提示', colorClass: 'red',    placeholder: '本周监测到的舆情情况及处置建议……' },
+  { key: 'attention', icon: '📌', title: '需关注事项', colorClass: 'amber', placeholder: '本周需要重点跟进或改进的事项……' },
+  { key: 'plan',      icon: '🔭', title: '下周策划方向', colorClass: 'purple', placeholder: '结合时事节点，建议各单位关注的选题方向……' }
+];
+
+function getReportData(week) {
+  try {
+    var raw = localStorage.getItem(REPORT_KEY_PREFIX + week);
+    return raw ? JSON.parse(raw) : {};
+  } catch(e) { return {}; }
+}
+
+function saveReportData(week, data) {
+  try {
+    localStorage.setItem(REPORT_KEY_PREFIX + week, JSON.stringify(data));
+  } catch(e) {}
+}
+
+// Build the report card HTML (view mode or edit mode)
+function buildReportCard(week) {
+  var data = getReportData(week);
+  var dateRange = weekDateRange(week);
+  var hasContent = REPORT_FIELDS.some(function(f) { return data[f.key] && data[f.key].trim(); });
+  var html = '';
+  html += '<div class="report-card" id="report-card-' + week + '">';
+  html += '<div class="report-header">';
+  html += '<div class="report-header-left">';
+  html += '<div class="report-header-label">国网盐城供电公司</div>';
+  html += '<div class="report-header-title">第' + week + '周宣传工作情况报告</div>';
+  html += '<div class="report-header-sub">2026年 ' + dateRange + '</div>';
+  html += '</div>';
+  html += '<button class="report-edit-btn" onclick="enterReportEdit(' + week + ')">✏️ 编辑报告</button>';
+  html += '</div>';
+
+  // View body
+  html += '<div class="report-body" id="report-view-' + week + '">';
+  if (!hasContent) {
+    html += '<div class="report-empty-tip"><div class="tip-icon">📝</div>';
+    html += '<div>本周情况报告尚未填写</div>';
+    html += '<div style="margin-top:6px;font-size:12px;">点击右上角「编辑报告」填写本周情况摘要，供领导查阅</div></div>';
+  } else {
+    REPORT_FIELDS.forEach(function(f) {
+      var txt = data[f.key] ? data[f.key].trim() : '';
+      if (!txt) return;
+      html += '<div class="report-section">';
+      html += '<div class="report-section-title ' + f.colorClass + '">' + f.icon + ' ' + f.title + '</div>';
+      html += '<div class="report-text">' + escapeHtml(txt).replace(/\n/g, '<br>') + '</div>';
+      html += '</div>';
+    });
+  }
+  html += '</div>';
+
+  // Edit body (hidden by default)
+  html += '<div id="report-edit-' + week + '" style="display:none;">';
+  html += '<div class="report-body">';
+  REPORT_FIELDS.forEach(function(f) {
+    var val = data[f.key] || '';
+    html += '<div class="report-section">';
+    html += '<div class="report-section-title ' + f.colorClass + '">' + f.icon + ' ' + f.title + '</div>';
+    html += '<textarea class="report-edit-area" id="report-field-' + week + '-' + f.key + '" placeholder="' + f.placeholder + '" rows="3">' + escapeHtml(val) + '</textarea>';
+    html += '</div>';
+  });
+  html += '</div>';
+  html += '<div class="report-actions">';
+  html += '<button class="btn-cancel" onclick="cancelReportEdit(' + week + ')">取消</button>';
+  html += '<button class="btn-save" onclick="saveReport(' + week + ')">💾 保存报告</button>';
+  html += '</div>';
+  html += '</div>';
+
+  html += '</div>'; // .report-card
+  return html;
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+
+function enterReportEdit(week) {
+  document.getElementById('report-view-' + week).style.display = 'none';
+  document.getElementById('report-edit-' + week).style.display = 'block';
+  // Fix: find the edit button inside report-card and hide it
+  var card = document.getElementById('report-card-' + week);
+  if (card) {
+    var btn = card.querySelector('.report-edit-btn');
+    if (btn) btn.style.display = 'none';
+  }
+}
+
+function cancelReportEdit(week) {
+  document.getElementById('report-view-' + week).style.display = 'block';
+  document.getElementById('report-edit-' + week).style.display = 'none';
+  var card = document.getElementById('report-card-' + week);
+  if (card) {
+    var btn = card.querySelector('.report-edit-btn');
+    if (btn) btn.style.display = '';
+  }
+}
+
+function saveReport(week) {
+  var data = {};
+  REPORT_FIELDS.forEach(function(f) {
+    var el = document.getElementById('report-field-' + week + '-' + f.key);
+    data[f.key] = el ? el.value : '';
+  });
+  saveReportData(week, data);
+  // Re-render the view area without re-rendering whole tab
+  var viewEl = document.getElementById('report-view-' + week);
+  var hasContent = REPORT_FIELDS.some(function(f) { return data[f.key] && data[f.key].trim(); });
+  var innerHtml = '';
+  if (!hasContent) {
+    innerHtml += '<div class="report-empty-tip"><div class="tip-icon">📝</div>';
+    innerHtml += '<div>本周情况报告尚未填写</div>';
+    innerHtml += '<div style="margin-top:6px;font-size:12px;">点击右上角「编辑报告」填写本周情况摘要，供领导查阅</div></div>';
+  } else {
+    REPORT_FIELDS.forEach(function(f) {
+      var txt = data[f.key] ? data[f.key].trim() : '';
+      if (!txt) return;
+      innerHtml += '<div class="report-section">';
+      innerHtml += '<div class="report-section-title ' + f.colorClass + '">' + f.icon + ' ' + f.title + '</div>';
+      innerHtml += '<div class="report-text">' + escapeHtml(txt).replace(/\n/g, '<br>') + '</div>';
+      innerHtml += '</div>';
+    });
+  }
+  viewEl.innerHTML = innerHtml;
+  cancelReportEdit(week);
+}
+
+// ╔══════════════════════════════════════════╗
 // ║           PASSWORD GATE                   ║
 // ╚══════════════════════════════════════════╝
 
 var CORRECT_PWD = 'Ycj5186!';
 var SESSION_KEY = 'ycxd_weekly_auth';
 
-function unlock() {
-  var input = document.getElementById('pwd').value;
-  if (input === CORRECT_PWD) {
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('app').classList.add('unlocked');
-    sessionStorage.setItem(SESSION_KEY, '1');
-    showHub();
-  } else {
-    document.getElementById('gate-error').style.display = 'block';
-    document.getElementById('pwd').value = '';
-    document.getElementById('pwd').focus();
-  }
-}
+// 预置第21周情况报告（从周报原版迁移）
+(function seedW21Report() {
+  var KEY = REPORT_KEY_PREFIX + '21';
+  if (localStorage.getItem(KEY)) return; // 已有数据则不覆盖
+  var preset = {
+    overview: '本周全公司系统共发稿13篇（报刊6、网站手机报4、品牌社责4项），监测舆情3条。射阳公司和市公司本部并列本周得分榜首，各得5.5分；响水公司本周暂无有效记录，需关注。',
+    highlight: '① 射阳公司在农民日报头版发表"风光储充检放"一体化充电站图片稿，获赋分4.0分，是本周最高分单篇稿件；② 市公司本部策划"电网与珍稀动物保护"专题，联合大丰、滨海多角度发稿，网站要闻单条+组稿合计5.0分，是本周最佳整合传播案例；③ 候鸟生命线公益活动射阳、阜宁、滨海三家同步参与，形成品牌聚合。',
+    yuqing: '本周3条舆情均来自抖音平台：① 本部金麟府居民阻挠高压铁塔架设（需关注群体性事件走向）；② 射阳骆中华线树障压线（运维隐患）；③ 射阳收费站断电（服务投诉）。建议相关单位按照舆情应急流程第一时间核查处置。',
+    attention: '① 响水公司本周（第21周）得分为零，需宣传主管跟进了解原因并督促整改；② 东台、建湖本周发稿单篇得分较低（各0.2分），建议加强重量级稿件谋划；③ 全年累计排名中大丰（51.6）领先，但部分单位扣分较多（射阳-4.75、大丰-4.2），需控制定量扣分。',
+    plan: '结合当前时间节点，建议各单位关注：① 六一儿童节电力安全公益宣传；② 端午节供电保障服务报道；③ 推进夏季用电高峰相关选题布局；④ 持续跟进候鸟生命线活动，争取省级媒体采稿。'
+  };
+  try { localStorage.setItem(KEY, JSON.stringify(preset)); } catch(e) {}
+})();
 
-document.getElementById('pwd').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') unlock();
-});
-
-// Auto-unlock if already authenticated this session
-if (sessionStorage.getItem(SESSION_KEY) === '1') {
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('app').classList.add('unlocked');
-  showHub();
-}
+// Auto-launch hub on load
+showHub();
 
 // ╔══════════════════════════════════════════╗
 // ║           NAVIGATION HUB                  ║
@@ -504,6 +751,55 @@ function showHub() {
   }
   html += '</div></div>';
 
+  // ---- 本期要情卡片（首页展示最新一周报告）----
+  var latestReportWeek = TOTAL_WEEKS - 1; // 当前最新有数据的周（第21周）
+  var reportData = getReportData(latestReportWeek);
+  var hasReport = REPORT_FIELDS.some(function(f) { return reportData[f.key] && reportData[f.key].trim(); });
+
+  html += '<div class="card home-report-card">';
+  html += '<div class="card-title" style="display:flex;align-items:center;justify-content:space-between;">';
+  html += '<span>📋 本期要情</span>';
+  html += '<span style="font-size:12px;color:var(--text-muted);font-weight:400;">第' + latestReportWeek + '周 · ' + weekDateRange(latestReportWeek) + '</span>';
+  html += '</div>';
+
+  if (!hasReport) {
+    html += '<div class="report-empty-tip" style="padding:16px 0 8px;">';
+    html += '<div class="tip-icon" style="font-size:24px;margin-bottom:4px;">📝</div>';
+    html += '<div>本周情况报告尚未填写</div>';
+    html += '<div style="margin-top:4px;font-size:12px;">点击下方进入周报，在「本期要情」Tab 填写报告</div>';
+    html += '</div>';
+  } else {
+    // 展示整体情况（overview）和本周亮点（highlight）两个核心字段
+    var previewFields = ['overview', 'highlight'];
+    previewFields.forEach(function(fkey) {
+      var fd = REPORT_FIELDS.filter(function(f) { return f.key === fkey; })[0];
+      if (!fd) return;
+      var txt = reportData[fkey] ? reportData[fkey].trim() : '';
+      if (!txt) return;
+      // 截断到100字
+      var short = txt.length > 100 ? txt.substring(0, 100) + '……' : txt;
+      html += '<div class="report-section" style="margin-bottom:10px;">';
+      html += '<div class="report-section-title ' + fd.colorClass + '" style="font-size:12px;">' + fd.icon + ' ' + fd.title + '</div>';
+      html += '<div class="report-text" style="font-size:12px;line-height:1.7;">' + escapeHtml(short).replace(/\n/g, '<br>') + '</div>';
+      html += '</div>';
+    });
+    // 如果有舆情或需关注，给一行摘要
+    var yuqingTxt = reportData['yuqing'] ? reportData['yuqing'].trim() : '';
+    var attTxt = reportData['attention'] ? reportData['attention'].trim() : '';
+    if (yuqingTxt || attTxt) {
+      html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">';
+      if (yuqingTxt) html += '<span style="background:#fef2f2;color:var(--danger);font-size:11px;padding:3px 8px;border-radius:10px;">⚠️ 有舆情提示</span>';
+      if (attTxt) html += '<span style="background:#fffbeb;color:var(--warning);font-size:11px;padding:3px 8px;border-radius:10px;">📌 有需关注事项</span>';
+      html += '</div>';
+    }
+  }
+
+  html += '<div style="margin-top:12px;text-align:right;">';
+  html += '<button onclick="showWeekDetail(' + latestReportWeek + ');setTimeout(function(){switchTab(5)},50)" ';
+  html += 'style="font-size:12px;color:var(--primary);background:none;border:1px solid var(--primary);padding:5px 12px;border-radius:16px;cursor:pointer;">查看完整报告 →</button>';
+  html += '</div>';
+  html += '</div>';
+
   // Cumulative ranking summary
   var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
   html += '<div class="card"><div class="card-title">🏆 累计总分排名</div>';
@@ -528,7 +824,11 @@ function showHub() {
 
 function showWeeklyList() {
   var v = document.getElementById('main-view');
-  var html = '<div class="content"><div class="card"><div class="card-title">📅 全部周次</div>';
+  var html = '<div class="back-bar home-back" onclick="showHub()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">返回首页</span><div class="back-sub">宣传工作周报看板</div></div>';
+  html += '</div>';
+  html += '<div class="content"><div class="card"><div class="card-title">📅 全部周次</div>';
   html += '<div class="weeks-grid">';
 
   for (var w = TOTAL_WEEKS; w >= 1; w--) {
@@ -560,7 +860,11 @@ function showWeeklyList() {
 
 function showMonthlyList() {
   var v = document.getElementById('main-view');
-  var html = '<div class="content"><div class="card"><div class="card-title">📆 月度总结</div>';
+  var html = '<div class="back-bar home-back" onclick="showHub()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">返回首页</span><div class="back-sub">宣传工作周报看板</div></div>';
+  html += '</div>';
+  html += '<div class="content"><div class="card"><div class="card-title">📆 月度总结</div>';
   html += '<div class="month-grid">';
 
   for (var m = 1; m <= 5; m++) {
@@ -584,7 +888,11 @@ function showMonthlyList() {
 
 function showQuarterlyList() {
   var v = document.getElementById('main-view');
-  var html = '<div class="content"><div class="card"><div class="card-title">📊 季度总结</div>';
+  var html = '<div class="back-bar home-back" onclick="showHub()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">返回首页</span><div class="back-sub">宣传工作周报看板</div></div>';
+  html += '</div>';
+  html += '<div class="content"><div class="card"><div class="card-title">📊 季度总结</div>';
   html += '<div class="quarter-grid">';
 
   ['Q1','Q2'].forEach(function(q) {
@@ -611,7 +919,11 @@ var selectedUnit = null;
 
 function showUnitPicker() {
   var v = document.getElementById('main-view');
-  var html = '<div class="content"><div class="card"><div class="card-title">🏢 选择单位</div>';
+  var html = '<div class="back-bar home-back" onclick="showHub()">';
+  html += '<span class="back-arrow">←</span>';
+  html += '<div><span class="back-title">返回首页</span><div class="back-sub">宣传工作周报看板</div></div>';
+  html += '</div>';
+  html += '<div class="content"><div class="card"><div class="card-title">🏢 选择单位</div>';
   html += '<div class="unit-picker">';
   UNITS.forEach(function(u) {
     var sel = selectedUnit === u ? ' sel' : '';
@@ -658,10 +970,11 @@ function renderWeekDetail() {
   var html = '';
 
   // Back bar
-  html += '<div class="back-bar" onclick="showWeeklyList()">';
+  html += '<div class="back-bar" onclick="showWeeklyList()" style="padding-right:8px;">';
   html += '<span class="back-arrow">←</span>';
-  html += '<div><span class="back-title">第' + w + '周 · 宣传工作情况报告</span>';
-  html += '<div class="back-sub">' + weekDateRange(w) + '</div></div>';
+  html += '<div style="flex:1"><span class="back-title">第' + w + '周 · 宣传工作情况报告</span>';
+  html += '<div class="back-sub">' + weekDateRange(w) + ' &nbsp;·&nbsp; 返回周列表</div></div>';
+  html += '<button onclick="event.stopPropagation();showHub()" style="flex-shrink:0;font-size:12px;color:var(--primary);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:5px 10px;border-radius:14px;cursor:pointer;">🏠 首页</button>';
   html += '</div>';
 
   // Tabs
@@ -802,8 +1115,11 @@ function renderWeekDetail() {
   // ===== TAB 5: 本期要情 + 月份/季度总结 =====
   html += '<div class="tab-content' + (currentTab === 5 ? ' active' : '') + '" id="tab-5">';
 
-  // Summary
-  html += '<div class="card"><div class="card-title">📋 本期要情</div>';
+  // ---- 情况报告卡片 ----
+  html += buildReportCard(w);
+
+  // ---- 自动统计摘要 ----
+  html += '<div class="card"><div class="card-title">📊 本周数据速览</div>';
   if (hasData) {
     var r1 = rank[0], r2 = rank[1], r3 = rank[2];
     html += '<div class="summary-block">';
@@ -1018,10 +1334,11 @@ function showMonthDetail(m) {
   var maxScore = rank[0].score;
 
   var html = '';
-  html += '<div class="back-bar" onclick="showMonthlyList()">';
+  html += '<div class="back-bar" onclick="showMonthlyList()" style="padding-right:8px;">';
   html += '<span class="back-arrow">←</span>';
-  html += '<div><span class="back-title">' + MONTH_NAMES[m] + ' · 月度总结</span>';
-  html += '<div class="back-sub">' + MONTH_WEEKS_LABEL[m] + '</div></div>';
+  html += '<div style="flex:1"><span class="back-title">' + MONTH_NAMES[m] + ' · 月度总结</span>';
+  html += '<div class="back-sub">' + MONTH_WEEKS_LABEL[m] + ' &nbsp;·&nbsp; 返回月度列表</div></div>';
+  html += '<button onclick="event.stopPropagation();showHub()" style="flex-shrink:0;font-size:12px;color:var(--primary);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:5px 10px;border-radius:14px;cursor:pointer;">🏠 首页</button>';
   html += '</div><div class="content">';
 
   // Ranking
@@ -1084,10 +1401,11 @@ function showQuarterDetail(q) {
   var qLabel = q === 'Q1' ? '第一季度（第1-13周）' : '第二季度（第14-' + TOTAL_WEEKS + '周）';
 
   var html = '';
-  html += '<div class="back-bar" onclick="showQuarterlyList()">';
+  html += '<div class="back-bar" onclick="showQuarterlyList()" style="padding-right:8px;">';
   html += '<span class="back-arrow">←</span>';
-  html += '<div><span class="back-title">' + q + ' · 季度总结</span>';
-  html += '<div class="back-sub">' + qLabel + '</div></div>';
+  html += '<div style="flex:1"><span class="back-title">' + q + ' · 季度总结</span>';
+  html += '<div class="back-sub">' + qLabel + ' &nbsp;·&nbsp; 返回季度列表</div></div>';
+  html += '<button onclick="event.stopPropagation();showHub()" style="flex-shrink:0;font-size:12px;color:var(--primary);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:5px 10px;border-radius:14px;cursor:pointer;">🏠 首页</button>';
   html += '</div><div class="content">';
 
   // Stats
@@ -1165,10 +1483,11 @@ function showUnitDetail(unit) {
   var cumTotal = cumulativeTotal(unit);
 
   var html = '';
-  html += '<div class="back-bar" onclick="showUnitPicker()">';
+  html += '<div class="back-bar" onclick="showUnitPicker()" style="padding-right:8px;">';
   html += '<span class="back-arrow">←</span>';
-  html += '<div><span class="back-title">' + unit + ' · 单位数据看板</span>';
-  html += '<div class="back-sub">' + (UNIT_FULL[unit] || unit) + '</div></div>';
+  html += '<div style="flex:1"><span class="back-title">' + unit + ' · 单位数据看板</span>';
+  html += '<div class="back-sub">' + (UNIT_FULL[unit] || unit) + ' &nbsp;·&nbsp; 返回单位列表</div></div>';
+  html += '<button onclick="event.stopPropagation();showHub()" style="flex-shrink:0;font-size:12px;color:var(--primary);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);padding:5px 10px;border-radius:14px;cursor:pointer;">🏠 首页</button>';
   html += '</div><div class="content">';
 
   // Stats
@@ -1267,10 +1586,8 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(function() {});
 }
 
-// Start with hub if unlocked
-if (document.getElementById('app').classList.contains('unlocked')) {
-  showHub();
-}
+// Start with hub
+showHub();
 </script>
 </body>
 </html>
