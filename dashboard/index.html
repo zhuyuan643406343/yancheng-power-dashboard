@@ -646,29 +646,48 @@ body {
 const UNITS = ['本部','东台','大丰','建湖','射阳','阜宁','滨海','响水'];
 const UNIT_FULL = { '本部':'市公司本部','东台':'东台公司','大丰':'大丰公司','建湖':'建湖公司','射阳':'射阳公司','阜宁':'阜宁公司','滨海':'滨海公司','响水':'响水公司' };
 
-// ===== 数据区（从 data.json 动态加载）=====
-var Q1_WEEKS = {};
-var Q2_WEEKS = {};
-var DATA_VERSION = '';
+// ===== 数据区（内嵌数据，无需额外网络请求）=====
+var DATA_VERSION = '2026-06-01';
 
-// 从 data.json 加载数据
+var Q1_WEEKS = {
+  "本部":[0.3,2,3.2,0.6,2.8,5.1,0.3,0,0,1,9,0.3,0],
+  "东台":[0,0.6,0,0.9,0.6,5.2,1.4,0,0.3,1.7,0.4,1.2,5],
+  "大丰":[2.5,0,0,6.6,0.3,1.05,1.5,0.15,-0.4,25,0.9,2,0.3],
+  "建湖":[0.3,0,0,0.3,0.7,1,0.6,-0.1,0.7,4.2,0.6,1.5,0.8],
+  "射阳":[0,0,1.1,0.5,0.25,0.6,0.25,0.35,-0.2,0.15,0.9,1.25,0],
+  "阜宁":[0,0,0,0.7,-0.5,1.5,-0.1,0.9,-0.5,0.4,0.4,0.1,0.3],
+  "滨海":[0,0,1.1,0,1.2,1.65,1.05,4.8,1.7,2.75,0.3,-0.1,0.3],
+  "响水":[0,0,0,-0.55,-0.2,0.8,0.9,-0.1,-0.3,0.65,0.65,1,0.5]
+};
+
+var Q2_WEEKS = {
+  "本部":[0,0.8,0,1.5,0,0,1,5.5,6.6],
+  "东台":[0,1.4,0,7,0.2,1.1,1.1,0.2,5.1],
+  "大丰":[0,1.1,0.2,0.85,-1.2,0.4,2.75,2.1,5.9],
+  "建湖":[0,0.8,1.9,6.05,2.5,5.25,1.4,0.2,1.15],
+  "射阳":[0,0.2,0,2.2,1.7,3.8,2.5,5.5,0.5],
+  "阜宁":[0,2.2,0.4,0.1,3.5,3.3,0.6,0.25,0.5],
+  "滨海":[0,0.45,0.25,1.2,1.7,5.5,3,0.3,-0.2],
+  "响水":[0,0.2,7,0.3,0.5,0,2.55,0,5]
+};
+
+// 尝试从 data.json 刷新数据（用于 WPS 同步按钮）
 async function loadData() {
   try {
-    var url = 'data.json?v=' + Date.now();
-    var resp = await fetch(url);
+    var resp = await fetch('data.json?v=' + Date.now());
     var d = await resp.json();
-    Q1_WEEKS = d.Q1 || {};
-    Q2_WEEKS = d.Q2 || {};
-    DATA_VERSION = d.version || '';
-    console.log('[数据] 已加载 v' + DATA_VERSION);
+    Q1_WEEKS = d.Q1 || Q1_WEEKS;
+    Q2_WEEKS = d.Q2 || Q2_WEEKS;
+    DATA_VERSION = d.version || DATA_VERSION;
+    console.log('[数据] 已从 data.json 刷新 v' + DATA_VERSION);
     return true;
   } catch(e) {
-    console.error('[数据] 加载失败', e);
+    console.error('[数据] 刷新失败，使用内嵌数据', e);
     return false;
   }
 }
 
-// WPS 同步按钮回调 — 重新加载 data.json（配合助手更新 data.json 使用）
+// WPS 同步按钮回调
 async function syncFromWPS() {
   var btn = document.querySelector('[onclick="syncFromWPS()"]');
   if (btn) btn.innerText = '⏳ 同步中...';
@@ -678,19 +697,15 @@ async function syncFromWPS() {
     showHub();
     var main = document.getElementById('main-view');
     if (main.innerHTML) {
-      // 刷新当前视图
       var cur = location.hash || '';
       location.hash = '';
       location.hash = cur;
     }
     alert('✅ 数据已更新（v' + DATA_VERSION + '）');
   } else {
-    alert('⚠️ 数据加载失败，请检查 data.json 是否存在');
+    alert('⚠️ 网络加载失败，当前使用内嵌缓存数据（v' + DATA_VERSION + '）');
   }
 }
-
-// 初始化加载数据后渲染
-loadData().then(function(){ showHub(); });
 
 // ===== 兼容函数 =====
 // Week labels
