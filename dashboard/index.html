@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a56db">
 <link rel="manifest" href="manifest.json">
-<title>盐城供电 · 宣传工作周报看板 v4</title>
+<title>盐城供电 · 宣传工作周报看板</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
@@ -315,7 +315,7 @@ body {
 
 /* ===== 打印文档正文样式 ===== */
 .pdoc {
-  font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  font-family: 'SimSun', 'STSong', 'Times New Roman', 'PingFang SC', serif;
   color: #111;
   background: #fff;
   padding: 28px 36px 24px;
@@ -436,7 +436,8 @@ body {
 
 /* ===== @media print ===== */
 @media print {
-  #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible;  * { font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', sans-serif !important; }}
+  * { font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', sans-serif !important; }
+  #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
   #print-frame { box-shadow: none; border-radius: 0; max-width: none; }
   .print-top-bar { display: none; }
   body > * { display: none !important; }
@@ -606,26 +607,26 @@ const UNIT_FULL = { '本部':'市公司本部','东台':'东台公司','大丰':
 
 // Q1 per-unit weekly scores (table 48)
 const Q1_WEEKS = {
-  '本部': [1.8,5.1,3.9,3,2.3,0.5,0,1,7.3,0.5,1.2,2,1],
-  '东台': [1.7,7.75,0.7,3,0.8,2.1,0,3.2,0.5,0.5,3.5,5,0.5],
-  '大丰': [0,4.95,0.3,9,0.5,1,9,4.2,3,4.3,0.8,0.3,0.45],
-  '建湖': [0,1.7,0.65,1.5,2,1.5,2,2,8,1.5,0.2,0,0.7],
-  '射阳': [5,5,5.75,2.55,0.5,0.5,1,2.5,5,0.4,1.5,0,3.8],
-  '阜宁': [0.5,2.25,0.5,0.5,0.5,0,0.5,1.1,2,0.2,0,0,0.7],
-  '滨海': [0.1,2.85,7,5,0.5,0.5,0.2,0.2,0.5,8,0.5,0,1.5],
-  '响水': [0.5,0.2,1.1,0.75,0.5,0.5,7.5,0.85,1.55,13,2.5,0.3,0.2]
+  '本部': [0.3,2,3.2,0.6,2.8,5.1,0.3,0,0,1,9,0.3,0],
+  '东台': [0,0.6,0,0.9,0.6,5.2,1.4,0,0.3,1.7,0.4,1.2,5],
+  '大丰': [2.5,0,0,6.6,0.3,1.05,1.5,0.15,-0.4,25,0.9,2,0.3],
+  '建湖': [0.3,0,0,0.3,0.7,1,0.6,-0.1,0.7,4.2,0.6,1.5,0.8],
+  '射阳': [0,0,1.1,0.5,0.25,0.6,0.25,0.35,-0.2,0.15,0.9,1.25,0],
+  '阜宁': [0,0,0,0.7,-0.5,1.5,-0.1,0.9,-0.5,0.4,0.4,0.1,0.3],
+  '滨海': [0,0,1.1,0,1.2,1.65,1.05,4.8,1.7,2.75,0.3,-0.1,0.3],
+  '响水': [0,0,0,-0.55,-0.2,0.8,0.9,-0.1,-0.3,0.65,0.65,1,0.5]
 };
 
 // Q2 per-unit weekly scores (table 67)
 const Q2_WEEKS = {
-  '本部': [0.8,0,0,1.5,0,0,1,5.5,0],
-  '东台': [1.4,0,7,1.1,0.2,0,1.1,0.2,0],
-  '大丰': [1.1,0.2,0.85,0.4,-1.2,0.4,2.75,2.1,0],
-  '建湖': [0.8,1.9,6.05,5.25,2.5,5.25,1.4,0.2,0],
-  '射阳': [0.2,0,2.2,3.8,1.7,2.8,2.5,5.5,0],
-  '阜宁': [2.2,0.4,0.1,3.3,3.5,1.3,0.6,0.25,0],
-  '滨海': [0.45,0.25,1.2,5.5,1.7,1.2,3,0.3,0],
-  '响水': [0.2,7,0.3,0,0.5,0,2.55,0,0]
+  '本部': [0,0.8,0,1.5,0,0,1,5.5,6.6],
+  '东台': [0,1.4,0,7,0.2,1.1,1.1,0.2,5.1],
+  '大丰': [0,1.1,0.2,0.85,-1.2,0.4,2.75,2.1,5.9],
+  '建湖': [0,0.8,1.9,6.05,2.5,5.25,1.4,0.2,1.15],
+  '射阳': [0,0.2,0,2.2,1.7,3.8,2.5,5.5,0.5],
+  '阜宁': [0,2.2,0.4,0.1,3.5,3.3,0.6,0.25,0.5],
+  '滨海': [0,0.45,0.25,1.2,1.7,5.5,3,0.3,-0.2],
+  '响水': [0,0.2,7,0.3,0.5,0,2.55,0,5]
 };
 
 // Week 22 is last element (index 8, currently all 0 — to be updated from kdocs)
@@ -648,7 +649,7 @@ function getWeekScore(unit, week) {
 // Total weeks count (including placeholder week 22)
 var TOTAL_WEEKS = 22;
 
-// Check if a week has actual data
+// Check if a week has actual data (any unit with non-zero score)
 function weekHasData(w) {
   for (var i = 0; i < UNITS.length; i++) {
     if (getWeekScore(UNITS[i], w) !== 0) return true;
@@ -661,7 +662,6 @@ function latestWeekWithData() {
   }
   return TOTAL_WEEKS;
 }
-
 
 // Q1 weeks 1-13, Q2 weeks 14-22
 function getQuarter(week) { return week <= 13 ? 'Q1' : 'Q2'; }
@@ -702,8 +702,23 @@ function rankUnits(weeks) {
   }).sort(function(a,b) { return b.score - a.score; });
 }
 
+
+// ═══ 权威累计总分（来源：金山文档·总体得分汇总自动 s22）═══
+var AUTH_TOTALS = {
+  '本部': 42.1,
+  '东台': 40.35,
+  '大丰': 52.0,
+  '建湖': 35.1,
+  '射阳': 22.2,
+  '阜宁': 16.7,
+  '滨海': 27.7,
+  '响水': 19.25
+};
+
 // Get unit's total cumulative score
-function cumulativeTotal(unit) { return AUTH_TOTALS[unit] || totalScore(unit, TOTAL_WEEKS); }
+function cumulativeTotal(unit) {
+  return AUTH_TOTALS[unit] || totalScore(unit, TOTAL_WEEKS);
+}
 
 function getTopUnit(weeks) {
   var r = rankUnits(weeks);
@@ -952,8 +967,8 @@ function showHub() {
   html += '</div>';
 
   // Latest week summary
-  var latestRank = rankUnits([latestWeekWithData()]); // Use week 21 (last with data)
-  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(latestWeekWithData())+'周）: ';
+  var latestRank = rankUnits([TOTAL_WEEKS - 1]); // Use week 21 (last with data)
+  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(TOTAL_WEEKS-1)+'周）: ';
   for (var i = 0; i < 3; i++) {
     if (i > 0) html += ' · ';
     html += '🥇'.replace('🥇',['🥇','🥈','🥉'][i]) + ' ' + latestRank[i].unit + ' ' + latestRank[i].score + '分';
@@ -961,7 +976,7 @@ function showHub() {
   html += '</div></div>';
 
   // ---- 本期要情卡片（首页展示最新一周报告）----
-  var latestReportWeek = latestWeekWithData(); // 当前最新有数据的周（第21周）
+  var latestReportWeek = TOTAL_WEEKS - 1; // 当前最新有数据的周（第21周）
   var reportData = getReportData(latestReportWeek);
   var hasReport = REPORT_FIELDS.some(function(f) { return reportData[f.key] && reportData[f.key].trim(); });
 
@@ -1011,7 +1026,7 @@ function showHub() {
   html += '</div>';  // end home-report-card
 
   // Cumulative ranking summary
-  var cumRank = UNITS.map(function(u){return {unit:u,score:AUTH_TOTALS[u]||0};}).sort(function(a,b){return b.score-a.score;});
+  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
   html += '<div class="card"><div class="card-title">🏆 累计总分排名</div>';
   cumRank.forEach(function(r, i) {
     var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
@@ -1023,7 +1038,6 @@ function showHub() {
     html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + ((r.score/maxScore)*100) + '%"></div></div>';
     html += '</div>';
   });
-  html += '<div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:right;">数据来源：金山文档·总体得分汇总（自动）</div>';
   html += '</div></div>';
 
   v.innerHTML = html;
@@ -1048,7 +1062,7 @@ function showWeeklyList() {
     var maxScore = topUnit.score;
     var heatClass = maxScore >= 5 ? 'hot' : (maxScore >= 2 ? 'warm' : 'cool');
     var heatIcon = maxScore >= 5 ? '🔥' : (maxScore >= 2 ? '📈' : '📉');
-    var hasData = weekHasData(w); // Week 22 has no data yet
+    var hasData = weekHasData(w)
 
     html += '<div class="week-card ' + heatClass + '" onclick="showWeekDetail(' + w + ')">';
     html += '<div class="week-num">第' + w + '周</div>';
