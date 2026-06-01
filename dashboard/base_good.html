@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a56db">
 <link rel="manifest" href="manifest.json">
-<title>盐城供电 · 宣传工作周报看板 v4</title>
+<title>盐城供电 · 宣传工作周报看板</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
@@ -23,7 +23,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
   background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
   min-height: 100vh;
@@ -315,7 +315,7 @@ body {
 
 /* ===== 打印文档正文样式 ===== */
 .pdoc {
-  font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  font-family: 'SimSun', 'STSong', 'Times New Roman', 'PingFang SC', serif;
   color: #111;
   background: #fff;
   padding: 28px 36px 24px;
@@ -436,7 +436,7 @@ body {
 
 /* ===== @media print ===== */
 @media print {
-  #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible;  * { font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', sans-serif !important; }}
+  #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
   #print-frame { box-shadow: none; border-radius: 0; max-width: none; }
   .print-top-bar { display: none; }
   body > * { display: none !important; }
@@ -648,21 +648,6 @@ function getWeekScore(unit, week) {
 // Total weeks count (including placeholder week 22)
 var TOTAL_WEEKS = 22;
 
-// Check if a week has actual data
-function weekHasData(w) {
-  for (var i = 0; i < UNITS.length; i++) {
-    if (getWeekScore(UNITS[i], w) !== 0) return true;
-  }
-  return false;
-}
-function latestWeekWithData() {
-  for (var w = TOTAL_WEEKS; w >= 1; w--) {
-    if (weekHasData(w)) return w;
-  }
-  return TOTAL_WEEKS;
-}
-
-
 // Q1 weeks 1-13, Q2 weeks 14-22
 function getQuarter(week) { return week <= 13 ? 'Q1' : 'Q2'; }
 function getMonth(week) {
@@ -703,7 +688,9 @@ function rankUnits(weeks) {
 }
 
 // Get unit's total cumulative score
-function cumulativeTotal(unit) { return AUTH_TOTALS[unit] || totalScore(unit, TOTAL_WEEKS); }
+function cumulativeTotal(unit) {
+  return totalScore(unit, TOTAL_WEEKS);
+}
 
 function getTopUnit(weeks) {
   var r = rankUnits(weeks);
@@ -952,8 +939,8 @@ function showHub() {
   html += '</div>';
 
   // Latest week summary
-  var latestRank = rankUnits([latestWeekWithData()]); // Use week 21 (last with data)
-  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(latestWeekWithData())+'周）: ';
+  var latestRank = rankUnits([TOTAL_WEEKS - 1]); // Use week 21 (last with data)
+  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(TOTAL_WEEKS-1)+'周）: ';
   for (var i = 0; i < 3; i++) {
     if (i > 0) html += ' · ';
     html += '🥇'.replace('🥇',['🥇','🥈','🥉'][i]) + ' ' + latestRank[i].unit + ' ' + latestRank[i].score + '分';
@@ -961,7 +948,7 @@ function showHub() {
   html += '</div></div>';
 
   // ---- 本期要情卡片（首页展示最新一周报告）----
-  var latestReportWeek = latestWeekWithData(); // 当前最新有数据的周（第21周）
+  var latestReportWeek = TOTAL_WEEKS - 1; // 当前最新有数据的周（第21周）
   var reportData = getReportData(latestReportWeek);
   var hasReport = REPORT_FIELDS.some(function(f) { return reportData[f.key] && reportData[f.key].trim(); });
 
@@ -1011,7 +998,7 @@ function showHub() {
   html += '</div>';  // end home-report-card
 
   // Cumulative ranking summary
-  var cumRank = UNITS.map(function(u){return {unit:u,score:AUTH_TOTALS[u]||0};}).sort(function(a,b){return b.score-a.score;});
+  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
   html += '<div class="card"><div class="card-title">🏆 累计总分排名</div>';
   cumRank.forEach(function(r, i) {
     var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
@@ -1023,7 +1010,6 @@ function showHub() {
     html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + ((r.score/maxScore)*100) + '%"></div></div>';
     html += '</div>';
   });
-  html += '<div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:right;">数据来源：金山文档·总体得分汇总（自动）</div>';
   html += '</div></div>';
 
   v.innerHTML = html;
@@ -1048,7 +1034,7 @@ function showWeeklyList() {
     var maxScore = topUnit.score;
     var heatClass = maxScore >= 5 ? 'hot' : (maxScore >= 2 ? 'warm' : 'cool');
     var heatIcon = maxScore >= 5 ? '🔥' : (maxScore >= 2 ? '📈' : '📉');
-    var hasData = weekHasData(w); // Week 22 has no data yet
+    var hasData = w <= 21; // Week 22 has no data yet
 
     html += '<div class="week-card ' + heatClass + '" onclick="showWeekDetail(' + w + ')">';
     html += '<div class="week-num">第' + w + '周</div>';
@@ -1173,7 +1159,7 @@ function showWeekDetail(week) {
 function renderWeekDetail() {
   var w = currentWeek;
   var v = document.getElementById('main-view');
-  var hasData = weekHasData(w);
+  var hasData = w <= 21;
   var rank = rankUnits([w]);
   var prevRank = w > 1 ? rankUnits([w - 1]) : null;
   var maxScore = rank[0].score;
@@ -1410,7 +1396,7 @@ function switchTab(idx) {
 
 function renderDetailCharts() {
   var w = currentWeek;
-  var hasData = weekHasData(w);
+  var hasData = w <= 21;
 
   // ---- TAB 1: Trend chart ----
   var ctxTrend = document.getElementById('chart-trend');
