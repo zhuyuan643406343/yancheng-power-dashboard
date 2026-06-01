@@ -6,6 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#1a56db">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <link rel="manifest" href="manifest.json">
 <title>盐城供电 · 宣传工作周报看板</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -434,6 +437,42 @@ body {
 }
 .pdoc-cum-section { margin-top: 14px; }
 
+/* ===== 手机端响应式 ===== */
+@media (max-width: 640px) {
+  .hub {
+    grid-template-columns: 1fr;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .hub-card {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .hub-icon { width: 36px; height: 36px; font-size: 18px; border-radius: 8px; }
+  .hub-label { font-size: 13px; }
+  .hub-desc { font-size: 10px; }
+
+  .header-title { font-size: 15px; }
+  .header-subtitle { font-size: 10px; }
+
+  body { overflow-x: hidden; }
+
+  .weeks-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .month-grid, .quarter-grid { grid-template-columns: 1fr; }
+
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .pdoc-body { flex-direction: column; }
+  .pdoc-col-side { max-width: 100%; overflow-x: hidden; }
+  .pdoc { max-width: 100vw; overflow-x: hidden; }
+}
+
+@media (max-width: 480px) {
+  .hub { padding: 8px 10px; gap: 6px; }
+  .hub-card { padding: 10px 12px; gap: 8px; }
+  .weeks-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+}
+
 /* ===== @media print ===== */
 @media print {
   #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
@@ -589,46 +628,71 @@ body {
 <!-- MAIN VIEWPORT -->
 <div id="main-view"></div>
 
-<div class="app-footer">
-  盐城供电公司 · 党建工作部 · 宣传周报看板 v3<br>
-  数据同步自 <a href="https://www.kdocs.cn/l/cjLzY2xcVWfT" target="_blank">金山文档 · 新闻宣传专业统计表(2026)</a>
-</div>
+  <div class="app-footer">
+    盐城供电公司 · 党委宣传部 · 宣传周报看板 v4<br>
+    数据同步自 <a href="https://www.kdocs.cn/l/cjLzY2xcVWfT" target="_blank">金山文档 · 新闻宣传专业统计表(2026)</a>
+    &nbsp;·&nbsp;
+    <a href="javascript:void(0)" onclick="syncFromWPS()" style="color:var(--primary);text-decoration:underline;cursor:pointer;">🔄 从WPS同步最新数据</a>
+  </div>
 
 </div><!-- .app -->
 
 <script>
 // ╔══════════════════════════════════════════╗
-// ║           DATA  (SYNC FROM KDOCS)        ║
+// ║     DATA — WPS多维表格每周同步 ║
+// ║  来源：新闻宣传专业统计表·每周总分统计 ║
 // ╚══════════════════════════════════════════╝
 
 const UNITS = ['本部','东台','大丰','建湖','射阳','阜宁','滨海','响水'];
 const UNIT_FULL = { '本部':'市公司本部','东台':'东台公司','大丰':'大丰公司','建湖':'建湖公司','射阳':'射阳公司','阜宁':'阜宁公司','滨海':'滨海公司','响水':'响水公司' };
 
-// Q1 per-unit weekly scores (table 48)
-const Q1_WEEKS = {
-  '本部': [1.8,5.1,3.9,3,2.3,0.5,0,1,7.3,0.5,1.2,2,1],
-  '东台': [1.7,7.75,0.7,3,0.8,2.1,0,3.2,0.5,0.5,3.5,5,0.5],
-  '大丰': [0,4.95,0.3,9,0.5,1,9,4.2,3,4.3,0.8,0.3,0.45],
-  '建湖': [0,1.7,0.65,1.5,2,1.5,2,2,8,1.5,0.2,0,0.7],
-  '射阳': [5,5,5.75,2.55,0.5,0.5,1,2.5,5,0.4,1.5,0,3.8],
-  '阜宁': [0.5,2.25,0.5,0.5,0.5,0,0.5,1.1,2,0.2,0,0,0.7],
-  '滨海': [0.1,2.85,7,5,0.5,0.5,0.2,0.2,0.5,8,0.5,0,1.5],
-  '响水': [0.5,0.2,1.1,0.75,0.5,0.5,7.5,0.85,1.55,13,2.5,0.3,0.2]
-};
+// ===== 数据区（从 data.json 动态加载）=====
+var Q1_WEEKS = {};
+var Q2_WEEKS = {};
+var DATA_VERSION = '';
 
-// Q2 per-unit weekly scores (table 67)
-const Q2_WEEKS = {
-  '本部': [0.8,0,0,1.5,0,0,1,5.5,0],
-  '东台': [1.4,0,7,1.1,0.2,0,1.1,0.2,0],
-  '大丰': [1.1,0.2,0.85,0.4,-1.2,0.4,2.75,2.1,0],
-  '建湖': [0.8,1.9,6.05,5.25,2.5,5.25,1.4,0.2,0],
-  '射阳': [0.2,0,2.2,3.8,1.7,2.8,2.5,5.5,0],
-  '阜宁': [2.2,0.4,0.1,3.3,3.5,1.3,0.6,0.25,0],
-  '滨海': [0.45,0.25,1.2,5.5,1.7,1.2,3,0.3,0],
-  '响水': [0.2,7,0.3,0,0.5,0,2.55,0,0]
-};
+// 从 data.json 加载数据
+async function loadData() {
+  try {
+    var url = 'data.json?v=' + Date.now();
+    var resp = await fetch(url);
+    var d = await resp.json();
+    Q1_WEEKS = d.Q1 || {};
+    Q2_WEEKS = d.Q2 || {};
+    DATA_VERSION = d.version || '';
+    console.log('[数据] 已加载 v' + DATA_VERSION);
+    return true;
+  } catch(e) {
+    console.error('[数据] 加载失败', e);
+    return false;
+  }
+}
 
-// Week 22 is last element (index 8, currently all 0 — to be updated from kdocs)
+// WPS 同步按钮回调 — 重新加载 data.json（配合助手更新 data.json 使用）
+async function syncFromWPS() {
+  var btn = document.querySelector('[onclick="syncFromWPS()"]');
+  if (btn) btn.innerText = '⏳ 同步中...';
+  var ok = await loadData();
+  if (btn) btn.innerText = '🔄 从WPS同步最新数据';
+  if (ok) {
+    renderHub();
+    var main = document.getElementById('main-view');
+    if (main.innerHTML) {
+      // 刷新当前视图
+      var cur = location.hash || '';
+      location.hash = '';
+      location.hash = cur;
+    }
+    alert('✅ 数据已更新（v' + DATA_VERSION + '）');
+  } else {
+    alert('⚠️ 数据加载失败，请检查 data.json 是否存在');
+  }
+}
+
+// 初始化加载数据后渲染
+loadData().then(function(){ renderHub(); });
+
+// ===== 兼容函数 =====
 // Week labels
 function weekLabel(w) { return '第'+w+'周'; }
 
@@ -645,8 +709,24 @@ function getWeekScore(unit, week) {
   return (Q2_WEEKS[unit]||[])[week-14] || 0;
 }
 
-// Total weeks count (including placeholder week 22)
+// Total weeks count
 var TOTAL_WEEKS = 22;
+
+// Check if a week has actual data (any unit with non-zero score)
+function weekHasData(w) {
+  for (var i = 0; i < UNITS.length; i++) {
+    if (getWeekScore(UNITS[i], w) !== 0) return true;
+  }
+  return false;
+}
+
+// Find the latest week number that has actual data
+function latestWeekWithData() {
+  for (var w = TOTAL_WEEKS; w >= 1; w--) {
+    if (weekHasData(w)) return w;
+  }
+  return TOTAL_WEEKS;
+}
 
 // Q1 weeks 1-13, Q2 weeks 14-22
 function getQuarter(week) { return week <= 13 ? 'Q1' : 'Q2'; }
@@ -939,8 +1019,9 @@ function showHub() {
   html += '</div>';
 
   // Latest week summary
-  var latestRank = rankUnits([TOTAL_WEEKS - 1]); // Use week 21 (last with data)
-  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+(TOTAL_WEEKS-1)+'周）: ';
+  var latestDataWeek = latestWeekWithData();
+  var latestRank = rankUnits([latestDataWeek]);
+  html += '<div style="font-size:12px;color:var(--text-secondary);margin-top:8px;">📌 最新排名（第'+latestDataWeek+'周）: ';
   for (var i = 0; i < 3; i++) {
     if (i > 0) html += ' · ';
     html += '🥇'.replace('🥇',['🥇','🥈','🥉'][i]) + ' ' + latestRank[i].unit + ' ' + latestRank[i].score + '分';
@@ -948,7 +1029,7 @@ function showHub() {
   html += '</div></div>';
 
   // ---- 本期要情卡片（首页展示最新一周报告）----
-  var latestReportWeek = TOTAL_WEEKS - 1; // 当前最新有数据的周（第21周）
+  var latestReportWeek = latestWeekWithData();
   var reportData = getReportData(latestReportWeek);
   var hasReport = REPORT_FIELDS.some(function(f) { return reportData[f.key] && reportData[f.key].trim(); });
 
@@ -1034,7 +1115,7 @@ function showWeeklyList() {
     var maxScore = topUnit.score;
     var heatClass = maxScore >= 5 ? 'hot' : (maxScore >= 2 ? 'warm' : 'cool');
     var heatIcon = maxScore >= 5 ? '🔥' : (maxScore >= 2 ? '📈' : '📉');
-    var hasData = w <= 21; // Week 22 has no data yet
+    var hasData = weekHasData(w);
 
     html += '<div class="week-card ' + heatClass + '" onclick="showWeekDetail(' + w + ')">';
     html += '<div class="week-num">第' + w + '周</div>';
@@ -1159,7 +1240,7 @@ function showWeekDetail(week) {
 function renderWeekDetail() {
   var w = currentWeek;
   var v = document.getElementById('main-view');
-  var hasData = w <= 21;
+  var hasData = weekHasData(w);
   var rank = rankUnits([w]);
   var prevRank = w > 1 ? rankUnits([w - 1]) : null;
   var maxScore = rank[0].score;
@@ -1396,7 +1477,7 @@ function switchTab(idx) {
 
 function renderDetailCharts() {
   var w = currentWeek;
-  var hasData = w <= 21;
+  var hasData = weekHasData(w);
 
   // ---- TAB 1: Trend chart ----
   var ctxTrend = document.getElementById('chart-trend');
@@ -1728,7 +1809,7 @@ function showUnitDetail(unit) {
     var s = getWeekScore(unit, i);
     runningTotal += s;
     var wr = getRankForUnit(unit, [i]);
-    var hasData = i <= 21;
+    var hasData = weekHasData(i);
     html += '<tr>';
     html += '<td><strong>第' + i + '周</strong></td>';
     html += '<td>' + weekDateRange(i) + '</td>';
@@ -1841,6 +1922,10 @@ function triggerPrint() {
   window.print();
 }
 
+
+
+
+
 function buildPrintDoc(week, qrB64) {
   var rptData = getReportData(week);
   var dateRange = weekDateRange(week);
@@ -1864,14 +1949,14 @@ function buildPrintDoc(week, qrB64) {
   // ---- 页眉 ----
   html += '<div class="pdoc-header">';
   html += '<div>';
-  html += '<div class="pdoc-org">国网盐城供电公司党委工作部（宣传）</div>';
+  html += '<div class="pdoc-org">国网盐城供电公司党委宣传部（宣传）</div>';
   html += '<div class="pdoc-title">宣传工作情况周报</div>';
   html += '<div style="font-size:10pt;color:#555;margin-top:4px;letter-spacing:1px;">第' + week + '周 &nbsp;|&nbsp; ' + dateRange + '</div>';
   html += '</div>';
   html += '<div class="pdoc-meta">';
   html += '打印日期：' + printDate + '<br>';
   html += '报告期：第' + week + '周<br>';
-  html += '编制：党委工作部';
+  html += '编制：党委宣传部';
   html += '</div>';
   html += '</div>';
 
@@ -1961,7 +2046,7 @@ function buildPrintDoc(week, qrB64) {
   html += '<div class="pdoc-qr-label">扫码查看<br>全量数据</div>';
   html += '</div>';
   html += '<div class="pdoc-footer-text">';
-  html += '<strong>关于本报告：</strong>本报告由"盐城供电宣传工作周报看板"系统自动生成，数据来源于金山文档多维表格，经党委工作部宣传岗汇总整理。报告中的情况说明部分为人工编写。如有疑问，请联系党委工作部。<br>';
+  html += '<strong>关于本报告：</strong>本报告由"盐城供电宣传工作周报看板"系统自动生成，数据来源于金山文档多维表格，经党委宣传部宣传岗汇总整理。报告中的情况说明部分为人工编写。如有疑问，请联系党委宣传部。<br>';
   html += '<div class="pdoc-footer-disclaimer">注：本报告内容属内部参阅资料，请妥善保管。扫描右侧二维码可在线查看详细数据看板（需在有网络的设备上访问）。</div>';
   html += '</div>';
   html += '</div>';
