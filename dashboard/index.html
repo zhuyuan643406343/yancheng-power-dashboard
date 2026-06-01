@@ -26,7 +26,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-family: -apple-system, 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
   background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6;
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
   min-height: 100vh;
@@ -318,7 +318,7 @@ body {
 
 /* ===== 打印文档正文样式 ===== */
 .pdoc {
-  font-family: 'SimSun', 'STSong', 'Times New Roman', 'PingFang SC', serif;
+  font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Noto Sans SC', sans-serif;
   color: #111;
   background: #fff;
   padding: 28px 36px 24px;
@@ -475,6 +475,7 @@ body {
 
 /* ===== @media print ===== */
 @media print {
+  * { font-family: 'Microsoft YaHei', 'SimHei', 'PingFang SC', 'Hiragino Sans GB', sans-serif !important; }
   #print-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
   #print-frame { box-shadow: none; border-radius: 0; max-width: none; }
   .print-top-bar { display: none; }
@@ -647,7 +648,7 @@ const UNITS = ['本部','东台','大丰','建湖','射阳','阜宁','滨海','�
 const UNIT_FULL = { '本部':'市公司本部','东台':'东台公司','大丰':'大丰公司','建湖':'建湖公司','射阳':'射阳公司','阜宁':'阜宁公司','滨海':'滨海公司','响水':'响水公司' };
 
 // ===== 数据区（内嵌数据，无需额外网络请求）=====
-var DATA_VERSION = '2026-06-01';
+var DATA_VERSION = '2026-06-01-v2';
 
 var Q1_WEEKS = {
   "本部":[0.3,2,3.2,0.6,2.8,5.1,0.3,0,0,1,9,0.3,0],
@@ -727,6 +728,18 @@ function getWeekScore(unit, week) {
 // Total weeks count
 var TOTAL_WEEKS = 22;
 
+// ═══ 权威累计总分（来源：金山文档·总体得分汇总自动 s22，含定性加分/定量扣分/指标修正/舆情扣分）═══
+var AUTH_TOTALS = {
+  "本部": 42.1,
+  "东台": 40.35,
+  "大丰": 52.0,
+  "建湖": 35.1,
+  "射阳": 22.2,
+  "阜宁": 16.7,
+  "滨海": 27.7,
+  "响水": 19.25
+};
+
 // Check if a week has actual data (any unit with non-zero score)
 function weekHasData(w) {
   for (var i = 0; i < UNITS.length; i++) {
@@ -782,9 +795,9 @@ function rankUnits(weeks) {
   }).sort(function(a,b) { return b.score - a.score; });
 }
 
-// Get unit's total cumulative score
+// Get unit's total cumulative score (authoritative from 总体得分汇总·自动)
 function cumulativeTotal(unit) {
-  return totalScore(unit, TOTAL_WEEKS);
+  return AUTH_TOTALS[unit] || totalScore(unit, TOTAL_WEEKS);
 }
 
 function getTopUnit(weeks) {
@@ -1107,8 +1120,10 @@ function showHub() {
   html += '</div>';  // end flex row
   html += '</div>';  // end home-report-card
 
-  // Cumulative ranking summary
-  var cumRank = rankUnits(getWeeksInQuarter('Q1').concat(getWeeksInQuarter('Q2')));
+  // Cumulative ranking (authoritative totals from 总体得分汇总·自动)
+  var cumRank = UNITS.map(function(u) {
+    return { unit: u, score: AUTH_TOTALS[u] || 0 };
+  }).sort(function(a,b) { return b.score - a.score; });
   html += '<div class="card"><div class="card-title">🏆 累计总分排名</div>';
   cumRank.forEach(function(r, i) {
     var badgeClass = i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
@@ -1120,6 +1135,7 @@ function showHub() {
     html += '<div class="progress-bar" style="flex:1;max-width:80px;"><div class="progress-fill high" style="width:' + ((r.score/maxScore)*100) + '%"></div></div>';
     html += '</div>';
   });
+  html += '<div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:right;">数据来源：金山文档·总体得分汇总（自动）</div>';
   html += '</div></div>';
 
   v.innerHTML = html;
